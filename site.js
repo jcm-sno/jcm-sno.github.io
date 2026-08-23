@@ -3,6 +3,27 @@
   const stored = localStorage.getItem('wedding-theme');
   root.dataset.theme = stored || 'coastal-bright';
 
+  const loadEncodedFallback = (img) => {
+    if (img.dataset.fallbackLoading === 'true') return;
+    img.dataset.fallbackLoading = 'true';
+    fetch(`${img.getAttribute('src')}.b64`)
+      .then((response) => {
+        if (!response.ok) throw new Error('No encoded fallback');
+        return response.text();
+      })
+      .then((encoded) => {
+        img.src = `data:image/webp;base64,${encoded.trim()}`;
+      })
+      .catch(() => {
+        img.dataset.fallbackLoading = 'failed';
+      });
+  };
+
+  document.querySelectorAll('img[src$=".webp"]').forEach((img) => {
+    img.addEventListener('error', () => loadEncodedFallback(img), { once: true });
+    if (img.complete && img.naturalWidth === 0) loadEncodedFallback(img);
+  });
+
   const nav = document.querySelector('.nav');
   const menuButton = document.querySelector('[data-menu-button]');
   if (menuButton && nav) {
