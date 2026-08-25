@@ -38,6 +38,8 @@ jobs:
 
       - name: Build static site
         run: npm run build:pages
+        env:
+          NEXT_PUBLIC_ZOLA_REGISTRY_URL: ${{ vars.ZOLA_REGISTRY_URL }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

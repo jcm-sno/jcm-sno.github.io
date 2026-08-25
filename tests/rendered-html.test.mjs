@@ -30,3 +30,36 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /<title>James &amp; Samantha<\/title>/i);
   assert.match(html, /data-wedding-palette=["']coastal-bright["']/i);
 });
+
+test("renders native registry and RSVP routes", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("routes", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const environment = {
+    ASSETS: {
+      fetch: async () => new Response("Not found", { status: 404 }),
+    },
+  };
+  const context = {
+    waitUntil() {},
+    passThroughOnException() {},
+  };
+
+  const rsvpResponse = await worker.fetch(
+    new Request("http://localhost/rsvp", { headers: { accept: "text/html" } }),
+    environment,
+    context,
+  );
+  assert.equal(rsvpResponse.status, 200);
+  const rsvpHtml = await rsvpResponse.text();
+  assert.match(rsvpHtml, /Find Your Invitation/i);
+  assert.doesNotMatch(rsvpHtml, /http-equiv=["']refresh/i);
+
+  const registryResponse = await worker.fetch(
+    new Request("http://localhost/registry", { headers: { accept: "text/html" } }),
+    environment,
+    context,
+  );
+  assert.equal(registryResponse.status, 200);
+  assert.match(await registryResponse.text(), /Registry Connection Prepared/i);
+});

@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
+import SiteHeader from "../components/site-header";
 
 export const metadata: Metadata = {
   title: "Logistics | James & Samantha",
@@ -38,20 +38,7 @@ export default function LogisticsPage() {
   return (
     <main className="site-shell">
       <article className="album-page logistics-page">
-        <header className="site-nav">
-          <a className="wordmark" href="/" aria-label="James and Samantha home">
-            James <span>&amp;</span> Samantha
-          </a>
-          <nav aria-label="Wedding website navigation">
-            <a href="/">About Us</a>
-            <a className="is-active" href="/logistics/">
-              Logistics
-            </a>
-            <a className="nav-rsvp" href="https://www.zola.com/wedding/jcm-sno">
-              RSVP
-            </a>
-          </nav>
-        </header>
+        <SiteHeader active="logistics" />
 
         <section className="logistics-hero" aria-labelledby="logistics-title">
           <p className="eyebrow">The wedding weekend</p>

@@ -1,5 +1,6 @@
-/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element */
 import PaletteSwitcher from "./components/palette-switcher";
+import SiteHeader from "./components/site-header";
 
 const longDistancePhotos = [
   {
@@ -53,20 +54,7 @@ export default function Home() {
   return (
     <main className="site-shell">
       <article className="album-page">
-        <header className="site-nav">
-          <a className="wordmark" href="/" aria-label="James and Samantha home">
-            James <span>&amp;</span> Samantha
-          </a>
-          <nav aria-label="Wedding website navigation">
-            <a className="is-active" href="/">
-              About Us
-            </a>
-            <a href="/logistics/">Logistics</a>
-            <a className="nav-rsvp" href="https://www.zola.com/wedding/jcm-sno">
-              RSVP
-            </a>
-          </nav>
-        </header>
+        <SiteHeader active="about" />
 
         <section className="hero-banner" aria-labelledby="hero-title">
           <img

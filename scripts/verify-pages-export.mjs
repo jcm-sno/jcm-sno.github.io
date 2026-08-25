@@ -44,7 +44,7 @@ const files = await walk(exportRoot);
 const htmlFiles = files.filter((file) => file.endsWith(".html"));
 const styleFiles = files.filter((file) => file.endsWith(".css"));
 
-assert(htmlFiles.length >= 4, "Expected the home, logistics, RSVP, and 404 pages");
+assert(htmlFiles.length >= 5, "Expected the home, logistics, registry, RSVP, and 404 pages");
 await access(path.join(exportRoot, ".nojekyll"));
 
 for (const file of htmlFiles) {
@@ -69,11 +69,18 @@ const logistics = await readFile(
   "utf8",
 );
 const rsvp = await readFile(path.join(exportRoot, "rsvp/index.html"), "utf8");
+const registry = await readFile(
+  path.join(exportRoot, "registry/index.html"),
+  "utf8",
+);
 
 assert.match(home, /coffee shop stalker/i);
-assert.match(home, /https:\/\/www\.zola\.com\/wedding\/jcm-sno/);
+assert.match(home, /href=["']\/rsvp\//i);
+assert.match(home, /href=["']\/registry\//i);
 assert.match(logistics, /Approximate nightly total after tax/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
-assert.match(rsvp, /https:\/\/www\.zola\.com\/wedding\/jcm-sno/);
+assert.match(rsvp, /Find Your Invitation/i);
+assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
+assert.match(registry, /Registry Connection Prepared/i);
 
 console.log(`Verified ${htmlFiles.length} exported HTML pages and their local assets.`);
