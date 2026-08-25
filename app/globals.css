@@ -1,0 +1,2107 @@
+@import "tailwindcss";
+
+:root {
+  --canvas-white: #fffcf7;
+  --album-paper: #f2e4e1;
+  --deep-cypress: #322a38;
+  --seagrass: #8aa26e;
+  --hazy-atlantic: #a9b9d6;
+  --coral-ribbon: #cd8a82;
+  --deep-seagrass: #5b684a;
+  --muted-ink: #5d505c;
+  --rule: color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+}
+
+:root[data-wedding-palette="coastal-bright"] {
+  --canvas-white: #ffffff;
+  --album-paper: #f5f0e8;
+  --deep-cypress: #1c2724;
+  --seagrass: #6f9f72;
+  --hazy-atlantic: #a6ced9;
+  --coral-ribbon: #e09e7e;
+  --deep-seagrass: #4a7050;
+  --muted-ink: #59625e;
+}
+
+:root[data-wedding-palette="florida-sunrise"] {
+  --canvas-white: #fffdf8;
+  --album-paper: #f7eacf;
+  --deep-cypress: #153b3b;
+  --seagrass: #6faf82;
+  --hazy-atlantic: #79c6d0;
+  --coral-ribbon: #f2a65a;
+  --deep-seagrass: #3f725b;
+  --muted-ink: #526360;
+}
+
+:root[data-wedding-palette="pressed-garden"] {
+  --canvas-white: #fffcf7;
+  --album-paper: #f2e4e1;
+  --deep-cypress: #322a38;
+  --seagrass: #8aa26e;
+  --hazy-atlantic: #a9b9d6;
+  --coral-ribbon: #cd8a82;
+  --deep-seagrass: #5b684a;
+  --muted-ink: #5d505c;
+}
+
+:root[data-wedding-palette="mid-century-atlantic"] {
+  --canvas-white: #fdfefe;
+  --album-paper: #eaf1ef;
+  --deep-cypress: #14273d;
+  --seagrass: #69a88c;
+  --hazy-atlantic: #82b8dd;
+  --coral-ribbon: #e4775e;
+  --deep-seagrass: #426f5d;
+  --muted-ink: #53646b;
+}
+
+:root[data-wedding-palette="atlantic-garden"] {
+  --canvas-white: #ffffff;
+  --album-paper: #f5f0e8;
+  --deep-cypress: #08243e;
+  --seagrass: #69966b;
+  --hazy-atlantic: #aabbc0;
+  --coral-ribbon: #e09e7e;
+  --deep-seagrass: #456949;
+  --muted-ink: #536272;
+}
+
+:root[data-wedding-palette="save-the-date-editorial"] {
+  --canvas-white: #ffffff;
+  --album-paper: #f2f0ea;
+  --deep-cypress: #2d3433;
+  --seagrass: #978f6f;
+  --hazy-atlantic: #959b9e;
+  --coral-ribbon: #c88973;
+  --deep-seagrass: #69684f;
+  --muted-ink: #626967;
+}
+
+:root[data-wedding-palette="navy-film"] {
+  --canvas-white: #fcfcfa;
+  --album-paper: #e5e1d8;
+  --deep-cypress: #08243e;
+  --seagrass: #6e8060;
+  --hazy-atlantic: #748c99;
+  --coral-ribbon: #d47658;
+  --deep-seagrass: #4a5a3f;
+  --muted-ink: #59616a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  background: var(--canvas-white);
+}
+
+body {
+  margin: 0;
+  background: var(--canvas-white);
+  color: var(--deep-cypress);
+  font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+body,
+body * {
+  transition:
+    color 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+.wordmark,
+.site-footer p:first-child {
+  margin: 0;
+  font-family: "Cormorant SC", Georgia, serif;
+  font-weight: 500;
+}
+
+.site-shell {
+  min-height: 100vh;
+  padding-block: clamp(0px, 4vw, 64px);
+}
+
+.album-page {
+  width: min(1320px, calc(100% - 2 * clamp(32px, 4vw, 64px)));
+  margin-inline: auto;
+  background: var(--album-paper);
+  box-shadow: 0 20px 70px color-mix(in srgb, var(--deep-cypress) 8%, transparent);
+}
+
+.site-nav {
+  min-height: 88px;
+  padding: 22px clamp(24px, 4.5vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--album-paper) 96%, transparent);
+}
+
+.wordmark {
+  grid-column: 2;
+  justify-self: center;
+  text-decoration: none;
+  font-size: clamp(24px, 2.4vw, 36px);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.wordmark span {
+  display: inline-block;
+  margin-inline: 0.1em;
+}
+
+.site-nav nav {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.7vw, 42px);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.site-nav nav a {
+  padding-block: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav nav a:hover,
+.site-nav nav a:focus-visible,
+.site-nav nav a.is-active {
+  border-bottom-color: currentColor;
+}
+
+.site-nav nav a:focus-visible,
+.placeholder-back:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--deep-cypress);
+  outline-offset: 4px;
+}
+
+.nav-rsvp {
+  padding-inline: 16px;
+  background: var(--coral-ribbon);
+  border-bottom: 0 !important;
+}
+
+.hero-banner {
+  position: relative;
+  min-height: clamp(470px, 39vw, 590px);
+  display: grid;
+  grid-template-columns: minmax(380px, 0.85fr) minmax(0, 1.45fr);
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--hazy-atlantic);
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.hero-copy {
+  grid-column: 1 / -1;
+  width: min(820px, calc(100% - clamp(56px, 8vw, 116px)));
+  max-width: none;
+  justify-self: start;
+  align-self: center;
+  margin: clamp(28px, 4vw, 58px);
+  padding: clamp(28px, 3.2vw, 48px);
+  background: color-mix(in srgb, var(--album-paper) 94%, transparent);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--deep-cypress) 13%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.eyebrow,
+.section-number,
+.clip-kicker {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin-bottom: 22px;
+}
+
+.hero-copy h1 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  justify-content: stretch;
+  align-items: baseline;
+  column-gap: clamp(20px, 2.4vw, 38px);
+  width: 100%;
+  font-size: clamp(23px, 2.15vw, 31px);
+  line-height: 0.95;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+}
+
+.hero-full-name {
+  display: flex;
+  gap: 0.2em;
+}
+
+.hero-name-james {
+  justify-self: end;
+  text-align: right;
+}
+
+.hero-amp {
+  justify-self: center;
+  font-size: 0.74em;
+}
+
+.hero-name-samantha {
+  justify-self: start;
+}
+
+.script-lead,
+.scrapbook-script {
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+}
+
+.script-lead {
+  margin: 28px 0 8px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  color: var(--deep-seagrass);
+  font-size: clamp(27px, 2.5vw, 38px);
+  line-height: 1.15;
+}
+
+.hero-description {
+  margin: 0;
+  max-width: 37ch;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.section-number {
+  margin-bottom: 18px;
+  color: var(--muted-ink);
+}
+
+.scrapbook-heading h2,
+.palette-review h2 {
+  font-size: clamp(45px, 5.5vw, 76px);
+  line-height: 0.95;
+  letter-spacing: 0.1em;
+}
+
+.palette-review > div > p:last-child {
+  margin: 0;
+  max-width: 61ch;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.scrapbook-section {
+  position: relative;
+  padding-block: clamp(72px, 8vw, 112px) clamp(90px, 12vw, 160px);
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--canvas-white) 12%, transparent),
+      color-mix(in srgb, var(--canvas-white) 12%, transparent)
+    ),
+    var(--hazy-atlantic);
+}
+
+.scrapbook-heading {
+  width: min(680px, calc(100% - 48px));
+  margin: 0 auto clamp(72px, 9vw, 124px);
+  text-align: center;
+}
+
+.scrapbook-heading h2 {
+  margin-bottom: 20px;
+}
+
+.scrapbook-script {
+  max-width: 26ch;
+  margin: 0 auto;
+  color: var(--deep-seagrass);
+  font-size: clamp(31px, 3.6vw, 48px);
+  line-height: 1.18;
+}
+
+.field-day-cluster,
+.boston-cluster,
+.long-distance-cluster,
+.engagement-cluster {
+  --spill: 0px;
+  position: relative;
+  width: calc(100% + var(--spill) * 2);
+  margin: 0 calc(var(--spill) * -1) clamp(116px, 13vw, 180px);
+  padding-inline: clamp(24px, 5vw, 78px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(18px, 2.5vw, 38px);
+  align-items: start;
+  isolation: isolate;
+}
+
+.story-card {
+  position: relative;
+  z-index: 4;
+  padding: clamp(28px, 3vw, 42px);
+  background: var(--album-paper);
+  border: 1px solid color-mix(in srgb, var(--deep-cypress) 10%, transparent);
+  box-shadow: 0 18px 38px color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+}
+
+.field-day-story {
+  grid-column: 1 / 5;
+  grid-row: 1;
+  align-self: end;
+  margin: 0 -38px 46px 0;
+  transform: rotate(-0.8deg);
+}
+
+.story-card h3 {
+  margin: 0 0 18px;
+  font-size: clamp(34px, 3.7vw, 54px);
+  line-height: 0.96;
+  letter-spacing: 0.07em;
+}
+
+.story-heading-fields {
+  display: block;
+}
+
+.story-heading-fields .clip-kicker {
+  display: none;
+}
+
+.story-card > p:not(.clip-kicker) {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.cluster-photo {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: 0 20px 42px color-mix(in srgb, var(--deep-cypress) 20%, transparent);
+}
+
+.cluster-photo::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  z-index: 2;
+  width: 86px;
+  height: 26px;
+  transform: translateX(-50%) rotate(-1deg);
+  background: color-mix(in srgb, var(--album-paper) 74%, transparent);
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--deep-cypress) 8%, transparent);
+}
+
+.cluster-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-sticky-caption {
+  position: absolute;
+  right: -24px;
+  bottom: -44px;
+  z-index: 4;
+  width: max-content;
+  max-width: min(280px, 86%);
+  margin: 0;
+  padding: 20px 22px 16px;
+  color: var(--deep-cypress);
+  background: var(--coral-ribbon);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--deep-cypress) 16%, transparent);
+  transform: rotate(2deg);
+  font-family: "Parisienne", cursive;
+  font-size: clamp(21px, 2.3vw, 30px);
+  line-height: 1.08;
+}
+
+.field-day-main {
+  z-index: 1;
+  grid-column: 5 / 13;
+  grid-row: 1;
+  aspect-ratio: 16 / 9;
+  transform: rotate(0.65deg);
+}
+
+.field-day-main::before {
+  left: 72%;
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.field-day-main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 86% 56%,
+    color-mix(in srgb, var(--canvas-white) 5.5%, transparent),
+    transparent 31%
+  );
+  mix-blend-mode: screen;
+}
+
+.field-day-facing {
+  z-index: 3;
+  grid-column: 1 / 5;
+  grid-row: 2;
+  aspect-ratio: 4 / 5;
+  margin: -64px 0 0 28px;
+  transform: rotate(-1.7deg);
+}
+
+.field-day-facing img {
+  object-position: center 61%;
+}
+
+.field-day-action {
+  z-index: 2;
+  grid-column: 8 / 12;
+  grid-row: 2;
+  aspect-ratio: 4 / 5;
+  margin-top: -122px;
+  transform: rotate(1.45deg);
+}
+
+.field-day-action::before {
+  left: 38%;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+.field-day-action img {
+  object-position: center 54%;
+}
+
+.boston-coffee {
+  z-index: 1;
+  grid-column: 1 / 8;
+  grid-row: 1;
+  aspect-ratio: 5 / 4;
+  transform: rotate(-0.75deg);
+}
+
+.boston-coffee::before {
+  left: 30%;
+  transform: translateX(-50%) rotate(-2.5deg);
+}
+
+.boston-coffee .photo-sticky-caption {
+  right: 18px;
+}
+
+.boston-story {
+  grid-column: 8 / 13;
+  grid-row: 1;
+  align-self: end;
+  margin: 0 0 38px -44px;
+  transform: rotate(0.9deg);
+}
+
+.boston-kayak {
+  z-index: 3;
+  grid-column: 1 / 7;
+  grid-row: 2;
+  aspect-ratio: 4 / 3;
+  margin: -48px 0 0 52px;
+  transform: rotate(1.2deg);
+}
+
+.boston-kayak::before {
+  left: 68%;
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.boston-night {
+  z-index: 2;
+  grid-column: 8 / 12;
+  grid-row: 2;
+  aspect-ratio: 3 / 4;
+  margin-top: -108px;
+  transform: rotate(-1.3deg);
+}
+
+.boston-night img {
+  object-position: center 46%;
+}
+
+.long-distance-story {
+  z-index: 5;
+  grid-column: 6 / 10;
+  grid-row: 1 / 3;
+  align-self: center;
+  margin: 22px -18px 0 -30px;
+  transform: rotate(-0.35deg);
+}
+
+.long-distance-street {
+  z-index: 1;
+  grid-column: 6 / 13;
+  grid-row: 1;
+  aspect-ratio: 4 / 3;
+  transform: rotate(0.9deg);
+}
+
+.long-distance-seafood {
+  z-index: 2;
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+  align-self: center;
+  aspect-ratio: 3 / 4;
+  margin-top: 46px;
+  transform: rotate(-1.15deg);
+}
+
+.long-distance-harbor {
+  z-index: 3;
+  grid-column: 1 / 8;
+  grid-row: 2;
+  aspect-ratio: 4 / 3;
+  margin-top: -78px;
+  transform: rotate(0.7deg);
+}
+
+.engagement-proposal {
+  z-index: 1;
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+  aspect-ratio: 2 / 3;
+  transform: rotate(-0.85deg);
+}
+
+.engagement-walk {
+  z-index: 2;
+  grid-column: 5 / 13;
+  grid-row: 1;
+  aspect-ratio: 3 / 2;
+  margin-top: 26px;
+  transform: rotate(0.75deg);
+}
+
+.engagement-story {
+  z-index: 5;
+  grid-column: 4 / 9;
+  grid-row: 2;
+  align-self: center;
+  margin: -18px -22px 32px 34px;
+  transform: rotate(0.45deg);
+}
+
+.engagement-story h3 {
+  margin-bottom: 18px;
+}
+
+.engagement-reaction {
+  z-index: 3;
+  grid-column: 8 / 13;
+  grid-row: 2;
+  aspect-ratio: 2 / 3;
+  margin-top: -96px;
+  transform: rotate(-1.05deg);
+}
+
+.scrapbook-stage {
+  --spill: 0px;
+  width: calc(100% + var(--spill) * 2);
+  margin-inline: calc(var(--spill) * -1);
+  padding-inline: clamp(24px, 5vw, 78px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 1fr;
+  gap: clamp(24px, 3.5vw, 54px);
+  align-items: start;
+}
+
+.clip {
+  position: relative;
+  padding: clamp(18px, 2.4vw, 32px);
+  color: var(--deep-cypress);
+  box-shadow: 0 18px 36px color-mix(in srgb, var(--deep-cypress) 16%, transparent);
+}
+
+.clip::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 1;
+  width: 82px;
+  height: 25px;
+  transform: translateX(-50%) rotate(-1deg);
+  background: color-mix(in srgb, var(--canvas-white) 58%, transparent);
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--deep-cypress) 8%, transparent);
+}
+
+.clip-surface {
+  min-height: clamp(170px, 20vw, 280px);
+  margin-bottom: 22px;
+  padding: 14px;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid color-mix(in srgb, var(--deep-cypress) 20%, transparent);
+  background:
+    linear-gradient(135deg, transparent 49.5%, color-mix(in srgb, var(--deep-cypress) 13%, transparent) 50%, transparent 50.5%),
+    linear-gradient(45deg, transparent 49.5%, color-mix(in srgb, var(--deep-cypress) 13%, transparent) 50%, transparent 50.5%);
+  color: color-mix(in srgb, var(--deep-cypress) 70%, transparent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.clip-kicker {
+  margin-bottom: 9px;
+  color: var(--muted-ink);
+}
+
+.clip h3 {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 3vw, 43px);
+  line-height: 1;
+  letter-spacing: 0.07em;
+}
+
+.clip > p:last-child {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.clip-photo {
+  background: var(--canvas-white);
+}
+
+.clip-photo .clip-surface {
+  background-color: color-mix(in srgb, var(--muted-ink) 28%, var(--album-paper));
+}
+
+.clip-note {
+  background: var(--album-paper);
+}
+
+.clip-note .clip-surface {
+  min-height: 120px;
+  background-color: color-mix(in srgb, var(--coral-ribbon) 28%, transparent);
+}
+
+.clip-ticket {
+  grid-column: 2;
+  margin: -46px -54px 0 48px;
+  transform: rotate(2.5deg);
+  background: var(--coral-ribbon);
+}
+
+.clip-ticket .clip-surface {
+  min-height: 92px;
+  border-style: dashed;
+  background-color: color-mix(in srgb, var(--canvas-white) 18%, transparent);
+}
+
+.clip-photo-one {
+  grid-column: 1 / span 2;
+  transform: rotate(-1.8deg);
+}
+
+.clip-note-one {
+  grid-column: 3;
+  margin: 88px 0 0 -72px;
+  transform: rotate(2deg);
+}
+
+.clip-photo-two {
+  grid-column: 2 / span 2;
+  margin-top: -74px;
+  transform: rotate(1.4deg);
+}
+
+.clip-map {
+  grid-column: 1;
+  margin: 34px -64px 0 28px;
+  transform: rotate(-2.6deg);
+  background: var(--seagrass);
+}
+
+.clip-map .clip-surface {
+  background-color: color-mix(in srgb, var(--canvas-white) 16%, transparent);
+}
+
+.clip-note-two {
+  grid-column: 2 / span 2;
+  margin: -54px 52px 0 -24px;
+  transform: rotate(-1deg);
+}
+
+.palette-review {
+  padding: clamp(70px, 9vw, 118px) clamp(26px, 7vw, 104px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(30px, 4vw, 48px);
+  align-items: start;
+  background: var(--album-paper);
+  border-top: 1px dashed var(--rule);
+}
+
+.palette-review > div:first-child {
+  max-width: 720px;
+}
+
+.palette-review h2 {
+  margin-bottom: 20px;
+}
+
+.palette-matrix-wrap {
+  min-width: 0;
+  border: 4px solid var(--deep-cypress);
+  background: var(--canvas-white);
+}
+
+.palette-matrix {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.palette-name-column {
+  width: 23%;
+}
+
+.palette-matrix th,
+.palette-matrix td {
+  min-width: 0;
+}
+
+.palette-matrix thead th {
+  padding: 8px 4px;
+  background: var(--album-paper);
+  border-bottom: 4px solid var(--deep-cypress);
+  font-size: clamp(6px, 0.75vw, 9px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.palette-matrix thead th:first-child {
+  text-align: left;
+}
+
+.palette-matrix tbody tr + tr > * {
+  border-top: 5px solid var(--deep-cypress);
+}
+
+.palette-matrix tr > * + * {
+  border-left: 1px solid var(--deep-cypress);
+}
+
+.palette-matrix tbody th {
+  padding: 0;
+  vertical-align: middle;
+  background: var(--album-paper);
+  text-align: left;
+}
+
+.palette-matrix tbody tr.is-current th {
+  background: var(--coral-ribbon);
+}
+
+.palette-selector {
+  width: 100%;
+  min-height: 100%;
+  padding: 10px 8px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.palette-selector:hover {
+  background: color-mix(in srgb, var(--coral-ribbon) 28%, transparent);
+}
+
+.palette-selector:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 3px solid var(--deep-cypress);
+  outline-offset: -4px;
+}
+
+.palette-selector > span:not(.sr-only) {
+  display: block;
+  margin-bottom: 4px;
+  font-size: clamp(6px, 0.65vw, 8px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.palette-selector strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: clamp(11px, 1.5vw, 19px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.palette-matrix td {
+  padding: 5px 4px 6px;
+  vertical-align: top;
+}
+
+.matrix-swatch {
+  display: block;
+  width: 100%;
+  min-height: clamp(30px, 5vw, 62px);
+  border: 1px solid color-mix(in srgb, var(--deep-cypress) 20%, transparent);
+}
+
+.palette-matrix code {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--muted-ink);
+  font-size: clamp(5.5px, 0.58vw, 8px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.site-footer {
+  min-height: 180px;
+  padding: 54px clamp(26px, 7vw, 104px);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-end;
+  color: var(--album-paper);
+  background: var(--deep-cypress);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer p:first-child {
+  font-size: clamp(34px, 4vw, 54px);
+  letter-spacing: 0.1em;
+}
+
+.site-footer p:last-child {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.logistics-page {
+  overflow: clip;
+}
+
+.logistics-hero {
+  position: relative;
+  padding: clamp(78px, 10vw, 142px) clamp(28px, 8vw, 118px) clamp(70px, 9vw, 124px);
+  overflow: hidden;
+  background:
+    linear-gradient(
+      110deg,
+      color-mix(in srgb, var(--album-paper) 98%, transparent) 42%,
+      color-mix(in srgb, var(--canvas-white) 72%, transparent)
+    ),
+    var(--album-paper);
+}
+
+.logistics-hero::after {
+  content: "";
+  position: absolute;
+  top: -76px;
+  right: clamp(34px, 9vw, 130px);
+  width: clamp(118px, 14vw, 196px);
+  height: 230px;
+  transform: rotate(3deg);
+  background: var(--coral-ribbon);
+  opacity: 0.86;
+}
+
+.logistics-hero h1 {
+  max-width: 900px;
+  font-size: clamp(70px, 11vw, 150px);
+  line-height: 0.8;
+  letter-spacing: 0.12em;
+}
+
+.logistics-script {
+  margin: 36px 0 8px;
+  color: var(--deep-seagrass);
+  font-family: "Parisienne", cursive;
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.15;
+}
+
+.logistics-deck {
+  max-width: 62ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.logistics-jump {
+  margin-top: clamp(42px, 6vw, 76px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logistics-jump a {
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--canvas-white) 52%, transparent);
+}
+
+.logistics-jump a:hover,
+.logistics-jump a:focus-visible {
+  background: var(--hazy-atlantic);
+}
+
+.logistics-jump a:focus-visible,
+.airport-card a:focus-visible,
+.hotel-actions a:focus-visible {
+  outline: 2px solid var(--deep-cypress);
+  outline-offset: 4px;
+}
+
+.logistics-section {
+  padding: clamp(76px, 9vw, 128px) clamp(28px, 7vw, 104px);
+}
+
+.logistics-section-heading h2 {
+  font-size: clamp(50px, 7vw, 92px);
+  line-height: 0.9;
+  letter-spacing: 0.09em;
+}
+
+.centered-heading {
+  max-width: 820px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.centered-heading > p:last-child {
+  max-width: 57ch;
+  margin: 28px auto 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.schedule-section {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(460px, 1.3fr);
+  gap: clamp(48px, 8vw, 120px);
+  align-items: center;
+  background: var(--canvas-white);
+}
+
+.schedule-card {
+  position: relative;
+  padding: clamp(28px, 4vw, 52px);
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: clamp(28px, 4vw, 50px);
+  align-items: center;
+  background: var(--seagrass);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--deep-cypress) 13%, transparent);
+}
+
+.schedule-card::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  right: 13%;
+  width: 92px;
+  height: 26px;
+  transform: rotate(2deg);
+  background: color-mix(in srgb, var(--canvas-white) 62%, transparent);
+}
+
+.date-card {
+  min-height: 185px;
+  padding: 24px 20px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  color: var(--deep-cypress);
+  background: var(--coral-ribbon);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+  transform: rotate(-1.8deg);
+  font-family: "Cormorant SC", Georgia, serif;
+  letter-spacing: 0.14em;
+}
+
+.date-card strong {
+  font-size: 76px;
+  font-weight: 500;
+  line-height: 0.82;
+}
+
+.date-card span {
+  font-size: 18px;
+}
+
+.detail-label {
+  margin: 0;
+  color: var(--muted-ink);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.schedule-card .detail-label {
+  color: color-mix(in srgb, var(--deep-cypress) 75%, transparent);
+}
+
+.schedule-card h3 {
+  margin: 12px 0 14px;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 0.95;
+  letter-spacing: 0.08em;
+}
+
+.schedule-card > div:last-child > p:not(.detail-label) {
+  margin: 0;
+  max-width: 45ch;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.schedule-transport {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 0;
+}
+
+.status-pill {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 9px 12px;
+  background: color-mix(in srgb, var(--canvas-white) 62%, transparent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.travel-section {
+  background: var(--hazy-atlantic);
+}
+
+.airport-grid {
+  margin-top: clamp(56px, 7vw, 92px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.5vw, 34px);
+  align-items: stretch;
+}
+
+.airport-card {
+  padding: clamp(26px, 3.4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--canvas-white) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+}
+
+.airport-card:first-child {
+  transform: translateY(-16px);
+  background: var(--album-paper);
+  box-shadow: 0 18px 38px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+}
+
+.airport-code {
+  margin: 28px 0 18px;
+  color: var(--deep-seagrass);
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: clamp(60px, 7vw, 94px);
+  font-weight: 500;
+  line-height: 0.75;
+  letter-spacing: 0.12em;
+}
+
+.airport-card h3 {
+  min-height: 2.15em;
+  margin: 0;
+  font-size: clamp(26px, 2.6vw, 37px);
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+}
+
+.airport-card .drive-time {
+  margin: 24px 0 8px;
+  font-weight: 700;
+}
+
+.airport-card > p:not(.detail-label, .airport-code, .drive-time) {
+  margin: 0 0 28px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.airport-card > a,
+.hotel-actions > a {
+  width: fit-content;
+  margin-top: auto;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.travel-caveat {
+  max-width: 80ch;
+  margin: 40px auto 0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.lodging-section {
+  background: var(--album-paper);
+}
+
+.lodging-heading {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 0.75fr);
+  gap: clamp(40px, 7vw, 100px);
+  align-items: end;
+}
+
+.lodging-heading > p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.pending-notice {
+  position: relative;
+  max-width: 920px;
+  margin: clamp(50px, 7vw, 86px) auto;
+  padding: clamp(28px, 4vw, 48px);
+  background: var(--coral-ribbon);
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+  transform: rotate(-0.5deg);
+}
+
+.pending-notice::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 18%;
+  width: 84px;
+  height: 25px;
+  background: color-mix(in srgb, var(--canvas-white) 62%, transparent);
+  transform: rotate(-2deg);
+}
+
+.pending-notice h3 {
+  margin: 12px 0 14px;
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+.pending-notice > p:last-child {
+  max-width: 72ch;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 54px);
+  align-items: stretch;
+}
+
+.hotel-card {
+  padding: clamp(28px, 4.5vw, 58px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--deep-cypress) 9%, transparent);
+}
+
+.shores-card {
+  background: var(--canvas-white);
+}
+
+.hyatt-card {
+  background: color-mix(in srgb, var(--hazy-atlantic) 62%, transparent);
+}
+
+.hotel-card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.hotel-card-topline > span {
+  padding: 7px 9px;
+  white-space: nowrap;
+  background: var(--coral-ribbon);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hotel-card h3 {
+  margin: 28px 0 14px;
+  font-size: clamp(35px, 4.2vw, 54px);
+  line-height: 0.98;
+  letter-spacing: 0.055em;
+}
+
+.hotel-card address {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.rate-block {
+  margin: 34px 0;
+  padding-block: 26px;
+  display: grid;
+  border-block: 1px solid var(--rule);
+}
+
+.rate-block span,
+.split-rates span,
+.split-rates > p {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.rate-block strong {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: clamp(56px, 7vw, 78px);
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.rate-block .parking-rate {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px dashed var(--rule);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.split-rates {
+  margin: 34px 0;
+  padding-block: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  border-block: 1px solid var(--rule);
+}
+
+.split-rates > .split-rates-heading {
+  grid-column: 1 / -1;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.split-rates > div {
+  display: grid;
+  gap: 7px;
+}
+
+.split-rates > div + div {
+  padding-left: 16px;
+  border-left: 1px solid var(--rule);
+}
+
+.split-rates strong {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.split-rates > p {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+}
+
+.hotel-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.hotel-details.single-list {
+  grid-template-columns: 1fr;
+}
+
+.hotel-details h4 {
+  margin: 0 0 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hotel-details ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.hotel-actions {
+  margin-top: auto;
+  padding-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: center;
+}
+
+.pending-link {
+  padding: 12px 14px;
+  color: var(--album-paper);
+  background: var(--deep-cypress);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.transport-note {
+  max-width: 820px;
+  margin: clamp(64px, 9vw, 118px) auto 0;
+  padding: clamp(38px, 5vw, 64px);
+  text-align: center;
+  color: var(--album-paper);
+  background: var(--deep-cypress);
+}
+
+.transport-note .section-number {
+  color: var(--hazy-atlantic);
+}
+
+.transport-note h3 {
+  margin: 16px 0;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+}
+
+.transport-note > p:last-child {
+  max-width: 60ch;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.placeholder-page {
+  min-height: 100vh;
+  padding: clamp(24px, 6vw, 90px);
+  display: grid;
+  place-items: center;
+  background: var(--canvas-white);
+}
+
+.placeholder-card {
+  width: min(720px, 100%);
+  padding: clamp(40px, 8vw, 92px);
+  text-align: center;
+  background: var(--album-paper);
+  border: 1px solid var(--rule);
+}
+
+.placeholder-card h1 {
+  font-size: clamp(48px, 8vw, 84px);
+  letter-spacing: 0.12em;
+}
+
+.placeholder-card p {
+  margin: 24px auto 32px;
+  max-width: 48ch;
+  line-height: 1.8;
+}
+
+.placeholder-back {
+  display: inline-block;
+  padding: 12px 18px;
+  text-decoration: none;
+  background: var(--coral-ribbon);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .field-day-cluster,
+  .boston-cluster,
+  .long-distance-cluster,
+  .engagement-cluster,
+  .scrapbook-stage {
+    --spill: 24px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1599px) {
+  .field-day-cluster,
+  .boston-cluster,
+  .long-distance-cluster,
+  .engagement-cluster,
+  .scrapbook-stage {
+    --spill: 48px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .field-day-cluster,
+  .boston-cluster,
+  .long-distance-cluster,
+  .engagement-cluster,
+  .scrapbook-stage {
+    --spill: 72px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-banner {
+    grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1fr);
+  }
+
+  .hero-copy {
+    margin: 28px;
+  }
+
+  .scrapbook-stage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .field-day-cluster,
+  .boston-cluster,
+  .long-distance-cluster,
+  .engagement-cluster {
+    width: auto;
+    margin-inline: 0;
+    padding-inline: clamp(24px, 5vw, 54px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .field-day-story,
+  .field-day-main,
+  .field-day-facing,
+  .field-day-action,
+  .boston-coffee,
+  .boston-story,
+  .boston-kayak,
+  .boston-night,
+  .long-distance-story,
+  .long-distance-street,
+  .long-distance-seafood,
+  .long-distance-harbor,
+  .engagement-story,
+  .engagement-walk,
+  .engagement-reaction,
+  .engagement-proposal {
+    grid-row: auto;
+  }
+
+  .field-day-story,
+  .field-day-main {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .field-day-facing {
+    grid-column: 1;
+    margin: -18px 0 0;
+  }
+
+  .field-day-action {
+    grid-column: 2;
+    margin: -18px 0 0;
+  }
+
+  .boston-coffee,
+  .boston-story {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .boston-kayak {
+    grid-column: 1;
+    margin: -18px 0 0;
+  }
+
+  .boston-night {
+    grid-column: 2;
+    margin: -18px 0 0;
+  }
+
+  .long-distance-story,
+  .long-distance-street {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .long-distance-seafood {
+    grid-column: 1;
+    margin: -18px 0 0;
+  }
+
+  .long-distance-harbor {
+    grid-column: 2;
+    margin: -18px 0 0;
+  }
+
+  .engagement-story,
+  .engagement-walk {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .engagement-reaction {
+    grid-column: 1;
+    margin: -18px 0 0;
+  }
+
+  .engagement-proposal {
+    grid-column: 2;
+    margin: -18px 0 0;
+  }
+
+  .clip-photo-one,
+  .clip-photo-two,
+  .clip-note-two {
+    grid-column: 1 / -1;
+  }
+
+  .clip-note-one,
+  .clip-ticket,
+  .clip-map {
+    grid-column: auto;
+    margin: 0;
+  }
+
+  .clip-photo-two,
+  .clip-note-two {
+    margin-top: -20px;
+  }
+
+  .schedule-section {
+    grid-template-columns: 1fr;
+  }
+
+  .airport-grid,
+  .hotel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .airport-card:first-child {
+    transform: none;
+  }
+
+  .airport-card h3 {
+    min-height: 0;
+  }
+
+  .lodging-heading {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-nav {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
+  }
+
+  .wordmark,
+  .site-nav nav {
+    grid-column: 1;
+  }
+
+  .site-nav nav {
+    width: 100%;
+    justify-self: stretch;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-shell {
+    padding: 0;
+  }
+
+  .album-page {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .site-nav {
+    min-height: auto;
+    padding: 18px 20px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wordmark {
+    grid-column: 1;
+    justify-self: center;
+    font-size: 25px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .site-nav nav {
+    grid-column: 1;
+    width: 100%;
+    justify-self: stretch;
+    justify-content: center;
+    gap: 14px;
+    font-size: 9px;
+    letter-spacing: 0.11em;
+  }
+
+  .nav-rsvp {
+    padding-inline: 10px;
+  }
+
+  .hero-banner {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .hero-photo {
+    position: static;
+    order: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center 48%;
+  }
+
+  .hero-copy {
+    order: 1;
+    width: 100%;
+    margin: 0;
+    padding: 38px 24px 44px;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .hero-copy h1 {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(12px, 3.8vw, 22px);
+    font-size: clamp(22px, 6.4vw, 29px);
+    line-height: 0.94;
+    letter-spacing: 0.055em;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .hero-full-name {
+    display: grid;
+    gap: 0.08em;
+    justify-items: center;
+  }
+
+  .hero-name-james {
+    justify-self: end;
+  }
+
+  .hero-name-samantha {
+    justify-self: start;
+  }
+
+  .hero-amp {
+    align-self: center;
+    font-size: 0.78em;
+    transform: translateY(0.06em);
+  }
+
+  .scrapbook-heading h2,
+  .palette-review h2 {
+    font-size: clamp(42px, 13vw, 60px);
+    letter-spacing: 0.07em;
+  }
+
+  .scrapbook-section {
+    padding-block: 72px 100px;
+  }
+
+  .scrapbook-heading {
+    width: auto;
+    margin-inline: 24px;
+  }
+
+  .field-day-cluster,
+  .boston-cluster,
+  .long-distance-cluster,
+  .engagement-cluster {
+    width: auto;
+    margin: 0 0 104px;
+    padding-inline: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .field-day-story,
+  .field-day-main,
+  .field-day-facing,
+  .field-day-action,
+  .boston-coffee,
+  .boston-story,
+  .boston-kayak,
+  .boston-night,
+  .long-distance-story,
+  .long-distance-street,
+  .long-distance-seafood,
+  .long-distance-harbor,
+  .engagement-story,
+  .engagement-walk,
+  .engagement-reaction,
+  .engagement-proposal {
+    width: 100%;
+    margin: 0;
+  }
+
+  .field-day-story {
+    padding: 32px 26px 38px;
+    transform: none;
+  }
+
+  .field-day-main {
+    margin-top: 12px;
+    transform: rotate(-0.45deg);
+  }
+
+  .field-day-facing {
+    transform: rotate(0.75deg);
+  }
+
+  .field-day-action {
+    transform: rotate(-0.6deg);
+  }
+
+  .boston-coffee {
+    margin-bottom: 22px;
+    transform: rotate(-0.7deg);
+  }
+
+  .boston-story {
+    transform: rotate(0.4deg);
+  }
+
+  .boston-kayak {
+    transform: rotate(0.8deg);
+  }
+
+  .boston-night {
+    transform: rotate(-0.65deg);
+  }
+
+  .long-distance-story {
+    transform: rotate(0.2deg);
+  }
+
+  .long-distance-street {
+    margin-top: 12px;
+    transform: rotate(-0.55deg);
+  }
+
+  .long-distance-seafood {
+    transform: rotate(0.65deg);
+  }
+
+  .long-distance-harbor {
+    transform: rotate(-0.45deg);
+  }
+
+  .engagement-story {
+    transform: rotate(0.25deg);
+  }
+
+  .engagement-walk {
+    margin-top: 12px;
+    transform: rotate(-0.5deg);
+  }
+
+  .engagement-reaction {
+    transform: rotate(0.65deg);
+  }
+
+  .engagement-proposal {
+    transform: rotate(-0.55deg);
+  }
+
+  .photo-sticky-caption {
+    right: 10px;
+    bottom: -42px;
+    max-width: min(270px, 88%);
+  }
+
+  .scrapbook-stage {
+    width: auto;
+    margin: 0;
+    padding-inline: 20px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .clip,
+  .clip-photo-one,
+  .clip-note-one,
+  .clip-ticket,
+  .clip-photo-two,
+  .clip-map,
+  .clip-note-two {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .clip:nth-child(odd) {
+    transform: rotate(-1deg);
+  }
+
+  .clip:nth-child(even) {
+    transform: rotate(1deg);
+  }
+
+  .clip + .clip {
+    margin-top: -6px;
+  }
+
+  .palette-review {
+    padding: 78px 16px;
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    min-height: 220px;
+    padding: 48px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .logistics-hero {
+    padding: 74px 24px 68px;
+  }
+
+  .logistics-hero::after {
+    top: -98px;
+    right: 26px;
+    width: 94px;
+  }
+
+  .logistics-hero h1 {
+    max-width: 100%;
+    font-size: clamp(42px, 13.5vw, 58px);
+    line-height: 0.92;
+    letter-spacing: 0.035em;
+  }
+
+  .logistics-jump {
+    margin-top: 42px;
+  }
+
+  .logistics-section {
+    padding: 72px 24px;
+  }
+
+  .logistics-section-heading h2 {
+    font-size: clamp(44px, 14vw, 64px);
+    letter-spacing: 0.065em;
+  }
+
+  .schedule-card {
+    padding: 30px 24px 34px;
+    grid-template-columns: 1fr;
+  }
+
+  .date-card {
+    width: 140px;
+    min-height: 165px;
+  }
+
+  .airport-grid {
+    margin-top: 50px;
+  }
+
+  .airport-card {
+    padding: 32px 26px;
+  }
+
+  .hotel-card {
+    padding: 34px 24px;
+  }
+
+  .hotel-details {
+    grid-template-columns: 1fr;
+  }
+
+  .pending-notice {
+    margin-block: 46px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-nav nav {
+    justify-content: space-between;
+  }
+
+  .logistics-jump {
+    display: grid;
+  }
+
+  .logistics-jump a {
+    width: 100%;
+  }
+
+  .hotel-card-topline {
+    flex-direction: column;
+  }
+
+  .split-rates {
+    grid-template-columns: 1fr;
+  }
+
+  .split-rates > div + div {
+    padding: 16px 0 0;
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .split-rates > p {
+    grid-column: 1;
+  }
+
+  .hotel-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .palette-review {
+    padding-inline: 10px;
+  }
+
+  .palette-name-column {
+    width: 24%;
+  }
+
+  .palette-matrix tbody th {
+    padding: 0;
+  }
+
+  .palette-selector {
+    padding: 8px 5px;
+  }
+
+  .palette-matrix td {
+    padding: 4px 2px 5px;
+  }
+
+  .matrix-swatch {
+    min-height: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
