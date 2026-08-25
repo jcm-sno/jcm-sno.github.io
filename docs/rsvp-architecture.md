@@ -1,6 +1,6 @@
 # RSVP architecture decision
 
-Status: **prototype UI complete; response storage intentionally not connected**
+Status: **prototype UI complete; $0 architecture selected; response storage intentionally not connected**
 
 The public RSVP route is native to this website. It should not accept real
 responses until the guest roster, privacy rules, administrative workflow, and
@@ -14,36 +14,78 @@ recovery plan are tested together.
 - Show only the events each guest is invited to.
 - Allow a party to review and revise its response before the deadline.
 - Collect meal and accessibility answers at the guest level.
-- Provide authenticated administration, CSV import/export, change history,
+- Provide authenticated administration, CSV export, change history,
   notifications, and a documented recovery path.
 - Resist guest-list enumeration, guessing, duplicate submissions, and accidental
   overwrites.
 
 ## Downselect
 
-| Option | Invitation lookup | Conditional plus-ones and events | Native-site experience | Operational burden | Decision |
-| --- | --- | --- | --- | --- | --- |
-| RSVPify Platinum embed | Built in | Built in | Embeddable, with direct-link fallback | Low | **Recommended first proof of concept** |
-| Cloudflare Worker + D1 | Custom, fully controllable | Natural relational model | Fully native | High | **Finalist when control outweighs maintenance** |
-| Supabase | Custom | Natural relational model | Fully native | Medium; paid tier needed for dependable backups/no pause | Do not select unless its dashboard is decisive |
-| Airtable plus custom API | Custom | Possible but awkward | Fully native | Medium; proxy, quotas, and schema drift | Reject as the system of record |
-| Tally or generic forms | Form-first | Weak for roster-derived permissions | Embeddable | Low | Reject for core RSVP |
-| Firestore | Custom | Possible, but relationship-heavy | Fully native | High | Reject in favor of a relational store |
+The operating-cost requirement is **$0**. A solution that requires a paid tier
+to remove a guest cap, unlock secondary events, or embed the form is not an
+acceptable production choice.
+
+| Option | Free constraints | Conditional plus-ones and events | Native-site experience | Decision |
+| --- | --- | --- | --- | --- |
+| Cloudflare Worker + D1 | Free limits are far beyond wedding-scale traffic and storage | Natural relational model; fully controllable | Fully native | **Selected** |
+| RSVPify Free | Up to 100 guests; one active event; no external-site embed | Invite list and unnamed +1 are available, but secondary-event capability is paid | Separate RSVPify page | Fallback only if the final list is ≤100 and one event is enough |
+| Google Sheets + server-side API | No added charge at wedding scale; API and Apps Script quotas apply | Must be custom-built; weak relational and transactional guarantees | Can appear native through a custom API | Use as an admin mirror/export, not the source of truth |
+| Supabase Free | Project pauses after inactivity; automatic production backups require paid service | Natural relational model | Fully native | Reject under the $0 reliability requirement |
+| Airtable, Tally, Google Forms | Free tiers are form- or table-first | Weak for roster-derived household, event, and plus-one permissions | Usually a separate or embedded generic form | Reject for core RSVP |
+| Firestore | Free quota is ample | Possible, but relationship-heavy and easier to mis-model | Fully native | Reject in favor of relational D1 |
 
 ### Recommendation
 
-Prototype RSVPify Platinum in the native RSVP page first. Its guest-list
-lookup, per-invite plus-one controls, secondary-event invitations, and supported
-embed address the difficult behavior without making the wedding team operate a
-custom authentication and data system. Keep the direct RSVPify event URL as an
-accessible fallback.
+Build the native RSVP workflow on a Cloudflare Worker with D1. Its free tier is
+several orders of magnitude larger than a wedding RSVP workload, its relational
+model cleanly represents parties and event-specific invitations, and it keeps
+the guest experience inside this website. The tradeoff is engineering effort,
+not service cost.
 
-Choose the custom D1 path only if the embedded experience fails the visual or
-workflow review, or if full data ownership is worth building and maintaining
-the safeguards below. The database cost is negligible at wedding scale; the
-real cost is engineering, testing, support, and recovery.
+Keep RSVPify Free as an escape hatch, not the design target. It is genuinely
+free for up to 100 guests and includes an exclusive invite list and unnamed
+plus-ones. However, embedding is a paid feature and the free plan does not meet
+the intended multi-event, fully native experience. If the custom system cannot
+pass the go-live tests, the hosted free RSVPify page is safer than shipping
+fragile custom code.
 
-## Custom D1 design, if selected
+Current limits and feature comparisons:
+
+- [Cloudflare D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/)
+  and [limits](https://developers.cloudflare.com/d1/platform/limits/)
+- [RSVPify personal-event pricing and feature matrix](https://rsvpify.com/pricing/personal-events/)
+- [Google Sheets API usage limits](https://developers.google.com/workspace/sheets/api/limits)
+- [Google Apps Script quotas](https://developers.google.com/apps-script/guides/services/quotas)
+
+## Google Sheets assessment
+
+Google Sheets **can** store this RSVP data, and its request limits are easily
+adequate for a wedding. It should not be the authoritative production database.
+
+The problem is not throughput. A spreadsheet has weak schema enforcement,
+awkward multi-row transactions, fragile relationships, and a high risk of an
+administrator accidentally sorting, renaming, deleting, or editing a key cell.
+The Sheets API also requires server-side credentials; the browser must never
+receive a service-account key or an unrestricted sheet link. Apps Script can
+publish a free web app, but then availability and execution depend on mutable
+per-user quotas and script ownership.
+
+Recommended use:
+
+1. Store canonical parties, invitations, and responses in D1.
+2. Provide a protected admin export to CSV.
+3. Optionally sync a denormalized, read-friendly copy into a private Google
+   Sheet for Samantha and James to review, filter, and annotate.
+4. Never read authorization rules back from manually editable Sheet cells
+   during a guest RSVP.
+
+If Sheets were forced to be primary storage, the minimum acceptable design
+would still require a server-side API, hidden credentials, append-only response
+history, serialized writes, immutable party IDs, revision numbers, validation,
+regular snapshots, and a recovery test. At that point D1 is both safer and
+simpler.
+
+## Selected D1 design
 
 ### Data model
 
@@ -88,10 +130,13 @@ accidentally offering an event to every member of a household.
 
 ## Implementation gates
 
-1. Approve RSVPify embed versus custom D1 proof of concept.
+1. Build the D1-backed flow with synthetic guests only.
 2. Finalize events, guest-level invitation rules, plus-one rules, questions,
    deadline, and edit policy.
 3. Import a synthetic roster and test happy paths, ambiguous names, split
    households, open plus-ones, partial attendance, revisions, and lockouts.
 4. Complete privacy, accessibility, mobile, export, and restore checks.
 5. Import the real roster privately and open the page with invitations.
+
+The real guest roster and exports must never be committed to the public GitHub
+repository.

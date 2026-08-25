@@ -31,8 +31,10 @@ state. After publishing it in Zola:
    value for GitHub Pages.
 
 The RSVP route is native to this website but intentionally does not accept
-responses yet. The evaluated storage options, recommended downselect, custom
-schema, privacy safeguards, and go-live gates are in
+responses yet. The selected design uses a $0 Cloudflare D1 backend. A private
+Google Sheet may be generated as an administrative mirror, but it is not the
+authoritative datastore. The evaluated options, schema, privacy safeguards,
+and go-live gates are in
 [`docs/rsvp-architecture.md`](docs/rsvp-architecture.md).
 
 A clean full-stack starter running on

@@ -29,8 +29,8 @@ export default function RsvpPage() {
             <h2 id="lookup-title">Find Your Invitation</h2>
             <p>
               Online responses are not open yet. This preview is intentionally
-              locked while we finish the guest list and select the response
-              system that will protect it.
+              locked while we finish the guest list and test the private
+              invitation lookup. No guest information is stored here yet.
             </p>
             <span className="status-pill">RSVPs open with invitations</span>
           </div>
