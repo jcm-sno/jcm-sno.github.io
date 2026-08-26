@@ -52,7 +52,9 @@ test("renders native registry and RSVP routes", async () => {
   );
   assert.equal(rsvpResponse.status, 200);
   const rsvpHtml = await rsvpResponse.text();
-  assert.match(rsvpHtml, /Find Your Invitation/i);
+  assert.match(rsvpHtml, /Online RSVPs will open with invitations\./i);
+  assert.doesNotMatch(rsvpHtml, /Find Your Invitation/i);
+  assert.doesNotMatch(rsvpHtml, /What to expect/i);
   assert.doesNotMatch(rsvpHtml, /http-equiv=["']refresh/i);
 
   const registryResponse = await worker.fetch(
