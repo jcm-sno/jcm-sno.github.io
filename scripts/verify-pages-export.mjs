@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
+// Keep the GitHub Pages artifact aligned with the guest-facing routes.
+
 const exportRoot = path.resolve(process.argv[2] ?? "dist/client");
 
 async function walk(directory) {
