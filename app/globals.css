@@ -457,7 +457,7 @@ summary:focus-visible {
   position: absolute;
   right: -24px;
   bottom: -44px;
-  z-index: 4;
+  z-index: 10;
   width: max-content;
   max-width: min(280px, 86%);
   margin: 0;
@@ -469,6 +469,10 @@ summary:focus-visible {
   font-family: "Parisienne", cursive;
   font-size: clamp(21px, 2.3vw, 30px);
   line-height: 1.08;
+}
+
+.cluster-photo.captioned-photo {
+  z-index: 6;
 }
 
 .field-day-main {
@@ -1475,6 +1479,26 @@ summary:focus-visible {
 
 .utility-page {
   overflow: clip;
+}
+
+.rsvp-minimal {
+  min-height: 100vh;
+}
+
+.rsvp-minimal .utility-hero {
+  min-height: calc(100vh - 88px - 2 * clamp(0px, 4vw, 64px));
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.rsvp-minimal .utility-hero > p {
+  position: relative;
+  z-index: 1;
+  margin: 28px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .utility-hero {
