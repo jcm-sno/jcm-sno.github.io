@@ -79,7 +79,9 @@ assert.match(home, /href=["']\/rsvp\//i);
 assert.match(home, /href=["']\/registry\//i);
 assert.match(logistics, /Approximate nightly total after tax/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
-assert.match(rsvp, /Find Your Invitation/i);
+assert.match(rsvp, /Online RSVPs will open with invitations\./i);
+assert.doesNotMatch(rsvp, /Find Your Invitation/i);
+assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
 assert.match(registry, /Registry Connection Prepared/i);
 
