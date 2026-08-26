@@ -171,7 +171,7 @@ export default function Home() {
               </p>
             </article>
 
-            <figure className="cluster-photo boston-coffee">
+            <figure className="cluster-photo captioned-photo boston-coffee">
               <img
                 src="/boston-coffee.webp"
                 alt="Samantha rests her head on James at a table in a Cambridge coffee shop"
@@ -196,7 +196,7 @@ export default function Home() {
               />
             </figure>
 
-            <figure className="cluster-photo boston-night">
+            <figure className="cluster-photo captioned-photo boston-night">
               <img
                 src="/boston-night.webp"
                 alt="Samantha and James smile together above a city skyline at night"
