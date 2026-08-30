@@ -31,7 +31,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /data-wedding-palette=["']coastal-bright["']/i);
 });
 
-test("renders native registry and RSVP routes", async () => {
+test("renders native wishlist and RSVP routes", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("routes", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -63,5 +63,8 @@ test("renders native registry and RSVP routes", async () => {
     context,
   );
   assert.equal(registryResponse.status, 200);
-  assert.match(await registryResponse.text(), /Registry Connection Prepared/i);
+  const wishlistHtml = await registryResponse.text();
+  assert.match(wishlistHtml, /Opens with invitations/i);
+  assert.match(wishlistHtml, /reserve an item and mark it ordered/i);
+  assert.doesNotMatch(wishlistHtml, /Zola/i);
 });

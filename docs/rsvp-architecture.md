@@ -1,142 +1,216 @@
-# RSVP architecture decision
+# Guest systems architecture decision
 
-Status: **prototype UI complete; $0 architecture selected; response storage intentionally not connected**
+Status: **wishlist architecture selected; RSVPify trial recommended; production
+authentication and storage intentionally not connected**
 
-The public RSVP route is native to this website. It should not accept real
-responses until the guest roster, privacy rules, administrative workflow, and
-recovery plan are tested together.
+This record covers two related but independently deployable guest systems:
 
-## Required behavior
+- a native interactive wishlist, where invited guests can privately reserve
+  items and mark them ordered; and
+- RSVP collection, including household lookup, conditional plus-ones,
+  event-specific invitations, edits, reminders, and exports.
 
-- Find an invitation from a guest name without exposing the guest list.
-- Return the entire invited party, while allowing a response for each person.
-- Offer a plus-one only where the roster explicitly grants one.
-- Show only the events each guest is invited to.
-- Allow a party to review and revise its response before the deadline.
-- Collect meal and accessibility answers at the guest level.
-- Provide authenticated administration, CSV export, change history,
-  notifications, and a documented recovery path.
-- Resist guest-list enumeration, guessing, duplicate submissions, and accidental
-  overwrites.
+No real guest roster, invitation credential, wishlist claim, or RSVP response
+may be committed to this public repository.
 
-## Downselect
+## Decision summary
 
-The operating-cost requirement is **$0**. A solution that requires a paid tier
-to remove a guest cap, unlock secondary events, or embed the form is not an
-acceptable production choice.
+1. **Build the wishlist natively** on a Cloudflare Worker and D1. Authenticate
+   guests with random invitation links or codes, not ordinary third-party
+   accounts. Make every claim transactional and retain an append-only revision
+   record.
+2. **Trial RSVPify Personal Platinum before purchase.** It is the best current
+   fit when the RSVP form must remain inside this website. Test it with
+   synthetic edge cases, use month-to-month billing only for the live RSVP
+   window, and keep a direct-form link as a fallback for browsers that block an
+   embedded form.
+3. **Do not claim that paid RSVP software is faster.** Wedding-scale traffic is
+   trivial for either RSVPify or a small D1 application. Payment buys product
+   hardening, guest communications, administration, monitoring, recovery, and
+   support—not meaningful database capacity.
+4. **Keep custom RSVP as the fallback.** A custom system can match the required
+   behavior, and can improve identity handling by making a private invitation
+   code primary and name lookup secondary. It cannot honestly claim the same
+   operational maturity until the full test and recovery program below passes.
 
-| Option | Free constraints | Conditional plus-ones and events | Native-site experience | Decision |
-| --- | --- | --- | --- | --- |
-| Cloudflare Worker + D1 | Free limits are far beyond wedding-scale traffic and storage | Natural relational model; fully controllable | Fully native | **Selected** |
-| RSVPify Free | Up to 100 guests; one active event; no external-site embed | Invite list and unnamed +1 are available, but secondary-event capability is paid | Separate RSVPify page | Fallback only if the final list is ≤100 and one event is enough |
-| Google Sheets + server-side API | No added charge at wedding scale; API and Apps Script quotas apply | Must be custom-built; weak relational and transactional guarantees | Can appear native through a custom API | Use as an admin mirror/export, not the source of truth |
-| Supabase Free | Project pauses after inactivity; automatic production backups require paid service | Natural relational model | Fully native | Reject under the $0 reliability requirement |
-| Airtable, Tally, Google Forms | Free tiers are form- or table-first | Weak for roster-derived household, event, and plus-one permissions | Usually a separate or embedded generic form | Reject for core RSVP |
-| Firestore | Free quota is ample | Possible, but relationship-heavy and easier to mis-model | Fully native | Reject in favor of relational D1 |
+## Why the two systems use different approaches
 
-### Recommendation
+Wishlist claiming is a small, bounded transaction: authenticate an invited
+party, show available items, and atomically reserve or release one. That is a
+good custom-build problem.
 
-Build the native RSVP workflow on a Cloudflare Worker with D1. Its free tier is
-several orders of magnitude larger than a wedding RSVP workload, its relational
-model cleanly represents parties and event-specific invitations, and it keeps
-the guest experience inside this website. The tradeoff is engineering effort,
-not service cost.
+RSVP is operationally broader. It combines roster import, household grouping,
+name matching, conditional event access, plus-ones, per-person questions,
+confirmation delivery, reminders, guest edits, host corrections, exports,
+privacy controls, and support. A missing edge case can affect headcount or meal
+orders. A mature service is valuable even though the underlying database load
+is tiny.
 
-Keep RSVPify Free as an escape hatch, not the design target. It is genuinely
-free for up to 100 guests and includes an exclusive invite list and unnamed
-plus-ones. However, embedding is a paid feature and the free plan does not meet
-the intended multi-event, fully native experience. If the custom system cannot
-pass the go-live tests, the hosted free RSVPify page is safer than shipping
-fragile custom code.
+The hybrid design means guests may identify themselves twice: once through
+RSVPify's invitation lookup and once through the website's private wishlist
+link. RSVPify does not document a public API that would safely share its guest
+session with this site. This separation is intentional: a wishlist defect
+cannot corrupt the wedding's RSVP system of record.
 
-Current limits and feature comparisons:
+## RSVP downselect
 
+| Option | Identity and invitation rules | Website fit | Operations and reliability | Current cost | Decision |
+| --- | --- | --- | --- | --- | --- |
+| RSVPify Personal Platinum | Partial name/email matching, households, invitee-specific plus-ones, and private secondary events | Supported embed; direct-link fallback needed for some privacy settings | Email reminders and delivery tracking, exports, priority support, SOC 2 Type II, encryption, backups, and disaster recovery | $15/month base or $108/year as reviewed 2026-08-30 | **Recommended trial** |
+| WedSites Standard | Name/email lookup, households, plus-ones, event lists, and explicit nickname/alternate-spelling fields | Standalone RSVP page; no supported external embed or inherited site styling found | Email tracking, reminders, exports, and support; less public infrastructure assurance than RSVPify | $99 one time as reviewed 2026-08-30 | Best linked-page alternative |
+| Joy | Household RSVP, plus-one controls, multiple events, questions, and reminders | Separate Joy experience; no supported external embed found | Mature hosted workflow, but strict matching can make spelling and nickname errors guest-visible | Free as reviewed 2026-08-30 | Free fallback if leaving this site is acceptable |
+| Custom Worker + D1 | Private code first; normalized names and explicit aliases as fallback; fully controllable rules | Fully native and can share authentication with the wishlist | We must build and operate imports, email, correction tools, monitoring, audit history, backups, restores, and support | Free-tier infrastructure is ample at wedding scale | Functional fallback, not first operational choice |
+
+Current official references:
+
+- [RSVPify pricing and feature matrix](https://rsvpify.com/pricing/personal-events/)
+- [RSVPify invite-list behavior](https://help.rsvpify.com/en/articles/1222532-what-is-the-invite-list-and-do-i-need-to-use-it)
+- [RSVPify matching behavior](https://help.rsvpify.com/en/articles/8652575-how-does-the-invite-list-match-my-invitees)
+- [RSVPify embed guidance](https://help.rsvpify.com/en/articles/5162749-how-do-i-embed-the-rsvpify-form-on-my-website)
+- [RSVPify privacy and security](https://rsvpify.com/privacy-and-security/)
+- [WedSites alternate-name handling](https://help.wedsites.com/en/articles/14456100-how-do-i-handle-alternate-names-or-nicknames)
+- [WedSites pricing](https://wedsites.com/pricing)
+- [Joy online RSVP](https://withjoy.com/online-rsvp/)
 - [Cloudflare D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/)
   and [limits](https://developers.cloudflare.com/d1/platform/limits/)
-- [RSVPify personal-event pricing and feature matrix](https://rsvpify.com/pricing/personal-events/)
-- [Google Sheets API usage limits](https://developers.google.com/workspace/sheets/api/limits)
-- [Google Apps Script quotas](https://developers.google.com/apps-script/guides/services/quotas)
 
-## Google Sheets assessment
+Pricing and plan features can change; verify the selected plan immediately
+before purchase.
 
-Google Sheets **can** store this RSVP data, and its request limits are easily
-adequate for a wedding. It should not be the authoritative production database.
+### What must be confirmed before paying RSVPify
 
-The problem is not throughput. A spreadsheet has weak schema enforcement,
-awkward multi-row transactions, fragile relationships, and a high risk of an
-administrator accidentally sorting, renaming, deleting, or editing a key cell.
-The Sheets API also requires server-side credentials; the browser must never
-receive a service-account key or an unrestricted sheet link. Apps Script can
-publish a free web app, but then availability and execution depend on mutable
-per-user quotas and script ownership.
+The public documentation does not prove two details that matter to this event:
 
-Recommended use:
+1. whether Personal Platinum exposes prior RSVP revisions or a usable audit log,
+   rather than only the latest response; and
+2. whether every desired tag- or guest-specific question rule is available on
+   Personal Platinum, not only on a business plan.
 
-1. Store canonical parties, invitations, and responses in D1.
-2. Provide a protected admin export to CSV.
-3. Optionally sync a denormalized, read-friendly copy into a private Google
-   Sheet for Samantha and James to review, filter, and annotate.
-4. Never read authorization rules back from manually editable Sheet cells
-   during a guest RSVP.
+Ask support those questions in writing. Do not upload the real roster until the
+answers and the synthetic acceptance test are satisfactory.
 
-If Sheets were forced to be primary storage, the minimum acceptable design
-would still require a server-side API, hidden credentials, append-only response
-history, serialized writes, immutable party IDs, revision numbers, validation,
-regular snapshots, and a recovery test. At that point D1 is both safer and
-simpler.
+### RSVPify acceptance test
 
-## Selected D1 design
+Use a synthetic roster that includes:
+
+- duplicate full names;
+- short and long forms such as Mike and Michael;
+- maiden and married names;
+- apostrophes, hyphens, spaces, and diacritics;
+- two households sharing a surname;
+- named and unnamed plus-ones;
+- children and split household attendance;
+- guests invited to ceremony/reception only and guests invited to an
+  additional event;
+- partial attendance, declines, response edits, and host corrections;
+- failed email delivery, CSV export, and administrative recovery; and
+- mobile Safari, strict privacy settings, ad blockers, and the direct-link
+  fallback.
+
+If the trial passes, subscribe only for the active RSVP period. At the reviewed
+base price, four to six months would cost roughly $60–$90. If it fails, proceed
+with the custom design below rather than working around a known defect.
+
+## Native wishlist design
+
+### Guest authentication
+
+"Authenticated guest" means possession of a private, high-entropy invitation
+credential issued to an invited party. It does not require a Google, GitHub,
+ChatGPT, or social account.
+
+1. Put a random deep link and a short manual code on the invitation. Carry the
+   deep-link secret in the URL fragment so it is not sent in an HTTP request or
+   referrer, exchange it once, and immediately remove it from the address bar.
+2. Store only a salted credential hash in D1.
+3. While GitHub Pages and the Worker API are on different sites, issue a short-
+   lived opaque bearer session, keep it in `sessionStorage`, enforce exact-origin
+   CORS, and apply a strict content-security policy. If both surfaces later move
+   under one registrable domain, replace that token with an `HttpOnly`, `Secure`,
+   same-site cookie.
+4. Rate-limit failed code attempts and require Turnstile after suspicious
+   behavior. Return the same message for unknown, expired, and revoked codes.
+5. Allow credential revocation and rotation without changing the party record.
+
+The wishlist link may be separate from RSVPify's lookup. If RSVP later becomes
+custom, the same party session can authorize both systems.
 
 ### Data model
 
-- `parties`: household or invitation group and contact metadata
-- `guests`: individual people, including named and open plus-one records
-- `party_members`: membership and response permissions
-- `events`: ceremony, reception, rehearsal, and other events
-- `event_invitations`: guest-level invitations to events
-- `responses`: one response per guest and event, with an optimistic version
-- `answers`: meal, accessibility, and custom guest-level answers
-- `lookup_aliases`: normalized invitation-name variants
-- `response_revisions`: append-only audit history
+- `parties`: stable invitation group, display label, and status
+- `invitation_credentials`: party, salted token hash, expiry, revocation, and
+  last-used timestamp
+- `wishlist_items`: title, description, merchant URL, optional image, desired
+  quantity, ordering position, and active status
+- `wishlist_item_slots`: one row per claimable unit, allowing quantities without
+  oversubscription
+- `wishlist_claims`: slot, party, state (`reserved` or `ordered`), optional note,
+  and timestamps; one active claim per slot
+- `wishlist_claim_revisions`: append-only reserve, order, release, and
+  administrative-correction history
 
-Event access belongs at the guest level, not only the party level. This avoids
-accidentally offering an event to every member of a household.
+### Claim integrity and privacy
 
-### Lookup and privacy
+- Reserve an item by inserting a claim for a slot protected by a database unique
+  constraint. Concurrent attempts cannot both succeed.
+- Apply reserve, release, and ordered-state changes transactionally with an
+  idempotency key. Repeated taps or network retries must not duplicate a claim.
+- Show other guests only `available`, `partially reserved`, or `reserved`—never
+  the claimant's identity.
+- Let a guest review and release their own reservations from the same party
+  session.
+- Decide before launch whether the couple's normal view hides claim identities
+  and ordered states to preserve the surprise; retain a separate emergency
+  administrative recovery view.
+- Treat merchant links as informational. Do not collect card data, proxy a
+  retailer checkout, or infer that an item was purchased; the guest explicitly
+  marks it ordered.
 
-1. Normalize names server-side: Unicode NFKD, lowercase, strip punctuation and
-   titles, remove diacritics, and collapse whitespace.
-2. Try exact normalized aliases first. Never download the roster to the browser.
-3. Use fuzzy matching only on the server and only when the result is uniquely
-   confident. Otherwise request invitation spelling or a secondary verifier
-   such as postal code or a short invitation code.
-4. Return the same generic failure message for unknown and ambiguous searches.
-5. Rate-limit by network and device signal with escalating temporary lockouts.
-6. On success, issue a short-lived opaque party session. Never expose a raw
-   sequential party identifier.
+## If RSVP becomes custom
 
-### Response integrity and operations
+The custom RSVP model adds:
 
-- Derive party members, plus-one availability, and eligible events on the
-  server; never trust client-provided permissions.
-- Update the party transactionally with an idempotency key and optimistic
-  version check.
-- Preserve revisions and permit edits before the RSVP deadline.
-- Require strong admin authentication; keep administrative routes separate.
-- Test roster import in staging, export all responses regularly, and verify a
-  restore before invitations are mailed.
-- Add email notifications only after the core write is committed; notification
-  failure must not lose a response.
+- `guests` and `party_members` for named guests and open plus-one slots;
+- `guest_aliases` for deterministic nicknames, maiden names, transliterations,
+  and common variations;
+- `events` and guest-level `event_invitations`;
+- versioned `responses`, per-guest `answers`, idempotency keys, and append-only
+  response revisions; and
+- notification jobs that run only after the response transaction commits.
 
-## Implementation gates
+Name search is a recovery path, not the primary credential. Normalize it
+server-side, try exact aliases first, use fuzzy matching only when a result is
+uniquely confident, and never download the roster into the browser. Ambiguous
+results must ask for the invitation code rather than reveal possible guests.
 
-1. Build the D1-backed flow with synthetic guests only.
-2. Finalize events, guest-level invitation rules, plus-one rules, questions,
-   deadline, and edit policy.
-3. Import a synthetic roster and test happy paths, ambiguous names, split
-   households, open plus-ones, partial attendance, revisions, and lockouts.
-4. Complete privacy, accessibility, mobile, export, and restore checks.
-5. Import the real roster privately and open the page with invitations.
+To approach paid-service reliability, the custom system must also ship a roster
+import validator, authenticated admin corrections, email delivery/retries,
+monitoring and alerts, regular exports, a tested restore, browser/device tests,
+and a written day-of-support procedure. Raw D1 capacity does not satisfy those
+requirements by itself.
 
-The real guest roster and exports must never be committed to the public GitHub
-repository.
+## Google Sheets boundary
+
+Google Sheets remains acceptable as a private administrative mirror or CSV
+destination, not as the source of truth. It has adequate throughput but weak
+schema enforcement, awkward multi-row transactions, mutable identifiers, and a
+high risk of accidental sorting or editing. The guest browser must never receive
+Sheets credentials or an unrestricted sheet link.
+
+Canonical wishlist claims and any custom RSVP responses belong in D1. Export a
+denormalized, read-friendly view to Sheets for filtering and notes, but never
+derive authorization or availability from manually editable cells.
+
+## Go-live gates
+
+1. Implement both systems with synthetic parties and no production credentials.
+2. Complete the RSVPify acceptance test and vendor questions; choose RSVPify or
+   custom explicitly.
+3. Test wishlist authentication, enumeration resistance, simultaneous claims,
+   retries, releases, ordered-state changes, revocation, export, and restore.
+4. Finalize events, questions, meal options, plus-one rules, deadlines, and edit
+   policy.
+5. Complete mobile, accessibility, privacy, administrative, alerting, export,
+   and recovery checks.
+6. Import the real roster privately, issue credentials, take a clean backup, and
+   open RSVP and Wishlist together with invitations.

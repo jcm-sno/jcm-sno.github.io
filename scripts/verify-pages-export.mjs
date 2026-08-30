@@ -85,6 +85,8 @@ assert.match(rsvp, /Online RSVPs will open with invitations\./i);
 assert.doesNotMatch(rsvp, /Find Your Invitation/i);
 assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
-assert.match(registry, /Registry Connection Prepared/i);
+assert.match(registry, /Opens with invitations/i);
+assert.match(registry, /reserve an item and mark it ordered/i);
+assert.doesNotMatch(registry, /Zola/i);
 
 console.log(`Verified ${htmlFiles.length} exported HTML pages and their local assets.`);

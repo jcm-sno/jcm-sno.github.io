@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import SiteHeader from "../components/site-header";
-import ZolaRegistry from "../components/zola-registry";
 
 export const metadata: Metadata = {
-  title: "Registry | James & Samantha",
-  description: "James and Samantha's wedding registry.",
+  title: "Wishlist | James & Samantha",
+  description: "James and Samantha's wedding wishlist.",
 };
 
 export default function RegistryPage() {
@@ -13,18 +12,20 @@ export default function RegistryPage() {
       <article className="album-page utility-page registry-page">
         <SiteHeader active="registry" />
 
-        <section className="utility-hero" aria-labelledby="registry-title">
-          <p className="eyebrow">With gratitude</p>
-          <h1 id="registry-title">Registry</h1>
-          <p className="utility-script">Celebrating with you is the gift.</p>
-          <p>
-            For friends and family who have asked, our Zola registry will live
-            here once it is ready.
-          </p>
+        <section className="utility-hero" aria-labelledby="wishlist-title">
+          <p className="eyebrow">For our next chapter</p>
+          <h1 id="wishlist-title">Wishlist</h1>
+          <p className="utility-script">Choose something you would love to give.</p>
         </section>
 
         <div className="registry-workspace">
-          <ZolaRegistry />
+          <section className="registry-connection" aria-labelledby="wishlist-status-title">
+            <p className="section-number">Private for invited guests</p>
+            <h2 id="wishlist-status-title">Opens with invitations</h2>
+            <p>
+              Sign in with your invitation to reserve an item and mark it ordered.
+            </p>
+          </section>
         </div>
 
         <footer className="site-footer">

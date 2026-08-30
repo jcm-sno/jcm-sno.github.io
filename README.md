@@ -19,22 +19,20 @@ than replacing or force-pushing the Sites source history.
 The repository owner may need to select **Settings → Pages → Source → GitHub
 Actions** once before the first GitHub Pages deployment.
 
-## Registry and RSVP
+## Wishlist and RSVP
 
-The Registry page uses Zola's supported registry widget. The public registry is
-not published yet, so the page currently renders a deliberate coming-soon
-state. After publishing it in Zola:
+The former Registry page is now a native Wishlist route. Its production design
+uses invitation-based guest authentication and a Cloudflare D1 datastore so an
+invited party can reserve an item without exposing who selected it. The public
+page remains in a deliberate coming-soon state until credentials, migrations,
+administration, recovery, and concurrency tests are complete.
 
-1. Copy the public URL in the form `https://www.zola.com/registry/<key>`.
-2. Set `NEXT_PUBLIC_ZOLA_REGISTRY_URL` for a local or Sites build.
-3. Set the GitHub Actions repository variable `ZOLA_REGISTRY_URL` to the same
-   value for GitHub Pages.
-
-The RSVP route is native to this website but intentionally does not accept
-responses yet. The selected design uses a $0 Cloudflare D1 backend. A private
-Google Sheet may be generated as an administrative mirror, but it is not the
-authoritative datastore. The evaluated options, schema, privacy safeguards,
-and go-live gates are in
+The RSVP route also remains closed. The current recommendation is to acceptance-
+test RSVPify Platinum with a synthetic adversarial guest list before paying or
+loading real guest data. A custom D1 implementation remains the fallback if the
+embedded product fails the test. A private Google Sheet may be generated as an
+administrative mirror, but it is not the authoritative datastore. The decision,
+tradeoffs, data model, and go-live gates are in
 [`docs/rsvp-architecture.md`](docs/rsvp-architecture.md).
 
 A clean full-stack starter running on
