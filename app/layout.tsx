@@ -3,6 +3,7 @@ import "@fontsource/cormorant-sc/400.css";
 import "@fontsource/cormorant-sc/500.css";
 import "@fontsource/parisienne/400.css";
 import "./globals.css";
+import "./review-overrides.css";
 import { defaultPaletteId, paletteOptions, paletteStorageKey } from "./palettes";
 
 const siteTitle = "James & Samantha";
