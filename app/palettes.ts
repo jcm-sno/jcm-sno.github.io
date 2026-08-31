@@ -1,13 +1,27 @@
-export const paletteStorageKey = "james-samantha-wedding-palette";
-export const defaultPaletteId = "coastal-bright";
+export const paletteStorageKey = "james-samantha-wedding-palette-v2";
+export const defaultPaletteId = "florida-garden";
 
 export const paletteSlots = ["White", "Paper", "Warm", "Green", "Blue", "Ink"] as const;
 
 export const paletteOptions = [
   {
+    id: "florida-garden",
+    name: "Florida Garden",
+    status: "Default",
+    note: "Florida Sunrise's warm sand, tangerine, palm green, and deep teal, with Pressed Garden's softer periwinkle blue.",
+    colors: [
+      { role: "White", hex: "#FFFDF8" },
+      { role: "Paper", hex: "#F7EACF" },
+      { role: "Warm", hex: "#F2A65A" },
+      { role: "Green", hex: "#6FAF82" },
+      { role: "Blue", hex: "#A9B9D6" },
+      { role: "Ink", hex: "#153B3B" },
+    ],
+  },
+  {
     id: "coastal-bright",
     name: "Coastal Bright",
-    status: "Default",
+    status: "Alternative 01",
     note: "More color in the green and blue, with coral kept warm, dusty, and controlled.",
     colors: [
       { role: "White", hex: "#FFFFFF" },
@@ -21,7 +35,7 @@ export const paletteOptions = [
   {
     id: "florida-sunrise",
     name: "Florida Sunrise",
-    status: "Alternative 01",
+    status: "Alternative 02",
     note: "Cheerful sand, tangerine, palm green, and lagoon blue with deep teal ink.",
     colors: [
       { role: "White", hex: "#FFFDF8" },
@@ -35,7 +49,7 @@ export const paletteOptions = [
   {
     id: "pressed-garden",
     name: "Pressed Garden",
-    status: "Alternative 02",
+    status: "Alternative 03",
     note: "Blush paper, dusty rose, olive, and periwinkle with aubergine ink.",
     colors: [
       { role: "White", hex: "#FFFCF7" },
@@ -49,7 +63,7 @@ export const paletteOptions = [
   {
     id: "mid-century-atlantic",
     name: "Mid-Century Atlantic",
-    status: "Alternative 03",
+    status: "Alternative 04",
     note: "Cool fog, persimmon, sea-glass green, and cornflower blue with navy ink.",
     colors: [
       { role: "White", hex: "#FDFEFE" },
@@ -63,7 +77,7 @@ export const paletteOptions = [
   {
     id: "atlantic-garden",
     name: "Atlantic Garden",
-    status: "Alternative 04",
+    status: "Alternative 05",
     note: "Weathered blue-gray, dusty coral, plant green, and saturated Atlantic navy—closer to the save-the-date's coastal film tones.",
     colors: [
       { role: "White", hex: "#FFFFFF" },
@@ -77,7 +91,7 @@ export const paletteOptions = [
   {
     id: "save-the-date-editorial",
     name: "Save-the-Date Editorial",
-    status: "Alternative 05",
+    status: "Alternative 06",
     note: "A literal low-chroma pull from the save-the-date: white border, film gray-blue, olive-khaki, skin-tone warmth, and charcoal.",
     colors: [
       { role: "White", hex: "#FFFFFF" },
@@ -91,7 +105,7 @@ export const paletteOptions = [
   {
     id: "navy-film",
     name: "Navy Film",
-    status: "Alternative 06",
+    status: "Alternative 07",
     note: "A stronger interpretation of the review: darker linen, burnt coral, olive, slate blue, and saturated Atlantic navy.",
     colors: [
       { role: "White", hex: "#FCFCFA" },
