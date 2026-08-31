@@ -1,0 +1,182 @@
+/* 2026-08-30 review pass: hero fit, Field Day map/print, and Florida Garden palette. */
+
+:root[data-wedding-palette="florida-garden"] {
+  --canvas-white: #fffdf8;
+  --album-paper: #f7eacf;
+  --deep-cypress: #153b3b;
+  --seagrass: #6faf82;
+  --hazy-atlantic: #a9b9d6;
+  --coral-ribbon: #f2a65a;
+  --deep-seagrass: #3f725b;
+  --muted-ink: #526360;
+}
+
+/* Keep the desktop title card left of the couple instead of covering them. */
+@media (min-width: 768px) {
+  .hero-copy {
+    width: min(500px, calc(100% - clamp(56px, 8vw, 116px)));
+  }
+
+  .hero-copy h1 {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(12px, 1.5vw, 22px);
+    font-size: clamp(25px, 2vw, 31px);
+    white-space: normal;
+  }
+
+  .hero-full-name {
+    display: grid;
+    gap: 0.04em;
+  }
+
+  .hero-name-james {
+    justify-items: end;
+  }
+
+  .hero-name-samantha {
+    justify-items: start;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-copy {
+    width: min(430px, calc(100% - 56px));
+  }
+}
+
+/* The map is treated like another pinned clipping in the Field Day cluster. */
+.field-day-map {
+  position: relative;
+  z-index: 4;
+  grid-column: 5 / 8;
+  grid-row: 2;
+  margin: -54px 0 0 8px;
+  padding: 10px 10px 16px;
+  transform: rotate(-0.9deg);
+  background: var(--canvas-white);
+  box-shadow: 0 18px 36px color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+}
+
+.field-day-map::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 62%;
+  z-index: 2;
+  width: 76px;
+  height: 24px;
+  transform: translateX(-50%) rotate(2deg);
+  background: color-mix(in srgb, var(--album-paper) 76%, transparent);
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--deep-cypress) 8%, transparent);
+}
+
+.field-day-map-frame {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+  background: color-mix(in srgb, var(--hazy-atlantic) 45%, var(--canvas-white));
+}
+
+.field-day-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.field-day-map-print {
+  display: none;
+}
+
+.field-day-map figcaption {
+  margin: 12px 4px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  color: var(--deep-cypress);
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.field-day-map figcaption a {
+  flex: 0 0 auto;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1023px) {
+  .field-day-map {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: min(420px, 72%);
+    justify-self: center;
+    margin: 2px auto 0;
+    transform: rotate(-0.55deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .field-day-map {
+    width: 92%;
+    align-self: center;
+    margin: 2px auto 4px;
+    transform: rotate(0.65deg);
+  }
+
+  .field-day-map figcaption {
+    font-size: 14px;
+  }
+}
+
+/*
+ * Chromium print/PDF rasterizes the screen-only radial screen-blend on the
+ * Field Day group shot as an opaque pale circle. The overlay is merely a
+ * subtle web vignette, so suppress it for print rather than altering the photo.
+ */
+@media print {
+  .field-day-main::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    mix-blend-mode: normal !important;
+  }
+
+  .field-day-map iframe {
+    display: none !important;
+  }
+
+  .field-day-map-print {
+    width: 100%;
+    height: 100%;
+    padding: 18px;
+    display: grid;
+    place-content: center;
+    gap: 8px;
+    text-align: center;
+    color: var(--deep-cypress);
+    background:
+      linear-gradient(90deg, transparent 48%, color-mix(in srgb, var(--deep-cypress) 12%, transparent) 49%, transparent 50%),
+      linear-gradient(0deg, transparent 48%, color-mix(in srgb, var(--deep-cypress) 12%, transparent) 49%, transparent 50%),
+      color-mix(in srgb, var(--hazy-atlantic) 35%, var(--canvas-white));
+  }
+
+  .field-day-map-print strong {
+    font-family: "Cormorant SC", Georgia, serif;
+    font-size: 26px;
+    letter-spacing: 0.08em;
+  }
+
+  .field-day-map-print span {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
