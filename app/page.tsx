@@ -92,8 +92,7 @@ export default function Home() {
 
         <section id="our-story" className="scrapbook-section" aria-labelledby="story-heading">
           <div className="scrapbook-heading">
-            <h2 id="story-heading">Our Story, In Pieces</h2>
-            <p className="scrapbook-script">A few moments, held onto.</p>
+            <h2 id="story-heading">Archive</h2>
           </div>
 
           <div
@@ -104,10 +103,10 @@ export default function Home() {
             <article className="story-card field-day-story">
               <div className="story-heading-fields">
                 <p className="clip-kicker">Same neighborhood · first Field Day</p>
-                <h3 id="field-day-heading">He Crashed Field Day</h3>
+                <h3 id="field-day-heading">So How’d You Guys Meet?</h3>
               </div>
               <p>
-                While Samantha was working and James was in graduate school,
+                While Samantha was working and James was in grad school,
                 they both ended up in the same neighborhood. Shortly after
                 asking for Samantha&apos;s number, James crashed Samantha and her
                 friends&apos; semiannual Field Day. Somewhere between games, they
@@ -147,6 +146,31 @@ export default function Home() {
                 decoding="async"
               />
             </figure>
+
+            <figure className="field-day-map">
+              <div className="field-day-map-frame">
+                <iframe
+                  title="Map of the Cambridge neighborhood around Donnelly Field"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-71.1028%2C42.3646%2C-71.0812%2C42.3774&layer=mapnik&marker=42.3706527%2C-71.0919964"
+                  loading="lazy"
+                />
+                <div className="field-day-map-print" aria-hidden="true">
+                  <span>Cambridge, Massachusetts</span>
+                  <strong>Donnelly Field</strong>
+                  <span>61 Willow St · York &amp; Berkshire</span>
+                </div>
+              </div>
+              <figcaption>
+                Donnelly Field · Cambridge, MA
+                <a
+                  href="https://www.openstreetmap.org/?mlat=42.3706527&mlon=-71.0919964#map=16/42.3706527/-71.0919964"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open map
+                </a>
+              </figcaption>
+            </figure>
           </div>
 
           <div
@@ -157,7 +181,7 @@ export default function Home() {
             <article className="story-card boston-story">
               <div className="story-heading-fields">
                 <p className="clip-kicker">Boston · beginning to date</p>
-                <h3 id="boston-heading">A Little More Time</h3>
+                <h3 id="boston-heading">Life in Cambridge Montage</h3>
               </div>
               <p>
                 Once they began dating, James and Samantha were notoriously bad
