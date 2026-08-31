@@ -488,20 +488,6 @@ summary:focus-visible {
   transform: translateX(-50%) rotate(2deg);
 }
 
-.field-day-main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 86% 56%,
-    color-mix(in srgb, var(--canvas-white) 5.5%, transparent),
-    transparent 31%
-  );
-  mix-blend-mode: screen;
-}
-
 .field-day-facing {
   z-index: 3;
   grid-column: 1 / 5;

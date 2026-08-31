@@ -1,6 +1,6 @@
-/* 2026-08-30 review pass: hero fit, Field Day map/print, and Florida Garden palette. */
+/* 2026-08-31 review pass: hero fit, Field Day map/print, and Periwinkle Sunrise palette. */
 
-:root[data-wedding-palette="florida-garden"] {
+:root[data-wedding-palette="periwinkle-sunrise"] {
   --canvas-white: #fffdf8;
   --album-paper: #f7eacf;
   --deep-cypress: #153b3b;
@@ -14,7 +14,9 @@
 /* Keep the desktop title card left of the couple instead of covering them. */
 @media (min-width: 768px) {
   .hero-copy {
-    width: min(500px, calc(100% - clamp(56px, 8vw, 116px)));
+    width: min(390px, calc(100% - 56px));
+    margin: clamp(28px, 3vw, 44px);
+    padding: clamp(26px, 2.4vw, 38px);
   }
 
   .hero-copy h1 {
@@ -40,7 +42,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-copy {
-    width: min(430px, calc(100% - 56px));
+    width: min(390px, calc(100% - 56px));
   }
 }
 
@@ -71,20 +73,18 @@
 }
 
 .field-day-map-frame {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 5 / 4;
+  display: block;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--deep-cypress) 18%, transparent);
   background: color-mix(in srgb, var(--hazy-atlantic) 45%, var(--canvas-white));
 }
 
-.field-day-map iframe {
+.field-day-map-frame img {
+  display: block;
   width: 100%;
   height: 100%;
-  border: 0;
-}
-
-.field-day-map-print {
-  display: none;
+  object-fit: contain;
 }
 
 .field-day-map figcaption {
@@ -98,6 +98,24 @@
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.04em;
+}
+
+.field-day-map figcaption > span {
+  display: grid;
+  gap: 4px;
+}
+
+.field-day-map figcaption strong {
+  font-weight: 500;
+}
+
+.field-day-map figcaption small {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .field-day-map figcaption a {
@@ -136,47 +154,19 @@
   }
 }
 
-/*
- * Chromium print/PDF rasterizes the screen-only radial screen-blend on the
- * Field Day group shot as an opaque pale circle. The overlay is merely a
- * subtle web vignette, so suppress it for print rather than altering the photo.
- */
 @media print {
-  .field-day-main::after {
-    content: none !important;
-    display: none !important;
-    background: none !important;
-    mix-blend-mode: normal !important;
+  .album-page,
+  .scrapbook-section,
+  .field-day-map {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  .field-day-map iframe {
-    display: none !important;
-  }
-
-  .field-day-map-print {
-    width: 100%;
-    height: 100%;
-    padding: 18px;
-    display: grid;
-    place-content: center;
-    gap: 8px;
-    text-align: center;
-    color: var(--deep-cypress);
-    background:
-      linear-gradient(90deg, transparent 48%, color-mix(in srgb, var(--deep-cypress) 12%, transparent) 49%, transparent 50%),
-      linear-gradient(0deg, transparent 48%, color-mix(in srgb, var(--deep-cypress) 12%, transparent) 49%, transparent 50%),
-      color-mix(in srgb, var(--hazy-atlantic) 35%, var(--canvas-white));
-  }
-
-  .field-day-map-print strong {
-    font-family: "Cormorant SC", Georgia, serif;
-    font-size: 26px;
-    letter-spacing: 0.08em;
-  }
-
-  .field-day-map-print span {
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .field-day-cluster,
+  .story-card,
+  .cluster-photo,
+  .field-day-map {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }

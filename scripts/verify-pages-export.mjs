@@ -79,6 +79,13 @@ const registry = await readFile(
 assert.match(home, /coffee shop stalker/i);
 assert.match(home, /href=["']\/rsvp\//i);
 assert.match(home, /href=["']\/registry\//i);
+assert.match(home, />Archive</i);
+assert.match(home, /So How.d You Guys Meet\?/i);
+assert.match(home, /James was in grad school/i);
+assert.match(home, /Life in Cambridge Montage/i);
+assert.match(home, /donnelly-field-map\.svg/i);
+assert.doesNotMatch(home, /Our Story, In Pieces/i);
+assert.doesNotMatch(home, /A few moments, held onto/i);
 assert.match(logistics, /Approximate nightly total after tax/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
 assert.match(rsvp, /Online RSVPs will open with invitations\./i);

@@ -29,6 +29,13 @@ test("renders wedding metadata and the selected default palette", async () => {
   const html = await response.text();
   assert.match(html, /<title>James &amp; Samantha<\/title>/i);
   assert.match(html, /data-wedding-palette=["']coastal-bright["']/i);
+  assert.match(html, />Archive</i);
+  assert.match(html, /So How.d You Guys Meet\?/i);
+  assert.match(html, /James was in grad school/i);
+  assert.match(html, /Life in Cambridge Montage/i);
+  assert.match(html, /donnelly-field-map\.svg/i);
+  assert.doesNotMatch(html, /Our Story, In Pieces/i);
+  assert.doesNotMatch(html, /A few moments, held onto/i);
 });
 
 test("renders native wishlist and RSVP routes", async () => {

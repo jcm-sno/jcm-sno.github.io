@@ -148,22 +148,29 @@ export default function Home() {
             </figure>
 
             <figure className="field-day-map">
-              <div className="field-day-map-frame">
-                <iframe
-                  title="Map of the Cambridge neighborhood around Donnelly Field"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-71.1028%2C42.3646%2C-71.0812%2C42.3774&layer=mapnik&marker=42.3706527%2C-71.0919964"
+              <a
+                className="field-day-map-frame"
+                href="https://www.openstreetmap.org/?mlat=42.370524&mlon=-71.091853#map=16/42.370524/-71.091853"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open an interactive map of Donnelly Field"
+              >
+                <img
+                  src="/donnelly-field-map.svg"
+                  alt="Street map of the East Cambridge neighborhood surrounding Donnelly Field"
+                  width="900"
+                  height="720"
                   loading="lazy"
+                  decoding="async"
                 />
-                <div className="field-day-map-print" aria-hidden="true">
-                  <span>Cambridge, Massachusetts</span>
-                  <strong>Donnelly Field</strong>
-                  <span>61 Willow St · York &amp; Berkshire</span>
-                </div>
-              </div>
+              </a>
               <figcaption>
-                Donnelly Field · Cambridge, MA
+                <span>
+                  <strong>Donnelly Field · Cambridge, MA</strong>
+                  <small>Map data: City of Cambridge GIS · PDDL 1.0</small>
+                </span>
                 <a
-                  href="https://www.openstreetmap.org/?mlat=42.3706527&mlon=-71.0919964#map=16/42.3706527/-71.0919964"
+                  href="https://www.openstreetmap.org/?mlat=42.370524&mlon=-71.091853#map=16/42.370524/-71.091853"
                   target="_blank"
                   rel="noreferrer"
                 >
