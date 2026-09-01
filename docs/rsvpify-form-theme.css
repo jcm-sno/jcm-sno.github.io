@@ -1,0 +1,228 @@
+/*
+ * James & Samantha — RSVPify form theme
+ * Version 1.0 · 2026-09-01
+ *
+ * Paste this entire file into:
+ * Form Builder → Update Form Theme → Add Custom CSS
+ *
+ * The selectors intentionally use RSVPify's semantic theme classes and the
+ * field placeholders—not the generated UUID classes, which may change.
+ */
+
+:root {
+  --js-rsvp-white: #ffffff;
+  --js-rsvp-paper: #f5f0e8;
+  --js-rsvp-coral: #e09e7e;
+  --js-rsvp-green: #6f9f72;
+  --js-rsvp-blue: #a6ced9;
+  --js-rsvp-ink: #1c2724;
+  --js-rsvp-muted: #59625e;
+  --js-rsvp-rule: rgba(28, 39, 36, 0.28);
+  --js-rsvp-focus: rgba(111, 159, 114, 0.28);
+}
+
+/* --- Overall form canvas ------------------------------------------------- */
+
+html,
+body {
+  color: var(--js-rsvp-ink) !important;
+  background: transparent !important;
+}
+
+body,
+.themed-element-form-text,
+.themed-element-form-text-color {
+  color: var(--js-rsvp-ink) !important;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+}
+
+.themed-element-form-title-text {
+  color: var(--js-rsvp-ink) !important;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.035em !important;
+}
+
+.themed-element-form-accented-text {
+  color: #4a7050 !important;
+}
+
+/* RSVPify's outer form block is currently the source of the large black panel. */
+div.themed-element-form-background.mt-20.mb-24.mx-4 {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* The invitation-lookup card. */
+div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First Name"]),
+div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First name"]) {
+  width: min(100%, 680px) !important;
+  margin-inline: auto !important;
+  padding: clamp(24px, 5vw, 44px) !important;
+  border: 1px solid var(--js-rsvp-rule) !important;
+  border-radius: 10px !important;
+  background: var(--js-rsvp-paper) !important;
+  box-shadow: 0 14px 34px rgba(28, 39, 36, 0.1) !important;
+}
+
+/* Remove the nested utility padding so the card controls its own rhythm. */
+div.px-6.py-2:has(input[placeholder="First Name"]),
+div.px-6.py-2:has(input[placeholder="First name"]) {
+  padding: 0 !important;
+}
+
+/* --- Name lookup layout -------------------------------------------------- */
+
+/*
+ * RSVPify currently places the two 20 px Josefin Sans placeholders inside
+ * 135 px fields at a 390 px viewport. Auto-fit keeps the fields side-by-side
+ * when there is genuinely enough room, and stacks them otherwise.
+ */
+div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]),
+div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)) !important;
+  gap: 12px !important;
+}
+
+div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]) > *,
+div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) > * {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]) > :not([hidden]) ~ :not([hidden]),
+div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0 !important;
+}
+
+/* --- Inputs -------------------------------------------------------------- */
+
+input[type="text"].themed-element-form-text,
+input[type="email"].themed-element-form-text,
+input[type="tel"].themed-element-form-text,
+select.themed-element-form-text,
+textarea.themed-element-form-text {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 52px !important;
+  padding: 12px 14px !important;
+  overflow: visible !important;
+  color: var(--js-rsvp-ink) !important;
+  background: var(--js-rsvp-white) !important;
+  border: 1px solid rgba(28, 39, 36, 0.58) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+}
+
+input.themed-element-form-text::placeholder,
+textarea.themed-element-form-text::placeholder {
+  color: var(--js-rsvp-muted) !important;
+  opacity: 1 !important;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+input.themed-element-form-text:focus,
+select.themed-element-form-text:focus,
+textarea.themed-element-form-text:focus {
+  outline: none !important;
+  border-color: var(--js-rsvp-green) !important;
+  box-shadow: 0 0 0 3px var(--js-rsvp-focus) !important;
+}
+
+/* Keep browser autofill from introducing a bright blue/yellow field. */
+input.themed-element-form-text:-webkit-autofill,
+input.themed-element-form-text:-webkit-autofill:hover,
+input.themed-element-form-text:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--js-rsvp-ink) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--js-rsvp-white) inset !important;
+  transition: background-color 9999s ease-out 0s !important;
+}
+
+/* --- Primary actions ----------------------------------------------------- */
+
+button.themed-element-form-button,
+a.themed-element-form-button,
+input[type="submit"].themed-element-form-button,
+button[type="submit"].themed-element-form-accent {
+  min-width: 150px !important;
+  min-height: 50px !important;
+  padding: 12px 22px !important;
+  color: var(--js-rsvp-white) !important;
+  background: var(--js-rsvp-ink) !important;
+  border: 1px solid var(--js-rsvp-ink) !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.035em !important;
+}
+
+button.themed-element-form-button:hover,
+a.themed-element-form-button:hover,
+input[type="submit"].themed-element-form-button:hover,
+button[type="submit"].themed-element-form-accent:hover {
+  color: var(--js-rsvp-ink) !important;
+  background: var(--js-rsvp-blue) !important;
+  border-color: var(--js-rsvp-ink) !important;
+}
+
+button.themed-element-form-button:focus-visible,
+a.themed-element-form-button:focus-visible,
+input[type="submit"].themed-element-form-button:focus-visible,
+button[type="submit"].themed-element-form-accent:focus-visible {
+  outline: 3px solid var(--js-rsvp-coral) !important;
+  outline-offset: 3px !important;
+}
+
+/* --- Small-screen refinement -------------------------------------------- */
+
+@media (max-width: 520px) {
+  div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First Name"]),
+  div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First name"]) {
+    padding: 24px 16px 28px !important;
+    border-radius: 8px !important;
+  }
+
+  div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]),
+  div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) {
+    grid-template-columns: 1fr !important;
+  }
+
+  button.themed-element-form-button,
+  a.themed-element-form-button,
+  input[type="submit"].themed-element-form-button,
+  button[type="submit"].themed-element-form-accent {
+    width: 100% !important;
+    min-height: 52px !important;
+  }
+}
+
+/* Do not print shadows or background ink-heavy panels. */
+@media print {
+  html,
+  body,
+  div.themed-element-form-background.mt-20.mb-24.mx-4 {
+    background: #ffffff !important;
+  }
+
+  div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First Name"]),
+  div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First name"]) {
+    box-shadow: none !important;
+  }
+}
