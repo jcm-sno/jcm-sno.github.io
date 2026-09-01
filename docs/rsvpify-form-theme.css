@@ -1,12 +1,12 @@
 /*
  * James & Samantha — RSVPify form theme
- * Version 1.0 · 2026-09-01
+ * Version 1.1 · 2026-09-01
  *
  * Paste this entire file into:
  * Form Builder → Update Form Theme → Add Custom CSS
  *
- * The selectors intentionally use RSVPify's semantic theme classes and the
- * field placeholders—not the generated UUID classes, which may change.
+ * The selectors intentionally use RSVPify's semantic theme classes and field
+ * placeholders—not generated themed-<UUID> classes, which may change.
  */
 
 :root {
@@ -24,9 +24,14 @@
 /* --- Overall form canvas ------------------------------------------------- */
 
 html,
-body {
+body,
+#app,
+#rsvp-form,
+.wrapper,
+.rsvp-form {
   color: var(--js-rsvp-ink) !important;
-  background: transparent !important;
+  background-color: var(--js-rsvp-white) !important;
+  background-image: none !important;
 }
 
 body,
@@ -38,18 +43,19 @@ body,
 
 .themed-element-form-title-text {
   color: var(--js-rsvp-ink) !important;
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif !important;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
   font-weight: 500 !important;
-  letter-spacing: 0.035em !important;
+  letter-spacing: 0.025em !important;
 }
 
 .themed-element-form-accented-text {
   color: #4a7050 !important;
 }
 
-/* RSVPify's outer form block is currently the source of the large black panel. */
+/* RSVPify's default outer block creates the oversized dark panel and spacing. */
 div.themed-element-form-background.mt-20.mb-24.mx-4 {
-  margin: 0 !important;
+  width: min(calc(100% - 32px), 720px) !important;
+  margin: clamp(28px, 5vw, 56px) auto clamp(48px, 7vw, 88px) !important;
   padding: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -59,7 +65,7 @@ div.themed-element-form-background.mt-20.mb-24.mx-4 {
 /* The invitation-lookup card. */
 div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First Name"]),
 div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First name"]) {
-  width: min(100%, 680px) !important;
+  width: 100% !important;
   margin-inline: auto !important;
   padding: clamp(24px, 5vw, 44px) !important;
   border: 1px solid var(--js-rsvp-rule) !important;
@@ -68,7 +74,7 @@ div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(inpu
   box-shadow: 0 14px 34px rgba(28, 39, 36, 0.1) !important;
 }
 
-/* Remove the nested utility padding so the card controls its own rhythm. */
+/* Remove nested utility padding so the card controls its own rhythm. */
 div.px-6.py-2:has(input[placeholder="First Name"]),
 div.px-6.py-2:has(input[placeholder="First name"]) {
   padding: 0 !important;
@@ -77,9 +83,9 @@ div.px-6.py-2:has(input[placeholder="First name"]) {
 /* --- Name lookup layout -------------------------------------------------- */
 
 /*
- * RSVPify currently places the two 20 px Josefin Sans placeholders inside
- * 135 px fields at a 390 px viewport. Auto-fit keeps the fields side-by-side
- * when there is genuinely enough room, and stacks them otherwise.
+ * Live inspection found two 20 px Josefin Sans placeholders inside 135 px
+ * fields at a 390 px viewport. The responsive grid keeps names side by side
+ * when they have room and stacks them on phones.
  */
 div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]),
 div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) {
@@ -173,6 +179,11 @@ button[type="submit"].themed-element-form-accent {
   letter-spacing: 0.035em !important;
 }
 
+.themed-element-form-button *,
+button[type="submit"].themed-element-form-accent * {
+  color: var(--js-rsvp-white) !important;
+}
+
 button.themed-element-form-button:hover,
 a.themed-element-form-button:hover,
 input[type="submit"].themed-element-form-button:hover,
@@ -180,6 +191,12 @@ button[type="submit"].themed-element-form-accent:hover {
   color: var(--js-rsvp-ink) !important;
   background: var(--js-rsvp-blue) !important;
   border-color: var(--js-rsvp-ink) !important;
+}
+
+button.themed-element-form-button:hover *,
+a.themed-element-form-button:hover *,
+button[type="submit"].themed-element-form-accent:hover * {
+  color: var(--js-rsvp-ink) !important;
 }
 
 button.themed-element-form-button:focus-visible,
@@ -193,6 +210,11 @@ button[type="submit"].themed-element-form-accent:focus-visible {
 /* --- Small-screen refinement -------------------------------------------- */
 
 @media (max-width: 520px) {
+  div.themed-element-form-background.mt-20.mb-24.mx-4 {
+    width: calc(100% - 32px) !important;
+    margin-top: 28px !important;
+  }
+
   div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First Name"]),
   div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background:has(input[placeholder="First name"]) {
     padding: 24px 16px 28px !important;
@@ -208,15 +230,20 @@ button[type="submit"].themed-element-form-accent:focus-visible {
   a.themed-element-form-button,
   input[type="submit"].themed-element-form-button,
   button[type="submit"].themed-element-form-accent {
-    width: 100% !important;
+    width: calc(100% - 32px) !important;
     min-height: 52px !important;
+    margin-inline: auto !important;
   }
 }
 
-/* Do not print shadows or background ink-heavy panels. */
+/* Do not print shadows or ink-heavy backgrounds. */
 @media print {
   html,
   body,
+  #app,
+  #rsvp-form,
+  .wrapper,
+  .rsvp-form,
   div.themed-element-form-background.mt-20.mb-24.mx-4 {
     background: #ffffff !important;
   }
