@@ -34,6 +34,9 @@ const airports = [
   },
 ];
 
+const shoresBookingUrl =
+  "https://be.synxis.com/?Hotel=17713&Chain=21123&config=initialConfig&arrive=2027-05-14&depart=2027-05-16&adult=1&child=0&group=SAMJAMES27";
+
 export default function LogisticsPage() {
   return (
     <main className="site-shell">
@@ -136,12 +139,12 @@ export default function LogisticsPage() {
 
           <div className="pending-notice" role="note">
             <p className="detail-label">Hotel block update</p>
-            <h3>Pricing is in. Booking links are below.</h3>
+            <h3>The Shores booking link is live.</h3>
             <p>
               The Shores pricing below reflects the current written wedding-block
-              offer. Hotel booking URLs, reservation deadlines, and final booking
-              instructions are still being prepared, so please wait for the
-              official links before reserving if you want a group rate.
+              offer, and the official room-block booking link is now available.
+              The Hyatt booking link and any final reservation deadlines are
+              still pending.
             </p>
           </div>
 
@@ -180,14 +183,14 @@ export default function LogisticsPage() {
                     <li>Reduced $10 resort fee included in the total</li>
                     <li>$10 overnight self-parking + applicable tax, excluded from the total</li>
                     <li>Total uses the current 12.5% lodging-tax rate</li>
-                    <li>Booking link and reservation deadline pending</li>
+                    <li>Official room-block booking link is live</li>
                   </ul>
                 </div>
               </div>
               <div className="hotel-actions">
-                <span className="pending-link" aria-label="The Shores room-block booking link is pending">
-                  Booking link pending
-                </span>
+                <a href={shoresBookingUrl} target="_blank" rel="noreferrer">
+                  Book the wedding block <span aria-hidden="true">↗</span>
+                </a>
                 <a href="https://www.shoresresort.com/" target="_blank" rel="noreferrer">
                   Explore the hotel <span aria-hidden="true">↗</span>
                 </a>
