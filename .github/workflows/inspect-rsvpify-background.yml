@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - .github/workflows/inspect-rsvpify-background.yml
+      - docs/rsvpify-form-theme.css
 
 permissions:
   contents: read
@@ -50,59 +51,47 @@ jobs:
           await page.addStyleTag({ content: css });
           await page.waitForTimeout(500);
 
-          const report = await page.evaluate(() => {
-            function summary(el) {
-              if (!(el instanceof HTMLElement)) return null;
+          const first = page.locator('input[placeholder="First Name"]').first();
+          const last = page.locator('input[placeholder="Last Name"]').first();
+          const email = page.locator('input[placeholder="Email Address"]').first();
+          const row = page.locator('div.flex.w-full.space-x-2').filter({ has: first }).first();
+          const card = page.locator('div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background').filter({ has: first }).first();
+          const outer = page.locator('div.themed-element-form-background.mt-20.mb-24.mx-4').first();
+          const button = page.getByRole('button', { name: /continue/i }).first();
+
+          async function summary(locator) {
+            return locator.evaluate((el) => {
               const s = getComputedStyle(el);
               const r = el.getBoundingClientRect();
               return {
-                tag: el.tagName.toLowerCase(),
-                id: el.id,
-                className: el.className,
                 rect: { x: +r.x.toFixed(1), y: +r.y.toFixed(1), width: +r.width.toFixed(1), height: +r.height.toFixed(1) },
-                position: s.position,
                 display: s.display,
-                overflow: s.overflow,
+                gridTemplateColumns: s.gridTemplateColumns,
+                gap: s.gap,
+                margin: s.margin,
+                padding: s.padding,
+                fontFamily: s.fontFamily,
+                fontSize: s.fontSize,
                 color: s.color,
                 backgroundColor: s.backgroundColor,
-                backgroundImage: s.backgroundImage,
-                opacity: s.opacity,
-                zIndex: s.zIndex,
+                border: s.border,
+                borderRadius: s.borderRadius,
+                boxShadow: s.boxShadow,
               };
-            }
-            const points = [[1,1],[10,320],[10,560],[10,700],[195,700],[380,700]].map(([x,y]) => {
-              const element = document.elementFromPoint(x,y);
-              const chain = [];
-              let current = element;
-              while (current && chain.length < 12) {
-                chain.push(summary(current));
-                current = current.parentElement;
-              }
-              return { x, y, chain };
             });
-            const blackish = [...document.querySelectorAll('body *')].map(summary).filter((item) => {
-              if (!item || item.rect.width < 20 || item.rect.height < 20) return false;
-              const m = item.backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-              if (!m) return false;
-              const [,r,g,b,a='1'] = m;
-              return +a > 0.05 && +r < 55 && +g < 55 && +b < 55;
-            }).slice(0,100);
-            const input = document.querySelector('input[placeholder="First Name"]');
-            const inputChain = [];
-            let current = input;
-            while (current) {
-              inputChain.push(summary(current));
-              current = current.parentElement;
-            }
-            return {
-              html: summary(document.documentElement),
-              body: summary(document.body),
-              bodyChildren: [...document.body.children].map(summary),
-              inputChain,
-              points,
-              blackish,
-            };
-          });
+          }
+
+          const report = {
+            first: await summary(first),
+            last: await summary(last),
+            email: await summary(email),
+            row: await summary(row),
+            card: await summary(card),
+            outer: await summary(outer),
+            button: await summary(button),
+            bodyBackground: await page.locator('body').evaluate((el) => getComputedStyle(el).backgroundColor),
+            appBackground: await page.locator('#app').evaluate((el) => getComputedStyle(el).backgroundColor),
+          };
           console.log(JSON.stringify(report, null, 2));
           await page.screenshot({ path: process.env.GITHUB_WORKSPACE + '/rsvpify-bg-after.png', fullPage: true, animations: 'disabled' });
           await browser.close();
