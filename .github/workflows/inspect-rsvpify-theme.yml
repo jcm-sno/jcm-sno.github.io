@@ -1,0 +1,214 @@
+name: Inspect RSVPify Theme
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/inspect-rsvpify-theme.yml
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install lightweight browser driver
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/rsvpify-inspect
+          cd /tmp/rsvpify-inspect
+          npm init -y >/dev/null
+          npm install --silent playwright-core@1.55.0
+          CHROME_PATH="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || true)"
+          if [ -z "$CHROME_PATH" ]; then
+            echo "No system Chrome found" >&2
+            exit 1
+          fi
+          echo "CHROME_PATH=$CHROME_PATH" >> "$GITHUB_ENV"
+          echo "NODE_PATH=/tmp/rsvpify-inspect/node_modules" >> "$GITHUB_ENV"
+
+      - name: Inspect live standalone and embedded forms
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p rsvpify-inspection
+          cat > /tmp/rsvpify-inspect/inspect.mjs <<'EOF'
+          import fs from 'node:fs';
+          import { chromium } from 'playwright-core';
+
+          const browser = await chromium.launch({
+            executablePath: process.env.CHROME_PATH,
+            headless: true,
+            args: ['--no-sandbox', '--disable-dev-shm-usage'],
+          });
+
+          const targets = [
+            {
+              id: 'standalone-mobile',
+              url: 'https://jcm-sno.rsvpify.com',
+              viewport: { width: 390, height: 844 },
+              mobile: true,
+            },
+            {
+              id: 'standalone-desktop',
+              url: 'https://jcm-sno.rsvpify.com',
+              viewport: { width: 1280, height: 900 },
+              mobile: false,
+            },
+            {
+              id: 'embed-mobile',
+              url: 'https://jcm-sno.github.io/rsvp/',
+              viewport: { width: 390, height: 844 },
+              mobile: true,
+            },
+          ];
+
+          async function findFormFrame(page) {
+            const deadline = Date.now() + 60000;
+            while (Date.now() < deadline) {
+              for (const frame of page.frames()) {
+                const count = await frame.locator('input[placeholder="First Name"]').count().catch(() => 0);
+                if (count) return frame;
+              }
+              await page.waitForTimeout(500);
+            }
+            throw new Error('First Name input was not found in any frame');
+          }
+
+          for (const target of targets) {
+            const context = await browser.newContext({
+              viewport: target.viewport,
+              deviceScaleFactor: target.mobile ? 2 : 1,
+              isMobile: target.mobile,
+              hasTouch: target.mobile,
+              userAgent: target.mobile
+                ? 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1'
+                : undefined,
+            });
+            const page = await context.newPage();
+            await page.goto(target.url, { waitUntil: 'domcontentloaded', timeout: 90000 });
+            await page.waitForTimeout(8000);
+            const frame = await findFormFrame(page);
+            const first = frame.locator('input[placeholder="First Name"]').first();
+            const last = frame.locator('input[placeholder="Last Name"]').first();
+
+            const report = await first.evaluate((firstInput) => {
+              const lastInput = document.querySelector('input[placeholder="Last Name"]');
+              const emailInput = document.querySelector('input[placeholder="Email Address"]');
+              if (!(lastInput instanceof HTMLElement)) throw new Error('Last Name input unavailable');
+
+              const elementSummary = (el) => {
+                if (!(el instanceof HTMLElement)) return null;
+                const rect = el.getBoundingClientRect();
+                const css = getComputedStyle(el);
+                return {
+                  tag: el.tagName.toLowerCase(),
+                  id: el.id,
+                  className: el.className,
+                  rect: {
+                    x: Number(rect.x.toFixed(2)),
+                    y: Number(rect.y.toFixed(2)),
+                    width: Number(rect.width.toFixed(2)),
+                    height: Number(rect.height.toFixed(2)),
+                  },
+                  display: css.display,
+                  width: css.width,
+                  minWidth: css.minWidth,
+                  maxWidth: css.maxWidth,
+                  flex: css.flex,
+                  flexBasis: css.flexBasis,
+                  gridTemplateColumns: css.gridTemplateColumns,
+                  gap: css.gap,
+                  fontFamily: css.fontFamily,
+                  fontSize: css.fontSize,
+                  lineHeight: css.lineHeight,
+                  letterSpacing: css.letterSpacing,
+                  padding: css.padding,
+                  margin: css.margin,
+                  color: css.color,
+                  backgroundColor: css.backgroundColor,
+                  border: css.border,
+                  borderRadius: css.borderRadius,
+                  overflow: css.overflow,
+                };
+              };
+
+              const ancestors = [];
+              let current = firstInput;
+              for (let i = 0; current && i < 9; i += 1, current = current.parentElement) {
+                ancestors.push(elementSummary(current));
+              }
+
+              const firstAncestors = [];
+              current = firstInput;
+              while (current) {
+                firstAncestors.push(current);
+                current = current.parentElement;
+              }
+              let shared = lastInput;
+              while (shared && !firstAncestors.includes(shared)) shared = shared.parentElement;
+
+              const themedClasses = [...document.querySelectorAll('[class*="themed-element-form-"]')]
+                .flatMap((el) => [...el.classList])
+                .filter((name) => name.startsWith('themed-element-form-'));
+
+              const uniqueThemedClasses = [...new Set(themedClasses)].sort();
+              return {
+                document: {
+                  url: location.href,
+                  innerWidth: window.innerWidth,
+                  outerWidth: window.outerWidth,
+                  devicePixelRatio: window.devicePixelRatio,
+                  body: elementSummary(document.body),
+                },
+                first: elementSummary(firstInput),
+                last: elementSummary(lastInput),
+                email: elementSummary(emailInput),
+                ancestors,
+                sharedAncestor: elementSummary(shared),
+                sharedOuterHTML: shared?.outerHTML ?? null,
+                uniqueThemedClasses,
+              };
+            });
+
+            report.topPage = {
+              requestedUrl: target.url,
+              finalUrl: page.url(),
+              viewport: target.viewport,
+              frames: page.frames().map((item) => ({ name: item.name(), url: item.url() })),
+              selectedFrameUrl: frame.url(),
+            };
+
+            fs.writeFileSync(`rsvpify-inspection/${target.id}.json`, JSON.stringify(report, null, 2));
+            fs.writeFileSync(`rsvpify-inspection/${target.id}.html`, await frame.content());
+            await page.screenshot({
+              path: `rsvpify-inspection/${target.id}.png`,
+              fullPage: true,
+              animations: 'disabled',
+            });
+
+            console.log(`\n===== ${target.id} =====`);
+            console.log(JSON.stringify(report, null, 2));
+            await context.close();
+          }
+
+          await browser.close();
+          EOF
+          node /tmp/rsvpify-inspect/inspect.mjs
+
+      - name: Upload diagnostic artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsvpify-theme-inspection
+          path: rsvpify-inspection
+          retention-days: 1
