@@ -30,14 +30,11 @@ jobs:
           npm init -y >/dev/null
           npm install --silent playwright-core@1.55.0
           CHROME_PATH="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || true)"
-          if [ -z "$CHROME_PATH" ]; then
-            echo "No system Chrome found" >&2
-            exit 1
-          fi
+          test -n "$CHROME_PATH"
           echo "CHROME_PATH=$CHROME_PATH" >> "$GITHUB_ENV"
           echo "NODE_PATH=/tmp/rsvpify-inspect/node_modules" >> "$GITHUB_ENV"
 
-      - name: Inspect live standalone and embedded forms
+      - name: Test candidate CSS on live forms
         shell: bash
         run: |
           set -euo pipefail
@@ -46,6 +43,7 @@ jobs:
           import fs from 'node:fs';
           import { chromium } from 'playwright-core';
 
+          const css = fs.readFileSync('docs/rsvpify-form-theme.css', 'utf8');
           const browser = await chromium.launch({
             executablePath: process.env.CHROME_PATH,
             headless: true,
@@ -53,24 +51,8 @@ jobs:
           });
 
           const targets = [
-            {
-              id: 'standalone-mobile',
-              url: 'https://jcm-sno.rsvpify.com',
-              viewport: { width: 390, height: 844 },
-              mobile: true,
-            },
-            {
-              id: 'standalone-desktop',
-              url: 'https://jcm-sno.rsvpify.com',
-              viewport: { width: 1280, height: 900 },
-              mobile: false,
-            },
-            {
-              id: 'embed-mobile',
-              url: 'https://jcm-sno.github.io/rsvp/',
-              viewport: { width: 390, height: 844 },
-              mobile: true,
-            },
+            { id: 'standalone-mobile', url: 'https://jcm-sno.rsvpify.com' },
+            { id: 'embed-mobile', url: 'https://jcm-sno.github.io/rsvp/' },
           ];
 
           async function findFormFrame(page) {
@@ -82,123 +64,115 @@ jobs:
               }
               await page.waitForTimeout(500);
             }
-            throw new Error('First Name input was not found in any frame');
+            return null;
+          }
+
+          function roundedRect(rect) {
+            if (!rect) return null;
+            return Object.fromEntries(
+              Object.entries(rect.toJSON()).map(([key, value]) => [key, Number(value.toFixed(2))]),
+            );
           }
 
           for (const target of targets) {
             const context = await browser.newContext({
-              viewport: target.viewport,
-              deviceScaleFactor: target.mobile ? 2 : 1,
-              isMobile: target.mobile,
-              hasTouch: target.mobile,
-              userAgent: target.mobile
-                ? 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1'
-                : undefined,
+              viewport: { width: 390, height: 844 },
+              deviceScaleFactor: 2,
+              isMobile: true,
+              hasTouch: true,
+              userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1',
             });
             const page = await context.newPage();
-            await page.goto(target.url, { waitUntil: 'domcontentloaded', timeout: 90000 });
-            await page.waitForTimeout(8000);
-            const frame = await findFormFrame(page);
-            const first = frame.locator('input[placeholder="First Name"]').first();
-            const last = frame.locator('input[placeholder="Last Name"]').first();
+            const output = { target, error: null, before: null, after: null };
 
-            const report = await first.evaluate((firstInput) => {
-              const lastInput = document.querySelector('input[placeholder="Last Name"]');
-              const emailInput = document.querySelector('input[placeholder="Email Address"]');
-              if (!(lastInput instanceof HTMLElement)) throw new Error('Last Name input unavailable');
+            try {
+              await page.goto(target.url, { waitUntil: 'domcontentloaded', timeout: 90000 });
+              await page.waitForTimeout(8000);
+              const frame = await findFormFrame(page);
+              if (!frame) throw new Error('First Name input not found in any frame');
 
-              const elementSummary = (el) => {
-                if (!(el instanceof HTMLElement)) return null;
-                const rect = el.getBoundingClientRect();
-                const css = getComputedStyle(el);
+              const measure = async () => {
+                const first = frame.locator('input[placeholder="First Name"]').first();
+                const last = frame.locator('input[placeholder="Last Name"]').first();
+                const email = frame.locator('input[placeholder="Email Address"]').first();
+                const row = frame.locator('div.flex.w-full.space-x-2').filter({ has: first }).first();
+                const card = frame.locator('div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background').filter({ has: first }).first();
+                const outer = frame.locator('div.themed-element-form-background.mt-20.mb-24.mx-4').first();
+                const continueButton = frame.getByRole('button', { name: /continue/i }).first();
+
+                const computed = async (locator) => {
+                  if (!(await locator.count())) return null;
+                  return locator.evaluate((el) => {
+                    const style = getComputedStyle(el);
+                    const rect = el.getBoundingClientRect();
+                    return {
+                      tag: el.tagName.toLowerCase(),
+                      className: el.className,
+                      rect: {
+                        x: Number(rect.x.toFixed(2)),
+                        y: Number(rect.y.toFixed(2)),
+                        width: Number(rect.width.toFixed(2)),
+                        height: Number(rect.height.toFixed(2)),
+                      },
+                      display: style.display,
+                      gridTemplateColumns: style.gridTemplateColumns,
+                      gap: style.gap,
+                      margin: style.margin,
+                      padding: style.padding,
+                      fontFamily: style.fontFamily,
+                      fontSize: style.fontSize,
+                      lineHeight: style.lineHeight,
+                      color: style.color,
+                      backgroundColor: style.backgroundColor,
+                      border: style.border,
+                      borderRadius: style.borderRadius,
+                      boxShadow: style.boxShadow,
+                      overflow: style.overflow,
+                    };
+                  });
+                };
+
                 return {
-                  tag: el.tagName.toLowerCase(),
-                  id: el.id,
-                  className: el.className,
-                  rect: {
-                    x: Number(rect.x.toFixed(2)),
-                    y: Number(rect.y.toFixed(2)),
-                    width: Number(rect.width.toFixed(2)),
-                    height: Number(rect.height.toFixed(2)),
-                  },
-                  display: css.display,
-                  width: css.width,
-                  minWidth: css.minWidth,
-                  maxWidth: css.maxWidth,
-                  flex: css.flex,
-                  flexBasis: css.flexBasis,
-                  gridTemplateColumns: css.gridTemplateColumns,
-                  gap: css.gap,
-                  fontFamily: css.fontFamily,
-                  fontSize: css.fontSize,
-                  lineHeight: css.lineHeight,
-                  letterSpacing: css.letterSpacing,
-                  padding: css.padding,
-                  margin: css.margin,
-                  color: css.color,
-                  backgroundColor: css.backgroundColor,
-                  border: css.border,
-                  borderRadius: css.borderRadius,
-                  overflow: css.overflow,
+                  frameUrl: frame.url(),
+                  first: await computed(first),
+                  last: await computed(last),
+                  email: await computed(email),
+                  row: await computed(row),
+                  card: await computed(card),
+                  outer: await computed(outer),
+                  continueButton: await computed(continueButton),
+                  overlap: await Promise.all([first.boundingBox(), last.boundingBox()]).then(([a, b]) => {
+                    if (!a || !b) return null;
+                    return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
+                  }),
+                  frames: page.frames().map((item) => item.url()),
                 };
               };
 
-              const ancestors = [];
-              let current = firstInput;
-              for (let i = 0; current && i < 9; i += 1, current = current.parentElement) {
-                ancestors.push(elementSummary(current));
-              }
+              output.before = await measure();
+              await page.screenshot({
+                path: `rsvpify-inspection/${target.id}-before.png`,
+                fullPage: true,
+                animations: 'disabled',
+              });
 
-              const firstAncestors = [];
-              current = firstInput;
-              while (current) {
-                firstAncestors.push(current);
-                current = current.parentElement;
-              }
-              let shared = lastInput;
-              while (shared && !firstAncestors.includes(shared)) shared = shared.parentElement;
+              await frame.addStyleTag({ content: css });
+              await page.waitForTimeout(1000);
+              output.after = await measure();
+              await page.screenshot({
+                path: `rsvpify-inspection/${target.id}-after.png`,
+                fullPage: true,
+                animations: 'disabled',
+              });
+            } catch (error) {
+              output.error = error instanceof Error ? error.stack : String(error);
+            }
 
-              const themedClasses = [...document.querySelectorAll('[class*="themed-element-form-"]')]
-                .flatMap((el) => [...el.classList])
-                .filter((name) => name.startsWith('themed-element-form-'));
-
-              const uniqueThemedClasses = [...new Set(themedClasses)].sort();
-              return {
-                document: {
-                  url: location.href,
-                  innerWidth: window.innerWidth,
-                  outerWidth: window.outerWidth,
-                  devicePixelRatio: window.devicePixelRatio,
-                  body: elementSummary(document.body),
-                },
-                first: elementSummary(firstInput),
-                last: elementSummary(lastInput),
-                email: elementSummary(emailInput),
-                ancestors,
-                sharedAncestor: elementSummary(shared),
-                sharedOuterHTML: shared?.outerHTML ?? null,
-                uniqueThemedClasses,
-              };
-            });
-
-            report.topPage = {
-              requestedUrl: target.url,
-              finalUrl: page.url(),
-              viewport: target.viewport,
-              frames: page.frames().map((item) => ({ name: item.name(), url: item.url() })),
-              selectedFrameUrl: frame.url(),
-            };
-
-            fs.writeFileSync(`rsvpify-inspection/${target.id}.json`, JSON.stringify(report, null, 2));
-            fs.writeFileSync(`rsvpify-inspection/${target.id}.html`, await frame.content());
-            await page.screenshot({
-              path: `rsvpify-inspection/${target.id}.png`,
-              fullPage: true,
-              animations: 'disabled',
-            });
-
-            console.log(`\n===== ${target.id} =====`);
-            console.log(JSON.stringify(report, null, 2));
+            fs.writeFileSync(
+              `rsvpify-inspection/${target.id}-report.json`,
+              JSON.stringify(output, null, 2),
+            );
+            console.log(`\n===== ${target.id} =====\n${JSON.stringify(output, null, 2)}`);
             await context.close();
           }
 
