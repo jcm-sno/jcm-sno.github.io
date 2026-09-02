@@ -61,8 +61,8 @@ export default function Home() {
             className="hero-photo"
             src="/about-banner.webp"
             alt="James and Samantha embracing as they look out at the ocean"
-            width="1664"
-            height="728"
+            width="1536"
+            height="1024"
             fetchPriority="high"
           />
           <div className="hero-copy">

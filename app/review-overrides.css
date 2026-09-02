@@ -56,7 +56,7 @@
   }
 }
 
-/* Hero card: use the uncropped panorama and place the copy in its open right side. */
+/* Hero card: keep the names in the open sky beside the centered couple. */
 .hero-copy {
   text-align: center;
 }
@@ -79,6 +79,7 @@
 
   .hero-copy {
     justify-self: end;
+    align-self: start;
     width: min(430px, calc(100% - 56px));
     margin: clamp(28px, 3vw, 44px);
     padding: clamp(27px, 2.5vw, 40px);
@@ -340,7 +341,7 @@
 @media (max-width: 767px) {
   .hero-photo {
     object-fit: cover;
-    object-position: 31% center;
+    object-position: center center;
   }
 
   .field-day-map {
