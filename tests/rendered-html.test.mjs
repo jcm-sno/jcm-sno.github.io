@@ -79,8 +79,10 @@ test("renders wishlist and RSVP routes", async () => {
   );
   assert.equal(registryResponse.status, 200);
   const wishlistHtml = await registryResponse.text();
+  assert.match(wishlistHtml, /We have no expectation of receiving a gift/i);
+  assert.match(wishlistHtml, /please mark it as covered below/i);
+  assert.match(wishlistHtml, /free to shop wherever you like/i);
   assert.match(wishlistHtml, /Opens with invitations/i);
-  assert.match(wishlistHtml, /reserve an item and mark it ordered/i);
   assert.doesNotMatch(wishlistHtml, /Choose something you would love to give/i);
   assert.doesNotMatch(wishlistHtml, /Zola/i);
 });
