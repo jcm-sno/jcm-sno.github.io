@@ -3,10 +3,14 @@ import SiteHeader from "./components/site-header";
 
 const responsiveWidths = [640, 960] as const;
 
-function responsivePhotoSrcSet(src: string, originalWidth: number) {
+function responsivePhotoSrcSet(
+  src: string,
+  originalWidth: number,
+  candidateWidths: readonly number[] = responsiveWidths,
+) {
   const stem = src.replace(/\.webp$/, "");
   return [
-    ...responsiveWidths
+    ...candidateWidths
       .filter((width) => width < originalWidth)
       .map((width) => `${stem}-${width}.webp ${width}w`),
     `${src} ${originalWidth}w`,
@@ -20,7 +24,10 @@ const longDistancePhotos = [
     alt: "James eats fish and chips on a colorful, rain-soaked street in Scotland",
     width: 1536,
     height: 1152,
-    sizes: "(min-width: 1024px) 42vw, 92vw",
+    candidateWidths: [640, 960, 1280],
+    sizes:
+      "(min-width: 1440px) 520px, (min-width: 1024px) 36vw, (min-width: 768px) calc(100vw - 108px), calc(100vw - 40px)",
+    loadEarly: false,
   },
   {
     className: "long-distance-seafood",
@@ -28,7 +35,10 @@ const longDistancePhotos = [
     alt: "Samantha smiles behind a large seafood platter during an adventure together",
     width: 1152,
     height: 1536,
-    sizes: "(min-width: 1024px) 34vw, 92vw",
+    candidateWidths: [640, 960],
+    sizes:
+      "(min-width: 1440px) 420px, (min-width: 1024px) 28vw, (min-width: 768px) calc((100vw - 136px) / 2), calc(100vw - 40px)",
+    loadEarly: false,
   },
   {
     className: "long-distance-harbor",
@@ -36,7 +46,10 @@ const longDistancePhotos = [
     alt: "James and Samantha smile together beside a harbor in Scotland",
     width: 1536,
     height: 1152,
-    sizes: "(min-width: 1024px) 42vw, 92vw",
+    candidateWidths: [640, 960, 1280],
+    sizes:
+      "(min-width: 1440px) 520px, (min-width: 1024px) 36vw, (min-width: 768px) calc((100vw - 136px) / 2), calc(100vw - 40px)",
+    loadEarly: true,
   },
 ];
 
@@ -47,7 +60,9 @@ const engagementPhotos = [
     alt: "James and Samantha hold hands while walking across rocks at the beach",
     width: 1536,
     height: 1023,
-    sizes: "(min-width: 1024px) 50vw, 92vw",
+    candidateWidths: [640, 960, 1280],
+    sizes:
+      "(min-width: 1440px) 620px, (min-width: 1024px) 43vw, (min-width: 768px) calc(100vw - 108px), calc(100vw - 40px)",
   },
   {
     className: "engagement-proposal",
@@ -55,7 +70,9 @@ const engagementPhotos = [
     alt: "James kneels to propose to Samantha on the beach",
     width: 1024,
     height: 1536,
-    sizes: "(min-width: 1024px) 34vw, 92vw",
+    candidateWidths: [640, 960],
+    sizes:
+      "(min-width: 1440px) 420px, (min-width: 1024px) 28vw, (min-width: 768px) calc((100vw - 136px) / 2), calc(100vw - 40px)",
   },
   {
     className: "engagement-reaction",
@@ -63,7 +80,9 @@ const engagementPhotos = [
     alt: "James and Samantha laugh together immediately after the proposal",
     width: 1024,
     height: 1536,
-    sizes: "(min-width: 1024px) 42vw, 92vw",
+    candidateWidths: [640, 960],
+    sizes:
+      "(min-width: 1440px) 520px, (min-width: 1024px) 36vw, (min-width: 768px) calc((100vw - 136px) / 2), calc(100vw - 40px)",
   },
 ];
 
@@ -279,10 +298,15 @@ export default function Home() {
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
-                  srcSet={responsivePhotoSrcSet(photo.src, photo.width)}
+                  srcSet={responsivePhotoSrcSet(
+                    photo.src,
+                    photo.width,
+                    photo.candidateWidths,
+                  )}
                   sizes={photo.sizes}
-                  loading="lazy"
+                  loading={photo.loadEarly ? "eager" : "lazy"}
                   decoding="async"
+                  fetchPriority={photo.loadEarly ? "low" : undefined}
                 />
               </figure>
             ))}
@@ -321,10 +345,15 @@ export default function Home() {
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
-                  srcSet={responsivePhotoSrcSet(photo.src, photo.width)}
+                  srcSet={responsivePhotoSrcSet(
+                    photo.src,
+                    photo.width,
+                    photo.candidateWidths,
+                  )}
                   sizes={photo.sizes}
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchPriority="low"
                 />
               </figure>
             ))}

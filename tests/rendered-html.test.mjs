@@ -36,6 +36,8 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /Life in Cambridge Montage/i);
   assert.match(html, /donnelly-field-map\.svg/i);
   assert.match(html, /field-day-group-640\.webp/i);
+  assert.match(html, /long-distance-harbor-1280\.webp/i);
+  assert.match(html, /engagement-walk-1280\.webp/i);
   assert.doesNotMatch(html, /Our Story, In Pieces/i);
   assert.doesNotMatch(html, /A few moments, held onto/i);
 });

@@ -95,6 +95,8 @@ assert.match(home, /James was in grad school/i);
 assert.match(home, /Life in Cambridge Montage/i);
 assert.match(home, /donnelly-field-map\.svg/i);
 assert.match(home, /field-day-group-640\.webp/i);
+assert.match(home, /long-distance-harbor-1280\.webp/i);
+assert.match(home, /engagement-walk-1280\.webp/i);
 assert.match(home, /about-banner\.webp/i);
 assert.match(home, /data-wedding-palette=["']atlantic-garden["']/i);
 assert.doesNotMatch(home, /Color Study/i);
