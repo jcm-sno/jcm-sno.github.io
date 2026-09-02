@@ -1,4 +1,5 @@
-/* 2026-08-31 review pass: hero fit, Field Day map/print, and Periwinkle Sunrise palette. */
+/* 2026-09-01 review pass: flush header, high-resolution hero, centered story cards,
+   static Donnelly Field map, and unobscured long-distance photos. */
 
 :root[data-wedding-palette="periwinkle-sunrise"] {
   --canvas-white: #fffdf8;
@@ -11,12 +12,75 @@
   --muted-ink: #526360;
 }
 
-/* Keep the desktop title card left of the couple instead of covering them. */
+/* Let the cream album begin at the very top while preserving the desktop gutters. */
+.site-shell {
+  padding-block: 0;
+}
+
+/* Desktop navigation: wordmark at left, one-line tabs at right, full-height RSVP tab. */
+@media (min-width: 901px) {
+  .site-nav {
+    min-height: 88px;
+    padding: 0 clamp(24px, 4.5vw, 72px);
+    display: flex;
+    align-items: stretch;
+    gap: clamp(24px, 3vw, 46px);
+  }
+
+  .wordmark {
+    flex: 0 0 auto;
+    align-self: center;
+    justify-self: auto;
+  }
+
+  .site-nav nav {
+    flex: 1 1 auto;
+    justify-self: auto;
+    align-self: stretch;
+    height: 88px;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .site-nav nav a {
+    display: flex;
+    align-items: center;
+    padding-block: 0;
+    white-space: nowrap;
+  }
+
+  .nav-rsvp {
+    align-self: stretch;
+    margin-left: auto;
+    padding-inline: clamp(16px, 1.8vw, 24px);
+  }
+}
+
+/* Hero card: compact, left of the couple, with the date centered above the names. */
+.hero-copy {
+  text-align: center;
+}
+
+.hero-copy .eyebrow {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
+  .hero-banner {
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+  }
+
+  .hero-photo {
+    object-fit: contain;
+    object-position: center center;
+  }
+
   .hero-copy {
-    width: min(390px, calc(100% - 56px));
+    width: min(430px, calc(100% - 56px));
     margin: clamp(28px, 3vw, 44px);
-    padding: clamp(26px, 2.4vw, 38px);
+    padding: clamp(27px, 2.5vw, 40px);
   }
 
   .hero-copy h1 {
@@ -42,17 +106,161 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-copy {
-    width: min(390px, calc(100% - 56px));
+    width: min(410px, calc(100% - 56px));
   }
 }
 
-/* The map is treated like another pinned clipping in the Field Day cluster. */
+/* Center the narrative card within each desktop collage and let photos orbit it. */
+@media (min-width: 1024px) {
+  .story-card {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .story-card > p:not(.clip-kicker) {
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  .field-day-facing {
+    z-index: 2;
+    grid-column: 1 / 5;
+    grid-row: 1;
+    align-self: center;
+    margin: 42px 0 0;
+  }
+
+  .field-day-main {
+    z-index: 1;
+    grid-column: 6 / 13;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .field-day-map {
+    z-index: 4;
+    grid-column: 1 / 5;
+    grid-row: 2;
+    width: 100%;
+    margin: -18px 0 0 18px;
+  }
+
+  .field-day-action {
+    z-index: 3;
+    grid-column: 9 / 13;
+    grid-row: 2;
+    margin: -56px 0 0;
+  }
+
+  .field-day-story {
+    z-index: 7;
+    grid-column: 4 / 10;
+    grid-row: 2;
+    width: min(560px, 100%);
+    align-self: start;
+    margin: -92px 0 0;
+    transform: rotate(-0.35deg);
+  }
+
+  .boston-coffee {
+    z-index: 1;
+    grid-column: 1 / 7;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .boston-night {
+    z-index: 2;
+    grid-column: 9 / 13;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin: 34px 0 0;
+  }
+
+  .boston-kayak {
+    z-index: 3;
+    grid-column: 1 / 6;
+    grid-row: 2;
+    margin: -58px 0 0 42px;
+  }
+
+  .boston-story {
+    z-index: 7;
+    grid-column: 5 / 10;
+    grid-row: 2;
+    width: min(540px, 100%);
+    align-self: start;
+    margin: -94px 0 0;
+    transform: rotate(0.35deg);
+  }
+
+  .long-distance-seafood {
+    z-index: 3;
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin: 30px 0 0;
+  }
+
+  .long-distance-street {
+    z-index: 1;
+    grid-column: 8 / 13;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .long-distance-harbor {
+    z-index: 2;
+    grid-column: 8 / 13;
+    grid-row: 2;
+    margin: -34px 0 0;
+  }
+
+  .long-distance-story {
+    z-index: 7;
+    grid-column: 5 / 9;
+    grid-row: 1 / 3;
+    width: min(470px, 100%);
+    align-self: center;
+    margin: 0;
+    transform: rotate(-0.25deg);
+  }
+
+  .engagement-proposal {
+    z-index: 2;
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+    margin: 0;
+  }
+
+  .engagement-walk {
+    z-index: 1;
+    grid-column: 7 / 13;
+    grid-row: 1;
+    margin: 22px 0 0;
+  }
+
+  .engagement-reaction {
+    z-index: 3;
+    grid-column: 8 / 13;
+    grid-row: 2;
+    margin: -62px 0 0;
+  }
+
+  .engagement-story {
+    z-index: 7;
+    grid-column: 5 / 9;
+    grid-row: 1 / 3;
+    width: min(500px, 100%);
+    align-self: center;
+    margin: 0;
+    transform: rotate(0.3deg);
+  }
+}
+
+/* The map is a static pinned clipping, not an interactive widget. */
 .field-day-map {
   position: relative;
-  z-index: 4;
-  grid-column: 5 / 8;
-  grid-row: 2;
-  margin: -54px 0 0 8px;
   padding: 10px 10px 16px;
   transform: rotate(-0.9deg);
   background: var(--canvas-white);
@@ -90,9 +298,8 @@
 .field-day-map figcaption {
   margin: 12px 4px 0;
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: baseline;
+  justify-content: center;
+  text-align: center;
   color: var(--deep-cypress);
   font-family: "Cormorant SC", Georgia, serif;
   font-size: 15px;
@@ -118,18 +325,6 @@
   text-transform: uppercase;
 }
 
-.field-day-map figcaption a {
-  flex: 0 0 auto;
-  padding-bottom: 2px;
-  border-bottom: 1px solid currentColor;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
 @media (max-width: 1023px) {
   .field-day-map {
     grid-column: 1 / -1;
@@ -142,6 +337,12 @@
 }
 
 @media (max-width: 767px) {
+  .hero-photo {
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    object-position: center center;
+  }
+
   .field-day-map {
     width: 92%;
     align-self: center;
@@ -151,6 +352,14 @@
 
   .field-day-map figcaption {
     font-size: 14px;
+  }
+
+  .hero-copy {
+    padding-block: 32px 36px;
+  }
+
+  .hero-copy .eyebrow {
+    margin-bottom: 18px;
   }
 }
 
