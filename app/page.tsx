@@ -95,11 +95,11 @@ export default function Home() {
         <section className="hero-banner" aria-labelledby="hero-title">
           <img
             className="hero-photo"
-            src="/about-banner.webp"
+            src="/about-banner-2048.webp"
             alt="James and Samantha embracing as they look out at the ocean"
             width="2048"
             height="1365"
-            srcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner.webp 2048w"
+            srcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner-2048.webp 2048w"
             sizes="(min-width: 1440px) 1320px, 100vw"
             fetchPriority="high"
           />
