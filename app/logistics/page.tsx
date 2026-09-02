@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FastAnchorNav from "../components/fast-anchor-nav";
 import SiteHeader from "../components/site-header";
 
 export const metadata: Metadata = {
@@ -46,11 +47,7 @@ export default function LogisticsPage() {
         <section className="logistics-hero" aria-labelledby="logistics-title">
           <p className="eyebrow">The wedding weekend</p>
           <h1 id="logistics-title">Logistics</h1>
-          <nav className="logistics-jump" aria-label="Logistics page sections">
-            <a href="#schedule">Schedule</a>
-            <a href="#travel">Getting here</a>
-            <a href="#lodging">Where to stay</a>
-          </nav>
+          <FastAnchorNav />
         </section>
 
         <section id="schedule" className="logistics-section schedule-section" aria-labelledby="schedule-title">

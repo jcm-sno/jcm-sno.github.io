@@ -35,6 +35,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /James was in grad school/i);
   assert.match(html, /Life in Cambridge Montage/i);
   assert.match(html, /donnelly-field-map\.svg/i);
+  assert.match(html, /field-day-group-640\.webp/i);
   assert.doesNotMatch(html, /Our Story, In Pieces/i);
   assert.doesNotMatch(html, /A few moments, held onto/i);
 });
@@ -60,10 +61,13 @@ test("renders wishlist and RSVP routes", async () => {
   );
   assert.equal(rsvpResponse.status, 200);
   const rsvpHtml = await rsvpResponse.text();
-  assert.match(rsvpHtml, /Find your invitation below\./i);
-  assert.match(rsvpHtml, /respond for your household/i);
+  assert.doesNotMatch(rsvpHtml, /Find your invitation below\./i);
+  assert.doesNotMatch(rsvpHtml, /respond for your household/i);
   assert.match(rsvpHtml, /class=["']rsvpify-embed-host["']/i);
-  assert.match(rsvpHtml, /https:\/\/weddingdraft3\.rsvpify\.com/i);
+  assert.match(
+    rsvpHtml,
+    /<script[^>]+src=["']https:\/\/weddingdraft3\.rsvpify\.com\/embed["'][^>]*><\/script>/i,
+  );
   assert.doesNotMatch(rsvpHtml, /Online RSVPs will open with invitations\./i);
   assert.doesNotMatch(rsvpHtml, /What to expect/i);
   assert.doesNotMatch(rsvpHtml, /http-equiv=["']refresh/i);
@@ -77,5 +81,6 @@ test("renders wishlist and RSVP routes", async () => {
   const wishlistHtml = await registryResponse.text();
   assert.match(wishlistHtml, /Opens with invitations/i);
   assert.match(wishlistHtml, /reserve an item and mark it ordered/i);
+  assert.doesNotMatch(wishlistHtml, /Choose something you would love to give/i);
   assert.doesNotMatch(wishlistHtml, /Zola/i);
 });

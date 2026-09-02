@@ -18,10 +18,18 @@
 }
 
 /* Desktop navigation: wordmark at left, one-line tabs at right, full-height RSVP tab. */
+.utility-page,
+.logistics-page {
+  --nav-edge: clamp(24px, 4.5vw, 72px);
+  --rsvp-band-width: clamp(84px, 7vw, 104px);
+}
+
 @media (min-width: 901px) {
   .site-nav {
+    position: relative;
+    z-index: 2;
     min-height: 88px;
-    padding: 0 clamp(24px, 4.5vw, 72px);
+    padding: 0 var(--nav-edge, clamp(24px, 4.5vw, 72px));
     display: flex;
     align-items: stretch;
     gap: clamp(24px, 3vw, 46px);
@@ -53,6 +61,48 @@
     align-self: stretch;
     margin-left: auto;
     padding-inline: clamp(16px, 1.8vw, 24px);
+  }
+
+  .utility-page .nav-rsvp,
+  .logistics-page .nav-rsvp {
+    flex: 0 0 var(--rsvp-band-width);
+    width: var(--rsvp-band-width);
+    padding-inline: 0;
+    justify-content: center;
+  }
+
+  .utility-page .site-nav::after,
+  .logistics-page .site-nav::after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 1px);
+    right: var(--nav-edge);
+    z-index: 0;
+    width: var(--rsvp-band-width);
+    height: clamp(150px, 16vw, 210px);
+    clip-path: polygon(0 0, 100% 0, 100% 74%, 0 100%);
+    background: var(--coral-ribbon);
+    pointer-events: none;
+  }
+
+  .utility-hero::after,
+  .logistics-hero::after {
+    content: none;
+  }
+
+  .utility-hero,
+  .logistics-hero {
+    padding-right: max(
+      clamp(28px, 8vw, 118px),
+      calc(var(--nav-edge) + var(--rsvp-band-width) + 28px)
+    );
+  }
+}
+
+@media (max-width: 900px) {
+  .utility-hero::after,
+  .logistics-hero::after {
+    content: none;
   }
 }
 

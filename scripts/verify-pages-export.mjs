@@ -44,7 +44,6 @@ function localTarget(sourceFile, reference) {
 
 const files = await walk(exportRoot);
 const htmlFiles = files.filter((file) => file.endsWith(".html"));
-const scriptFiles = files.filter((file) => file.endsWith(".js"));
 const styleFiles = files.filter((file) => file.endsWith(".css"));
 
 assert(htmlFiles.length >= 5, "Expected the home, logistics, registry, RSVP, and 404 pages");
@@ -55,6 +54,13 @@ for (const file of htmlFiles) {
   for (const match of contents.matchAll(/\b(?:href|src)=["']([^"']+)["']/gi)) {
     const target = localTarget(file, match[1]);
     if (target) await access(target);
+  }
+  for (const match of contents.matchAll(/\bsrcset=["']([^"']+)["']/gi)) {
+    for (const candidate of match[1].split(",")) {
+      const reference = candidate.trim().split(/\s+/, 1)[0];
+      const target = localTarget(file, reference);
+      if (target) await access(target);
+    }
   }
 }
 
@@ -76,10 +82,10 @@ const registry = await readFile(
   path.join(exportRoot, "registry/index.html"),
   "utf8",
 );
-const scripts = await Promise.all(
-  scriptFiles.map((file) => readFile(file, "utf8")),
+const donnellyMap = await readFile(
+  path.join(exportRoot, "donnelly-field-map.svg"),
+  "utf8",
 );
-
 assert.match(home, /coffee shop stalker/i);
 assert.match(home, /href=["']\/rsvp\//i);
 assert.match(home, /href=["']\/registry\//i);
@@ -88,6 +94,7 @@ assert.match(home, /So How.d You Guys Meet\?/i);
 assert.match(home, /James was in grad school/i);
 assert.match(home, /Life in Cambridge Montage/i);
 assert.match(home, /donnelly-field-map\.svg/i);
+assert.match(home, /field-day-group-640\.webp/i);
 assert.match(home, /about-banner\.webp/i);
 assert.match(home, /data-wedding-palette=["']atlantic-garden["']/i);
 assert.doesNotMatch(home, /Color Study/i);
@@ -99,19 +106,18 @@ assert.match(logistics, /Approximate nightly total after tax/i);
 assert.doesNotMatch(logistics, /Come meet us by the ocean/i);
 assert.doesNotMatch(logistics, /Everything we know so far about the schedule/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
-assert.match(rsvp, /Find your invitation below\./i);
+assert.doesNotMatch(rsvp, /Find your invitation below\./i);
+assert.doesNotMatch(rsvp, /Enter the name on your invitation/i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);
-assert(
-  scripts.some((contents) =>
-    contents.includes("https://weddingdraft3.rsvpify.com/embed"),
-  ),
-  "Expected the RSVP client bundle to load the weddingdraft3 RSVPify embed",
+assert.match(
+  rsvp,
+  /<script[^>]+src=["']https:\/\/weddingdraft3\.rsvpify\.com\/embed["'][^>]*><\/script>/i,
+  "Expected the RSVP page HTML to contain RSVPify's exact parser-loaded embed script",
 );
-assert(
-  scripts.every(
-    (contents) => !contents.includes("https://jcm-sno.rsvpify.com/embed"),
-  ),
-  "The RSVP client bundle still references the retired RSVPify event",
+assert.doesNotMatch(
+  rsvp,
+  /https:\/\/jcm-sno\.rsvpify\.com\/embed/i,
+  "The RSVP page still references the retired RSVPify event",
 );
 assert.match(
   rsvp,
@@ -122,6 +128,9 @@ assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
 assert.match(registry, /Opens with invitations/i);
 assert.match(registry, /reserve an item and mark it ordered/i);
+assert.doesNotMatch(registry, /Choose something you would love to give/i);
 assert.doesNotMatch(registry, /Zola/i);
+assert.match(donnellyMap, /^<\?xml[^>]*>\s*<svg\b/i);
+assert.doesNotMatch(donnellyMap, /truncated|tokens|…/i);
 
 console.log(`Verified ${htmlFiles.length} exported HTML pages and their local assets.`);

@@ -16,10 +16,6 @@ export default function RsvpPage() {
         <section className="utility-hero" aria-labelledby="rsvp-title">
           <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
           <h1 id="rsvp-title">RSVP</h1>
-          <p className="utility-script">Find your invitation below.</p>
-          <p>
-            Enter the name on your invitation to respond for your household.
-          </p>
         </section>
 
         <section

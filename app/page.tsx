@@ -1,6 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
 
+const responsiveWidths = [640, 960] as const;
+
+function responsivePhotoSrcSet(src: string, originalWidth: number) {
+  const stem = src.replace(/\.webp$/, "");
+  return [
+    ...responsiveWidths
+      .filter((width) => width < originalWidth)
+      .map((width) => `${stem}-${width}.webp ${width}w`),
+    `${src} ${originalWidth}w`,
+  ].join(", ");
+}
+
 const longDistancePhotos = [
   {
     className: "long-distance-street",
@@ -8,6 +20,7 @@ const longDistancePhotos = [
     alt: "James eats fish and chips on a colorful, rain-soaked street in Scotland",
     width: 1536,
     height: 1152,
+    sizes: "(min-width: 1024px) 42vw, 92vw",
   },
   {
     className: "long-distance-seafood",
@@ -15,6 +28,7 @@ const longDistancePhotos = [
     alt: "Samantha smiles behind a large seafood platter during an adventure together",
     width: 1152,
     height: 1536,
+    sizes: "(min-width: 1024px) 34vw, 92vw",
   },
   {
     className: "long-distance-harbor",
@@ -22,6 +36,7 @@ const longDistancePhotos = [
     alt: "James and Samantha smile together beside a harbor in Scotland",
     width: 1536,
     height: 1152,
+    sizes: "(min-width: 1024px) 42vw, 92vw",
   },
 ];
 
@@ -32,6 +47,7 @@ const engagementPhotos = [
     alt: "James and Samantha hold hands while walking across rocks at the beach",
     width: 1536,
     height: 1023,
+    sizes: "(min-width: 1024px) 50vw, 92vw",
   },
   {
     className: "engagement-proposal",
@@ -39,6 +55,7 @@ const engagementPhotos = [
     alt: "James kneels to propose to Samantha on the beach",
     width: 1024,
     height: 1536,
+    sizes: "(min-width: 1024px) 34vw, 92vw",
   },
   {
     className: "engagement-reaction",
@@ -46,6 +63,7 @@ const engagementPhotos = [
     alt: "James and Samantha laugh together immediately after the proposal",
     width: 1024,
     height: 1536,
+    sizes: "(min-width: 1024px) 42vw, 92vw",
   },
 ];
 
@@ -113,8 +131,11 @@ export default function Home() {
                 alt="Friends line up for a Field Day game; Samantha in green shorts and James in red stand together at the right"
                 width="1635"
                 height="954"
-                loading="lazy"
+                srcSet={responsivePhotoSrcSet("/field-day-group.webp", 1635)}
+                sizes="(min-width: 1024px) 56vw, 92vw"
+                loading="eager"
                 decoding="async"
+                fetchPriority="low"
               />
             </figure>
 
@@ -124,8 +145,11 @@ export default function Home() {
                 alt="James in a red shirt faces Samantha across a Field Day net"
                 width="1090"
                 height="1898"
-                loading="lazy"
+                srcSet={responsivePhotoSrcSet("/field-day-facing.webp", 1090)}
+                sizes="(min-width: 1024px) 34vw, 92vw"
+                loading="eager"
                 decoding="async"
+                fetchPriority="low"
               />
             </figure>
 
@@ -135,8 +159,11 @@ export default function Home() {
                 alt="James holds Samantha's legs during a Field Day wheelbarrow race"
                 width="1096"
                 height="1543"
-                loading="lazy"
+                srcSet={responsivePhotoSrcSet("/field-day-wheelbarrow.webp", 1096)}
+                sizes="(min-width: 1024px) 34vw, 92vw"
+                loading="eager"
                 decoding="async"
+                fetchPriority="low"
               />
             </figure>
 
@@ -147,8 +174,9 @@ export default function Home() {
                   alt="Static street map of the East Cambridge neighborhood surrounding Donnelly Field"
                   width="900"
                   height="720"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchPriority="low"
                 />
               </div>
               <figcaption>
@@ -200,8 +228,10 @@ export default function Home() {
               <img
                 src="/boston-kayak.webp"
                 alt="Samantha and James smile together on the water with the Boston skyline behind them"
-                width="1536"
-                height="1152"
+                width="1448"
+                height="1086"
+                srcSet={responsivePhotoSrcSet("/boston-kayak.webp", 1448)}
+                sizes="(min-width: 1024px) 38vw, 92vw"
                 loading="lazy"
                 decoding="async"
               />
@@ -249,6 +279,8 @@ export default function Home() {
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
+                  srcSet={responsivePhotoSrcSet(photo.src, photo.width)}
+                  sizes={photo.sizes}
                   loading="lazy"
                   decoding="async"
                 />
@@ -289,6 +321,8 @@ export default function Home() {
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
+                  srcSet={responsivePhotoSrcSet(photo.src, photo.width)}
+                  sizes={photo.sizes}
                   loading="lazy"
                   decoding="async"
                 />

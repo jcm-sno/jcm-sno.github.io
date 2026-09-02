@@ -15,7 +15,6 @@ export default function RegistryPage() {
         <section className="utility-hero" aria-labelledby="wishlist-title">
           <p className="eyebrow">For our next chapter</p>
           <h1 id="wishlist-title">Wishlist</h1>
-          <p className="utility-script">Choose something you would love to give.</p>
         </section>
 
         <div className="registry-workspace">
