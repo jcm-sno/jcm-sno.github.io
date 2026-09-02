@@ -1,23 +1,33 @@
-const RSVPIFY_FORM_URL = "https://jcm-sno.rsvpify.com/rsvp?embed=1";
-const RSVPIFY_EMBED_SCRIPT_URL = "https://jcm-sno.rsvpify.com/embed.js";
+"use client";
+
+import { useEffect, useRef } from "react";
+
+const RSVPIFY_EMBED_URL = "https://jcm-sno.rsvpify.com/embed";
 
 export default function RsvpifyEmbed() {
+  const hostRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host) return;
+
+    host.replaceChildren();
+
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = RSVPIFY_EMBED_URL;
+    host.appendChild(script);
+
+    return () => {
+      host.replaceChildren();
+    };
+  }, []);
+
   return (
-    <>
-      <iframe
-        src={RSVPIFY_FORM_URL}
-        data-rsvpify-embed=""
-        title="James and Samantha wedding RSVP form"
-        className="rsvpify-embed-host"
-        style={{
-          display: "block",
-          width: "100%",
-          height: "700px",
-          border: 0,
-        }}
-        scrolling="no"
-      />
-      <script src={RSVPIFY_EMBED_SCRIPT_URL} async />
-    </>
+    <div
+      ref={hostRef}
+      className="rsvpify-embed-host"
+      aria-label="Wedding RSVP form"
+    />
   );
 }
