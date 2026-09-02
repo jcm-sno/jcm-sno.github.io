@@ -51,7 +51,7 @@ export default function RsvpPage() {
                 Having trouble with the embedded form?
               </p>
               <a
-                href="https://jcm-sno.rsvpify.com"
+                href="https://jcm-sno.rsvpify.com/rsvp"
                 target="_blank"
                 rel="noreferrer"
                 style={{

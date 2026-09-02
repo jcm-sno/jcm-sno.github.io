@@ -90,7 +90,15 @@ assert.match(logistics, /Approximate nightly total after tax/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
 assert.match(rsvp, /Find your invitation below\./i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);
-assert.match(rsvp, /href=["']https:\/\/jcm-sno\.rsvpify\.com["']/i);
+assert.match(
+  rsvp,
+  /src=["']https:\/\/jcm-sno\.rsvpify\.com\/rsvp\?embed=1["']/i,
+);
+assert.match(rsvp, /data-rsvpify-embed/i);
+assert.match(
+  rsvp,
+  /href=["']https:\/\/jcm-sno\.rsvpify\.com\/rsvp["']/i,
+);
 assert.doesNotMatch(rsvp, /Online RSVPs will open with invitations\./i);
 assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
