@@ -126,8 +126,10 @@ assert.match(
 assert.doesNotMatch(rsvp, /Online RSVPs will open with invitations\./i);
 assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
+assert.match(registry, /We have no expectation of receiving a gift/i);
+assert.match(registry, /please mark it as covered below/i);
+assert.match(registry, /free to shop wherever you like/i);
 assert.match(registry, /Opens with invitations/i);
-assert.match(registry, /reserve an item and mark it ordered/i);
 assert.doesNotMatch(registry, /Choose something you would love to give/i);
 assert.doesNotMatch(registry, /Zola/i);
 assert.match(donnellyMap, /^<\?xml[^>]*>\s*<svg\b/i);
