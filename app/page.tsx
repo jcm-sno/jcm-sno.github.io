@@ -310,11 +310,6 @@ export default function Home() {
           </div>
           <PaletteSwitcher />
         </aside>
-
-        <footer className="site-footer">
-          <p>James &amp; Samantha</p>
-          <p>May 15, 2027 · Port Orange, Florida</p>
-        </footer>
       </article>
     </main>
   );
