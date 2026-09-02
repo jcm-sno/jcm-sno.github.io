@@ -27,7 +27,6 @@ const longDistancePhotos = [
     candidateWidths: [640, 960, 1280],
     sizes:
       "(min-width: 1440px) 520px, (min-width: 1024px) 36vw, (min-width: 768px) calc(100vw - 108px), calc(100vw - 40px)",
-    loadEarly: false,
   },
   {
     className: "long-distance-seafood",
@@ -38,7 +37,6 @@ const longDistancePhotos = [
     candidateWidths: [640, 960],
     sizes:
       "(min-width: 1440px) 420px, (min-width: 1024px) 28vw, (min-width: 768px) calc((100vw - 136px) / 2), calc(100vw - 40px)",
-    loadEarly: false,
   },
   {
     className: "long-distance-harbor",
@@ -49,7 +47,6 @@ const longDistancePhotos = [
     candidateWidths: [640, 960, 1280],
     sizes:
       "(min-width: 1440px) 520px, (min-width: 1024px) 36vw, (min-width: 768px) calc((100vw - 136px) / 2), calc(100vw - 40px)",
-    loadEarly: true,
   },
 ];
 
@@ -175,9 +172,8 @@ export default function Home() {
                 height="954"
                 srcSet={responsivePhotoSrcSet("/field-day-group.webp", 1635)}
                 sizes="(min-width: 1024px) 56vw, 92vw"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
-                fetchPriority="low"
               />
             </figure>
 
@@ -189,9 +185,8 @@ export default function Home() {
                 height="1898"
                 srcSet={responsivePhotoSrcSet("/field-day-facing.webp", 1090)}
                 sizes="(min-width: 1024px) 34vw, 92vw"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
-                fetchPriority="low"
               />
             </figure>
 
@@ -203,9 +198,8 @@ export default function Home() {
                 height="1543"
                 srcSet={responsivePhotoSrcSet("/field-day-wheelbarrow.webp", 1096)}
                 sizes="(min-width: 1024px) 34vw, 92vw"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
-                fetchPriority="low"
               />
             </figure>
 
@@ -216,9 +210,8 @@ export default function Home() {
                   alt="Static street map of the East Cambridge neighborhood surrounding Donnelly Field"
                   width="900"
                   height="720"
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
-                  fetchPriority="low"
                 />
               </div>
               <figcaption>
@@ -327,9 +320,8 @@ export default function Home() {
                     photo.candidateWidths,
                   )}
                   sizes={photo.sizes}
-                  loading={photo.loadEarly ? "eager" : "lazy"}
+                  loading="lazy"
                   decoding="async"
-                  fetchPriority={photo.loadEarly ? "low" : undefined}
                 />
               </figure>
             ))}
@@ -374,9 +366,8 @@ export default function Home() {
                     photo.candidateWidths,
                   )}
                   sizes={photo.sizes}
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
-                  fetchPriority="low"
                 />
               </figure>
             ))}

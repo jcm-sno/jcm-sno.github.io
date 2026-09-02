@@ -44,6 +44,15 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /about-banner-2048\.webp/i);
   assert.match(html, /rel=["']preload["'][^>]+as=["']image["']/i);
   assert.match(html, /decoding=["']sync["']/i);
+  assert.equal(
+    (html.match(/loading=["']eager["']/gi) ?? []).length,
+    1,
+    "Only the above-the-fold banner should load eagerly",
+  );
+  assert.ok(
+    (html.match(/loading=["']lazy["']/gi) ?? []).length >= 10,
+    "Story imagery should be deferred until it approaches the viewport",
+  );
   assert.doesNotMatch(html, /Our Story, In Pieces/i);
   assert.doesNotMatch(html, /A few moments, held onto/i);
 });

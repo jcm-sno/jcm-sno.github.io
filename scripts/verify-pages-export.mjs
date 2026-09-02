@@ -104,6 +104,15 @@ assert.match(home, /about-banner-2048\.webp/i);
 assert.match(home, /about-banner-1536\.webp/i);
 assert.match(home, /rel=["']preload["'][^>]+as=["']image["']/i);
 assert.match(home, /decoding=["']sync["']/i);
+assert.equal(
+  (home.match(/loading=["']eager["']/gi) ?? []).length,
+  1,
+  "Only the above-the-fold banner should load eagerly",
+);
+assert.ok(
+  (home.match(/loading=["']lazy["']/gi) ?? []).length >= 10,
+  "Story imagery should be deferred until it approaches the viewport",
+);
 assert.match(home, /data-wedding-palette=["']atlantic-garden["']/i);
 assert.doesNotMatch(home, /Color Study/i);
 assert.doesNotMatch(home, /Our Story, In Pieces/i);
