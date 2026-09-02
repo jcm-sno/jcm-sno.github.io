@@ -44,6 +44,7 @@ function localTarget(sourceFile, reference) {
 
 const files = await walk(exportRoot);
 const htmlFiles = files.filter((file) => file.endsWith(".html"));
+const scriptFiles = files.filter((file) => file.endsWith(".js"));
 const styleFiles = files.filter((file) => file.endsWith(".css"));
 
 assert(htmlFiles.length >= 5, "Expected the home, logistics, registry, RSVP, and 404 pages");
@@ -75,6 +76,9 @@ const registry = await readFile(
   path.join(exportRoot, "registry/index.html"),
   "utf8",
 );
+const scripts = await Promise.all(
+  scriptFiles.map((file) => readFile(file, "utf8")),
+);
 
 assert.match(home, /coffee shop stalker/i);
 assert.match(home, /href=["']\/rsvp\//i);
@@ -90,9 +94,21 @@ assert.match(logistics, /Approximate nightly total after tax/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
 assert.match(rsvp, /Find your invitation below\./i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);
+assert(
+  scripts.some((contents) =>
+    contents.includes("https://weddingdraft3.rsvpify.com/embed"),
+  ),
+  "Expected the RSVP client bundle to load the weddingdraft3 RSVPify embed",
+);
+assert(
+  scripts.every(
+    (contents) => !contents.includes("https://jcm-sno.rsvpify.com/embed"),
+  ),
+  "The RSVP client bundle still references the retired RSVPify event",
+);
 assert.match(
   rsvp,
-  /href=["']https:\/\/jcm-sno\.rsvpify\.com\/rsvp["']/i,
+  /href=["']https:\/\/weddingdraft3\.rsvpify\.com["']/i,
 );
 assert.doesNotMatch(rsvp, /Online RSVPs will open with invitations\./i);
 assert.doesNotMatch(rsvp, /What to expect/i);

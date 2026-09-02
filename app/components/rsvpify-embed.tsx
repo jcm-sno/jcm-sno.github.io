@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const RSVPIFY_EMBED_URL = "https://jcm-sno.rsvpify.com/embed";
+const RSVPIFY_EMBED_URL = "https://weddingdraft3.rsvpify.com/embed";
 
 export default function RsvpifyEmbed() {
   const hostRef = useRef<HTMLDivElement>(null);
