@@ -1,0 +1,31 @@
+name: Temporary wedding asset inspection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/tmp-inspect-assets.yml
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Inspect image metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          file public/about-banner.webp public/og.png | tee asset-report.txt
+          wc -c public/about-banner.webp public/og.png | tee -a asset-report.txt
+          sha256sum public/about-banner.webp public/og.png | tee -a asset-report.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wedding-image-assets
+          path: |
+            public/about-banner.webp
+            public/og.png
+            asset-report.txt
+          retention-days: 1
