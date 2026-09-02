@@ -1,39 +1,32 @@
 /*
  * James & Samantha — RSVPify form theme
- * Version 2.1 · 2026-09-01
+ * Version 3.0 · 2026-09-02
  *
  * RSVPify location:
  * Form Builder → Update Form Theme → Add Custom CSS
  *
  * REPLACE the full contents of the Custom CSS box with this file.
- * Do not concatenate it with Version 2.0. Version 2.0's CSS-only email
- * masking rules were intentionally removed because they matched ancestor
- * elements repeatedly and could reveal the saved address on focus.
+ * Do not append this below an older version.
  *
- * Pair this stylesheet with rsvpify-party-email-v2.1.js in:
- * Customize → Event Settings → Analytics & Custom Scripts
+ * This stylesheet is presentation-only. It does not hide, mask, disable,
+ * clone, or change the value of any RSVPify input.
  */
 
 :root {
   --js-rsvp-white: #ffffff;
   --js-rsvp-paper: #f5f0e8;
   --js-rsvp-coral: #e09e7e;
-  --js-rsvp-green: #6f9f72;
-  --js-rsvp-green-dark: #4a7050;
-  --js-rsvp-blue: #a6ced9;
-  --js-rsvp-ink: #1c2724;
-  --js-rsvp-muted: #59625e;
-  --js-rsvp-rule: rgba(28, 39, 36, 0.28);
-  --js-rsvp-rule-strong: rgba(28, 39, 36, 0.58);
-  --js-rsvp-focus: rgba(111, 159, 114, 0.28);
-  --js-rsvp-shadow: 0 14px 34px rgba(28, 39, 36, 0.10);
-  --js-rsvp-radius: 10px;
-  --js-rsvp-field-radius: 6px;
+  --js-rsvp-green: #69966b;
+  --js-rsvp-green-dark: #456949;
+  --js-rsvp-blue: #aabbc0;
+  --js-rsvp-ink: #08243e;
+  --js-rsvp-muted: #536272;
+  --js-rsvp-rule: rgba(8, 36, 62, 0.3);
+  --js-rsvp-rule-strong: rgba(8, 36, 62, 0.58);
+  --js-rsvp-focus: rgba(105, 150, 107, 0.28);
 }
 
-/* ----------------------------------------------------------------------- */
-/* Canvas and typography                                                   */
-/* ----------------------------------------------------------------------- */
+/* Canvas and type — Atlantic Garden */
 
 html,
 body,
@@ -52,85 +45,52 @@ body,
 .themed-element-form-text-color,
 .form-field-wrapper {
   color: var(--js-rsvp-ink) !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .themed-element-form-title-text {
   color: var(--js-rsvp-ink) !important;
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
+  font-family: "Cormorant SC", Georgia, "Times New Roman", serif !important;
   font-weight: 500 !important;
   letter-spacing: 0.025em !important;
 }
 
-.themed-element-form-accented-text {
-  color: var(--js-rsvp-green-dark) !important;
-}
-
-a,
-button,
-input,
-select,
-textarea {
-  -webkit-tap-highlight-color: transparent;
-}
-
+.themed-element-form-accented-text,
 a {
   color: var(--js-rsvp-green-dark) !important;
 }
 
-a:hover,
-a:focus-visible {
-  color: var(--js-rsvp-ink) !important;
-}
+/* Keep RSVPify's form centered without changing its interaction model. */
 
-/* ----------------------------------------------------------------------- */
-/* Form cards                                                              */
-/* ----------------------------------------------------------------------- */
-
-/* RSVPify's large default outer block. */
 div.themed-element-form-background.mt-20.mb-24.mx-4 {
   width: min(calc(100% - 32px), 760px) !important;
   margin: clamp(28px, 5vw, 56px) auto clamp(48px, 7vw, 88px) !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
-/* Primary card used by lookup and registration pages. */
 div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background {
   width: 100% !important;
   margin-inline: auto !important;
   padding: clamp(24px, 5vw, 44px) !important;
   color: var(--js-rsvp-ink) !important;
   border: 1px solid var(--js-rsvp-rule) !important;
-  border-radius: var(--js-rsvp-radius) !important;
+  border-radius: 10px !important;
   background: var(--js-rsvp-paper) !important;
-  box-shadow: var(--js-rsvp-shadow) !important;
+  box-shadow: 0 14px 34px rgba(8, 36, 62, 0.1) !important;
 }
 
-.form-field-wrapper {
-  position: relative;
-  z-index: 1;
-}
-
-.form-field-wrapper > .block.w-full {
-  min-width: 0 !important;
-}
-
-/* Normalized separators on every registration step. */
+.border,
 .border-b,
 .border-t,
-.border,
 .border-b-2,
 .border-t-2 {
   border-color: var(--js-rsvp-rule) !important;
 }
 
-/* ----------------------------------------------------------------------- */
-/* Lookup layout                                                           */
-/* ----------------------------------------------------------------------- */
+/* First/last-name lookup layout. */
 
 div.px-6.py-2:has(input[placeholder="First Name"]),
 div.px-6.py-2:has(input[placeholder="First name"]) {
@@ -140,7 +100,7 @@ div.px-6.py-2:has(input[placeholder="First name"]) {
 div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]),
 div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 12px !important;
 }
 
@@ -149,7 +109,6 @@ div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeho
   width: 100% !important;
   min-width: 0 !important;
   margin: 0 !important;
-  flex: 1 1 auto !important;
 }
 
 div.flex.w-full.space-x-2:has(input[placeholder="First Name"]):has(input[placeholder="Last Name"]) > :not([hidden]) ~ :not([hidden]),
@@ -157,9 +116,7 @@ div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeho
   margin-left: 0 !important;
 }
 
-/* ----------------------------------------------------------------------- */
-/* Fields                                                                  */
-/* ----------------------------------------------------------------------- */
+/* Native RSVPify fields remain visible and editable. */
 
 input[type="text"].themed-element-form-text,
 input[type="email"].themed-element-form-text,
@@ -167,8 +124,7 @@ input[type="tel"].themed-element-form-text,
 input[type="number"].themed-element-form-text,
 input[type="date"].themed-element-form-text,
 select.themed-element-form-text,
-textarea.themed-element-form-text,
-.js-party-email__input {
+textarea.themed-element-form-text {
   width: 100% !important;
   min-width: 0 !important;
   min-height: 52px !important;
@@ -176,9 +132,9 @@ textarea.themed-element-form-text,
   color: var(--js-rsvp-ink) !important;
   background: var(--js-rsvp-white) !important;
   border: 1px solid var(--js-rsvp-rule-strong) !important;
-  border-radius: var(--js-rsvp-field-radius) !important;
+  border-radius: 6px !important;
   box-shadow: none !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
   font-size: 16px !important;
   font-weight: 400 !important;
   line-height: 1.35 !important;
@@ -186,11 +142,10 @@ textarea.themed-element-form-text,
 }
 
 input.themed-element-form-text::placeholder,
-textarea.themed-element-form-text::placeholder,
-.js-party-email__input::placeholder {
+textarea.themed-element-form-text::placeholder {
   color: var(--js-rsvp-muted) !important;
   opacity: 1 !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
   font-size: 16px !important;
   font-weight: 400 !important;
   letter-spacing: 0 !important;
@@ -198,69 +153,29 @@ textarea.themed-element-form-text::placeholder,
 
 input.themed-element-form-text:focus,
 select.themed-element-form-text:focus,
-textarea.themed-element-form-text:focus,
-.js-party-email__input:focus {
+textarea.themed-element-form-text:focus {
   outline: none !important;
   border-color: var(--js-rsvp-green) !important;
   box-shadow: 0 0 0 3px var(--js-rsvp-focus) !important;
 }
 
-input.themed-element-form-text:-webkit-autofill,
-input.themed-element-form-text:-webkit-autofill:hover,
-input.themed-element-form-text:-webkit-autofill:focus,
-.js-party-email__input:-webkit-autofill,
-.js-party-email__input:-webkit-autofill:hover,
-.js-party-email__input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--js-rsvp-ink) !important;
-  -webkit-box-shadow: 0 0 0 1000px var(--js-rsvp-white) inset !important;
-  transition: background-color 9999s ease-out 0s !important;
-}
-
 label,
 legend {
   color: var(--js-rsvp-ink) !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
-
-/* ----------------------------------------------------------------------- */
-/* Household response controls                                             */
-/* ----------------------------------------------------------------------- */
 
 input[type="radio"],
 input[type="checkbox"] {
   accent-color: var(--js-rsvp-green) !important;
 }
 
-label:has(input[type="radio"]),
-label:has(input[type="checkbox"]),
-.flex:has(> input[type="radio"]),
-.flex:has(> input[type="checkbox"]) {
-  color: var(--js-rsvp-ink) !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
-  font-weight: 600 !important;
-}
-
-/* Guest names, event titles, and other title-styled labels. */
-.wrapper[data-pivot-id]:not([data-pivot-id="lookup"]) .themed-element-form-title-text {
-  color: var(--js-rsvp-ink) !important;
-}
-
-/* De-emphasize RSVPify's name-edit helper without making it hard to find. */
-.wrapper[data-pivot-id]:not([data-pivot-id="lookup"]) button:not(.themed-element-form-button),
-.wrapper[data-pivot-id]:not([data-pivot-id="lookup"]) [role="button"]:not(.themed-element-form-button) {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
-}
-
-/* ----------------------------------------------------------------------- */
-/* Primary actions                                                         */
-/* ----------------------------------------------------------------------- */
+/* Primary actions. */
 
 button.themed-element-form-button,
 a.themed-element-form-button,
 input[type="submit"].themed-element-form-button,
-button[type="submit"].themed-element-form-accent,
-.js-party-email__toggle,
-.js-party-email__save {
+button[type="submit"].themed-element-form-accent {
   min-height: 50px !important;
   padding: 12px 22px !important;
   color: var(--js-rsvp-white) !important;
@@ -268,7 +183,7 @@ button[type="submit"].themed-element-form-accent,
   border: 1px solid var(--js-rsvp-ink) !important;
   border-radius: 5px !important;
   box-shadow: none !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
   font-size: 15px !important;
   font-weight: 700 !important;
   line-height: 1.2 !important;
@@ -284,9 +199,7 @@ button[type="submit"].themed-element-form-accent * {
 button.themed-element-form-button:hover,
 a.themed-element-form-button:hover,
 input[type="submit"].themed-element-form-button:hover,
-button[type="submit"].themed-element-form-accent:hover,
-.js-party-email__toggle:hover,
-.js-party-email__save:hover {
+button[type="submit"].themed-element-form-accent:hover {
   color: var(--js-rsvp-ink) !important;
   background: var(--js-rsvp-blue) !important;
   border-color: var(--js-rsvp-ink) !important;
@@ -301,150 +214,40 @@ button[type="submit"].themed-element-form-accent:hover * {
 button.themed-element-form-button:focus-visible,
 a.themed-element-form-button:focus-visible,
 input[type="submit"].themed-element-form-button:focus-visible,
-button[type="submit"].themed-element-form-accent:focus-visible,
-.js-party-email__toggle:focus-visible,
-.js-party-email__save:focus-visible,
-.js-party-email__cancel:focus-visible {
+button[type="submit"].themed-element-form-accent:focus-visible {
   outline: 3px solid var(--js-rsvp-coral) !important;
   outline-offset: 3px !important;
 }
 
-/* ----------------------------------------------------------------------- */
-/* Script-created party email control                                       */
-/* ----------------------------------------------------------------------- */
+/*
+ * On the household screen, place RSVPify's existing editable email field
+ * visually above the first guest name. This moves the real field; it does not
+ * clone it, hide it, mask it, or alter its value.
+ *
+ * If RSVPify changes this markup, the selector simply stops matching and the
+ * native order remains in place.
+ */
 
-/* The original RSVPify field remains in the form model but never appears. */
-.js-rsvp-original-email {
-  display: none !important;
+@supports selector(div:has(> input)) {
+  div.grow:has(> div.my-2.text-xl.font-semibold + div.w-full input[placeholder="Email Address"]),
+  div.grow:has(> div.my-2.text-xl.font-semibold + div.w-full input[placeholder="Email address"]) {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  div.grow:has(> div.my-2.text-xl.font-semibold + div.w-full input[placeholder="Email Address"])
+    > div.w-full:has(input[placeholder="Email Address"]),
+  div.grow:has(> div.my-2.text-xl.font-semibold + div.w-full input[placeholder="Email address"])
+    > div.w-full:has(input[placeholder="Email address"]) {
+    order: -1 !important;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
 }
 
-.js-party-email {
-  width: 100% !important;
-  margin: 0 0 clamp(30px, 5vw, 48px) !important;
-  padding: clamp(20px, 3.5vw, 30px) !important;
-  color: var(--js-rsvp-ink) !important;
-  background: color-mix(in srgb, var(--js-rsvp-blue) 22%, var(--js-rsvp-white)) !important;
-  border: 1px solid var(--js-rsvp-rule) !important;
-  border-left: 5px solid var(--js-rsvp-green) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 9px 24px rgba(28, 39, 36, 0.07) !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
-}
+/* Mobile: give both name placeholders a full-width field. */
 
-.js-party-email__eyebrow {
-  margin: 0 0 6px !important;
-  color: var(--js-rsvp-green-dark) !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  line-height: 1.4 !important;
-  letter-spacing: 0.13em !important;
-  text-transform: uppercase !important;
-}
-
-.js-party-email__title {
-  margin: 0 0 8px !important;
-  color: var(--js-rsvp-ink) !important;
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
-  font-size: clamp(25px, 4.2vw, 34px) !important;
-  font-weight: 500 !important;
-  line-height: 1.08 !important;
-  letter-spacing: 0.01em !important;
-}
-
-.js-party-email__description,
-.js-party-email__status {
-  margin: 0 !important;
-  color: var(--js-rsvp-muted) !important;
-  font-size: 13px !important;
-  line-height: 1.55 !important;
-}
-
-.js-party-email__toggle {
-  width: auto !important;
-  margin-top: 16px !important;
-}
-
-.js-party-email__editor[hidden] {
-  display: none !important;
-}
-
-.js-party-email__editor {
-  margin-top: 18px !important;
-  padding-top: 18px !important;
-  border-top: 1px solid var(--js-rsvp-rule) !important;
-}
-
-.js-party-email__label {
-  display: block !important;
-  margin: 0 0 8px !important;
-  color: var(--js-rsvp-ink) !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  line-height: 1.35 !important;
-}
-
-.js-party-email__actions {
-  margin-top: 12px !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 10px !important;
-  align-items: center !important;
-}
-
-.js-party-email__save {
-  min-width: 145px !important;
-}
-
-.js-party-email__cancel {
-  min-height: 46px !important;
-  padding: 10px 12px !important;
-  color: var(--js-rsvp-green-dark) !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-bottom: 1px solid currentColor !important;
-  border-radius: 0 !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
-}
-
-.js-party-email__status {
-  min-height: 1.55em !important;
-  margin-top: 10px !important;
-}
-
-.js-party-email__status[data-state="error"] {
-  color: #7b4037 !important;
-}
-
-.js-party-email__status[data-state="success"] {
-  color: var(--js-rsvp-green-dark) !important;
-  font-weight: 700 !important;
-}
-
-/* ----------------------------------------------------------------------- */
-/* Notices and validation                                                   */
-/* ----------------------------------------------------------------------- */
-
-[role="alert"],
-[role="status"] {
-  color: var(--js-rsvp-ink) !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
-}
-
-.text-red-500,
-.text-red-600,
-.text-red-700,
-[aria-invalid="true"] + * {
-  color: #7b4037 !important;
-}
-
-/* ----------------------------------------------------------------------- */
-/* Mobile                                                                  */
-/* ----------------------------------------------------------------------- */
-
-@media (max-width: 700px) {
+@media (max-width: 520px) {
   div.themed-element-form-background.mt-20.mb-24.mx-4 {
     width: calc(100% - 24px) !important;
     margin-top: 20px !important;
@@ -460,38 +263,7 @@ button[type="submit"].themed-element-form-accent:focus-visible,
   div.flex.w-full.space-x-2:has(input[placeholder="First name"]):has(input[placeholder="Last name"]) {
     grid-template-columns: 1fr !important;
   }
-
-  button.themed-element-form-button,
-  a.themed-element-form-button,
-  input[type="submit"].themed-element-form-button,
-  button[type="submit"].themed-element-form-accent {
-    width: 100% !important;
-    min-height: 52px !important;
-    margin-inline: auto !important;
-  }
-
-  .js-party-email {
-    padding: 20px 16px !important;
-  }
-
-  .js-party-email__toggle,
-  .js-party-email__save {
-    width: 100% !important;
-  }
-
-  .js-party-email__actions {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  .js-party-email__cancel {
-    justify-self: center !important;
-  }
 }
-
-/* ----------------------------------------------------------------------- */
-/* Print                                                                   */
-/* ----------------------------------------------------------------------- */
 
 @media print {
   html,
@@ -505,8 +277,7 @@ button[type="submit"].themed-element-form-accent:focus-visible,
     background: #ffffff !important;
   }
 
-  div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background,
-  .js-party-email {
+  div.relative.w-full.rounded-md.px-4.py-8.themed-element-form-background {
     box-shadow: none !important;
   }
 }
