@@ -4,7 +4,7 @@ import "@fontsource/cormorant-sc/500.css";
 import "@fontsource/parisienne/400.css";
 import "./globals.css";
 import "./review-overrides.css";
-import { defaultPaletteId, paletteOptions, paletteStorageKey } from "./palettes";
+import { defaultPaletteId } from "./palettes";
 
 const siteTitle = "James & Samantha";
 const siteDescription =
@@ -13,16 +13,6 @@ const siteOrigin =
   process.env.NEXT_PUBLIC_SITE_ORIGIN ??
   "https://james-samantha-wedding.jamescmorrison00.chatgpt.site";
 const socialImage = new URL("/og.png", siteOrigin).toString();
-
-const paletteInitScript = `(() => {
-  try {
-    const saved = window.localStorage.getItem(${JSON.stringify(paletteStorageKey)});
-    const valid = ${JSON.stringify(paletteOptions.map((palette) => palette.id))};
-    if (saved && valid.includes(saved)) {
-      document.documentElement.dataset.weddingPalette = saved;
-    }
-  } catch {}
-})();`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -65,9 +55,6 @@ export default function RootLayout({
       data-wedding-palette={defaultPaletteId}
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: paletteInitScript }} />
-      </head>
       <body>{children}</body>
     </html>
   );

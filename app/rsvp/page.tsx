@@ -70,11 +70,6 @@ export default function RsvpPage() {
             </div>
           </div>
         </section>
-
-        <footer className="site-footer">
-          <p>James &amp; Samantha</p>
-          <p>May 15, 2027 · Port Orange, Florida</p>
-        </footer>
       </article>
     </main>
   );

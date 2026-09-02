@@ -94,7 +94,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overflow-x: clip;
   background: var(--canvas-white);
 }
@@ -941,7 +941,7 @@ summary:focus-visible {
 }
 
 .logistics-page {
-  overflow: clip;
+  overflow: visible;
 }
 
 .logistics-hero {

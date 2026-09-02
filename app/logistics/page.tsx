@@ -46,12 +46,6 @@ export default function LogisticsPage() {
         <section className="logistics-hero" aria-labelledby="logistics-title">
           <p className="eyebrow">The wedding weekend</p>
           <h1 id="logistics-title">Logistics</h1>
-          <p className="logistics-script">Come meet us by the ocean.</p>
-          <p className="logistics-deck">
-            Everything we know so far about the schedule, getting here, and
-            where to stay. We&apos;ll keep this page current as the final pieces
-            fall into place.
-          </p>
           <nav className="logistics-jump" aria-label="Logistics page sections">
             <a href="#schedule">Schedule</a>
             <a href="#travel">Getting here</a>
@@ -248,11 +242,6 @@ export default function LogisticsPage() {
           </div>
 
         </section>
-
-        <footer className="site-footer">
-          <p>James &amp; Samantha</p>
-          <p>May 15, 2027 · Port Orange, Florida</p>
-        </footer>
       </article>
     </main>
   );

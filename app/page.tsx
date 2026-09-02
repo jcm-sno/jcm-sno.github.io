@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import PaletteSwitcher from "./components/palette-switcher";
 import SiteHeader from "./components/site-header";
 
 const longDistancePhotos = [
@@ -298,18 +297,6 @@ export default function Home() {
           </div>
         </section>
 
-        <aside className="palette-review" aria-labelledby="palette-heading">
-          <div>
-            <p className="section-number">Temporary design review</p>
-            <h2 id="palette-heading">Color Study</h2>
-            <p>
-              Each row is one complete palette. Click any palette title to
-              recolor the entire site instantly. Your choice is saved on this
-              device and follows you between pages.
-            </p>
-          </div>
-          <PaletteSwitcher />
-        </aside>
       </article>
     </main>
   );

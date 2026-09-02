@@ -28,7 +28,8 @@ test("renders wedding metadata and the selected default palette", async () => {
   );
   const html = await response.text();
   assert.match(html, /<title>James &amp; Samantha<\/title>/i);
-  assert.match(html, /data-wedding-palette=["']coastal-bright["']/i);
+  assert.match(html, /data-wedding-palette=["']atlantic-garden["']/i);
+  assert.doesNotMatch(html, /Color Study/i);
   assert.match(html, />Archive</i);
   assert.match(html, /So How.d You Guys Meet\?/i);
   assert.match(html, /James was in grad school/i);
@@ -38,7 +39,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.doesNotMatch(html, /A few moments, held onto/i);
 });
 
-test("renders native wishlist and RSVP routes", async () => {
+test("renders wishlist and RSVP routes", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("routes", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -59,8 +60,11 @@ test("renders native wishlist and RSVP routes", async () => {
   );
   assert.equal(rsvpResponse.status, 200);
   const rsvpHtml = await rsvpResponse.text();
-  assert.match(rsvpHtml, /Online RSVPs will open with invitations\./i);
-  assert.doesNotMatch(rsvpHtml, /Find Your Invitation/i);
+  assert.match(rsvpHtml, /Find your invitation below\./i);
+  assert.match(rsvpHtml, /respond for your household/i);
+  assert.match(rsvpHtml, /class=["']rsvpify-embed-host["']/i);
+  assert.match(rsvpHtml, /https:\/\/weddingdraft3\.rsvpify\.com/i);
+  assert.doesNotMatch(rsvpHtml, /Online RSVPs will open with invitations\./i);
   assert.doesNotMatch(rsvpHtml, /What to expect/i);
   assert.doesNotMatch(rsvpHtml, /http-equiv=["']refresh/i);
 

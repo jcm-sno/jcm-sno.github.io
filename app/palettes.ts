@@ -1,5 +1,5 @@
 export const paletteStorageKey = "james-samantha-wedding-palette";
-export const defaultPaletteId = "coastal-bright";
+export const defaultPaletteId = "atlantic-garden";
 
 export const paletteSlots = ["White", "Paper", "Warm", "Green", "Blue", "Ink"] as const;
 
@@ -7,7 +7,7 @@ export const paletteOptions = [
   {
     id: "coastal-bright",
     name: "Coastal Bright",
-    status: "Default",
+    status: "Alternative 04",
     note: "More color in the green and blue, with coral kept warm, dusty, and controlled.",
     colors: [
       { role: "White", hex: "#FFFFFF" },
@@ -63,7 +63,7 @@ export const paletteOptions = [
   {
     id: "atlantic-garden",
     name: "Atlantic Garden",
-    status: "Alternative 04",
+    status: "Default",
     note: "Weathered blue-gray, dusty coral, plant green, and saturated Atlantic navy—closer to the save-the-date's coastal film tones.",
     colors: [
       { role: "White", hex: "#FFFFFF" },
