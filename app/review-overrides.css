@@ -56,7 +56,7 @@
   }
 }
 
-/* Hero card: compact, left of the couple, with the date centered above the names. */
+/* Hero card: use the uncropped panorama and place the copy in its open right side. */
 .hero-copy {
   text-align: center;
 }
@@ -69,15 +69,16 @@
 @media (min-width: 768px) {
   .hero-banner {
     min-height: 0;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 1664 / 728;
   }
 
   .hero-photo {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
   }
 
   .hero-copy {
+    justify-self: end;
     width: min(430px, calc(100% - 56px));
     margin: clamp(28px, 3vw, 44px);
     padding: clamp(27px, 2.5vw, 40px);
@@ -186,7 +187,7 @@
 
   .boston-story {
     z-index: 7;
-    grid-column: 5 / 10;
+    grid-column: 4 / 10;
     grid-row: 2;
     width: min(540px, 100%);
     align-self: start;
@@ -338,9 +339,8 @@
 
 @media (max-width: 767px) {
   .hero-photo {
-    aspect-ratio: 3 / 2;
-    object-fit: contain;
-    object-position: center center;
+    object-fit: cover;
+    object-position: 31% center;
   }
 
   .field-day-map {
