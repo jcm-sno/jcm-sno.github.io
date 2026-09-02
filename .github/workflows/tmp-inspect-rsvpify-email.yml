@@ -52,34 +52,25 @@ jobs:
             waitUntil: 'domcontentloaded',
             timeout: 90000,
           });
-          await page.waitForTimeout(3500);
+          await page.waitForTimeout(5000);
 
-          async function clickConsent() {
-            const candidates = [
-              /accept all/i,
-              /reject all/i,
-              /allow all/i,
-              /agree/i,
-              /continue without accepting/i,
-            ];
-            for (const name of candidates) {
-              const button = page.getByRole('button', { name }).first();
-              if (await button.count()) {
-                const visible = await button.isVisible().catch(() => false);
-                if (visible) {
-                  await button.click({ force: true }).catch(() => {});
-                  await page.waitForTimeout(1500);
-                  return true;
-                }
+          // Cloudflare's consent service returns 403 in headless CI. Remove only
+          // that blocking overlay; this does not alter RSVPify's registration DOM.
+          await page.evaluate(() => {
+            const nodes = [...document.querySelectorAll('body *')];
+            const textNode = nodes.find((el) => el.children.length === 0 && el.textContent?.trim() === 'We value your privacy');
+            if (textNode) {
+              let current = textNode;
+              let fixed = null;
+              while (current && current !== document.body) {
+                const style = getComputedStyle(current);
+                if (style.position === 'fixed') fixed = current;
+                current = current.parentElement;
               }
+              (fixed || textNode.parentElement)?.remove();
             }
-            return false;
-          }
-
-          for (let i = 0; i < 6; i++) {
-            const clicked = await clickConsent();
-            if (!clicked) break;
-          }
+            document.body.style.overflow = 'auto';
+          });
 
           await page.locator('input[placeholder="First Name"]').waitFor({ state: 'visible', timeout: 30000 });
           await page.screenshot({ path: process.env.GITHUB_WORKSPACE + '/rsvpify-lookup-before.png', fullPage: true, animations: 'disabled' });
@@ -98,7 +89,7 @@ jobs:
             disabled: await continueButton.isDisabled().catch(() => null),
             bodyText: (await page.locator('body').innerText()).slice(0,3000),
           };
-          await continueButton.click({ force: true });
+          await continueButton.evaluate((el) => el.click());
 
           let reachedParty = false;
           for (let i = 0; i < 40; i++) {
@@ -112,7 +103,7 @@ jobs:
           await page.screenshot({ path: process.env.GITHUB_WORKSPACE + '/rsvpify-after-continue.png', fullPage: true, animations: 'disabled' });
 
           const report = await page.evaluate(() => {
-            const bodyText = document.body.innerText.slice(0, 8000);
+            const bodyText = document.body.innerText.slice(0, 10000);
             const inputs = [...document.querySelectorAll('input')].map((el) => ({
               type: el.type,
               value: el.value,
@@ -135,11 +126,11 @@ jobs:
             const prefilledEmail = [...document.querySelectorAll('input')].find((el) => el.value?.includes('@'));
             const emailChain = [];
             let current = prefilledEmail;
-            while (current && emailChain.length < 14) {
-              emailChain.push({ tag: current.tagName, className: current.className, outerHTML: current.outerHTML.slice(0,16000) });
+            while (current && emailChain.length < 18) {
+              emailChain.push({ tag: current.tagName, className: current.className, outerHTML: current.outerHTML.slice(0,30000) });
               current = current.parentElement;
             }
-            return { bodyText, inputs, buttons, exactTextElements, emailChain, html: document.documentElement.outerHTML.slice(0,220000) };
+            return { bodyText, inputs, buttons, exactTextElements, emailChain, html: document.documentElement.outerHTML.slice(0,350000) };
           });
 
           fs.writeFileSync(process.env.GITHUB_WORKSPACE + '/rsvpify-report.json', JSON.stringify({ reachedParty, before, report, consoleLines }, null, 2));
