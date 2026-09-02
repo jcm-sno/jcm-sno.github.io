@@ -45,6 +45,7 @@ function localTarget(sourceFile, reference) {
 const files = await walk(exportRoot);
 const htmlFiles = files.filter((file) => file.endsWith(".html"));
 const styleFiles = files.filter((file) => file.endsWith(".css"));
+const scriptFiles = files.filter((file) => file.endsWith(".js"));
 
 assert(htmlFiles.length >= 5, "Expected the home, logistics, registry, RSVP, and 404 pages");
 await access(path.join(exportRoot, ".nojekyll"));
@@ -118,10 +119,13 @@ assert.doesNotMatch(logistics, /estimated tax/i);
 assert.doesNotMatch(rsvp, /Find your invitation below\./i);
 assert.doesNotMatch(rsvp, /Enter the name on your invitation/i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);
+const scripts = (
+  await Promise.all(scriptFiles.map((file) => readFile(file, "utf8")))
+).join("\n");
 assert.match(
-  rsvp,
-  /<script[^>]+src=["']https:\/\/weddingdraft3\.rsvpify\.com\/embed["'][^>]*><\/script>/i,
-  "Expected the RSVP page HTML to contain RSVPify's exact parser-loaded embed script",
+  scripts,
+  /https:\/\/weddingdraft3\.rsvpify\.com\/embed/i,
+  "Expected the client bundle to load RSVPify's embed after hydration",
 );
 assert.doesNotMatch(
   rsvp,
