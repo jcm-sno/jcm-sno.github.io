@@ -101,6 +101,8 @@ export default function Home() {
             height="1365"
             srcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner-2048.webp 2048w"
             sizes="(min-width: 1440px) 1320px, 100vw"
+            loading="eager"
+            decoding="sync"
             fetchPriority="high"
           />
           <div className="hero-copy">

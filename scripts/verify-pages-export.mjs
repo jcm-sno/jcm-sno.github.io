@@ -100,6 +100,8 @@ assert.match(home, /long-distance-harbor-1280\.webp/i);
 assert.match(home, /engagement-walk-1280\.webp/i);
 assert.match(home, /about-banner-2048\.webp/i);
 assert.match(home, /about-banner-1536\.webp/i);
+assert.match(home, /rel=["']preload["'][^>]+as=["']image["']/i);
+assert.match(home, /decoding=["']sync["']/i);
 assert.match(home, /data-wedding-palette=["']atlantic-garden["']/i);
 assert.doesNotMatch(home, /Color Study/i);
 assert.doesNotMatch(home, /Our Story, In Pieces/i);

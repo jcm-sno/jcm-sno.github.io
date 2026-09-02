@@ -55,6 +55,16 @@ export default function RootLayout({
       data-wedding-palette={defaultPaletteId}
       suppressHydrationWarning
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/about-banner-2048.webp"
+          imageSrcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner-2048.webp 2048w"
+          imageSizes="(min-width: 1440px) 1320px, 100vw"
+          fetchPriority="high"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
