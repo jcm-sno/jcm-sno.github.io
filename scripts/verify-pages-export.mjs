@@ -98,6 +98,7 @@ assert.match(home, /field-day-group-640\.webp/i);
 assert.match(home, /long-distance-harbor-1280\.webp/i);
 assert.match(home, /engagement-walk-1280\.webp/i);
 assert.match(home, /about-banner\.webp/i);
+assert.match(home, /about-banner-1536\.webp/i);
 assert.match(home, /data-wedding-palette=["']atlantic-garden["']/i);
 assert.doesNotMatch(home, /Color Study/i);
 assert.doesNotMatch(home, /Our Story, In Pieces/i);
