@@ -137,14 +137,33 @@ export default function Home() {
             <article className="story-card field-day-story">
               <div className="story-heading-fields">
                 <p className="clip-kicker">Same neighborhood · first Field Day</p>
-                <h3 id="field-day-heading">So How’d You Guys Meet?</h3>
+                <h3 id="field-day-heading">So How’d You Meet?</h3>
               </div>
               <p>
-                While Samantha was working and James was in grad school,
-                they both ended up in the same neighborhood. Shortly after
-                asking for Samantha&apos;s number, James crashed Samantha and her
-                friends&apos; semiannual Field Day. Somewhere between games, they
-                got to know each other a little better.
+                James and I first met in September 2024, when he moved into the
+                apartment one floor above mine. I worked from home and was
+                excited to have new neighbors; James was in grad school and
+                excited to have a room with bay windows. Over the next couple of
+                months, we’d stop to chat whenever we ran into each other in the
+                halls, both hoping to get to know each other better.
+              </p>
+              <p>
+                The opportunity came when James joined the semiannual field day
+                my roommate and I hosted. During a game of capture the flag, he
+                collided with someone and wobbled off the field. I was too busy
+                playing to notice. “Probably got the wind knocked out of him,” I
+                said when a friend pointed out James lying on the side of the
+                field. Instead, he ended up in the emergency room with a broken
+                collarbone.
+              </p>
+              <p>
+                James had asked for my number during a previous hallway run-in
+                but didn’t know how to start the conversation. The X-ray broke
+                the ice. I dropped flowers at his doorstep with a note letting
+                him know that his team had lost capture the flag. James maintains
+                that the broken collarbone was worth it. We went on our first
+                date that week, with James in a sling: a walk across the Charles
+                River followed by grilled cheese and tomato soup.
               </p>
             </article>
 

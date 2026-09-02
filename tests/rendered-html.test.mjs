@@ -31,7 +31,9 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /data-wedding-palette=["']atlantic-garden["']/i);
   assert.doesNotMatch(html, /Color Study/i);
   assert.match(html, />Archive</i);
-  assert.match(html, /So How.d You Guys Meet\?/i);
+  assert.match(html, /So How.d You Meet\?/i);
+  assert.match(html, /James and I first met in September 2024/i);
+  assert.match(html, /The X-ray broke the ice/i);
   assert.match(html, /James was in grad school/i);
   assert.match(html, /Life in Cambridge Montage/i);
   assert.match(html, /donnelly-field-map\.svg/i);
