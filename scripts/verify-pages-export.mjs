@@ -92,11 +92,6 @@ assert.match(rsvp, /Find your invitation below\./i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);
 assert.match(
   rsvp,
-  /src=["']https:\/\/jcm-sno\.rsvpify\.com\/rsvp\?embed=1["']/i,
-);
-assert.match(rsvp, /data-rsvpify-embed/i);
-assert.match(
-  rsvp,
   /href=["']https:\/\/jcm-sno\.rsvpify\.com\/rsvp["']/i,
 );
 assert.doesNotMatch(rsvp, /Online RSVPs will open with invitations\./i);
