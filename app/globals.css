@@ -107,15 +107,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-body,
-body * {
-  transition:
-    color 220ms ease,
-    background-color 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease;
-}
-
 a {
   color: inherit;
 }

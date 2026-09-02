@@ -40,7 +40,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.doesNotMatch(html, /A few moments, held onto/i);
 });
 
-test("renders wishlist and RSVP routes", async () => {
+test("renders logistics, wishlist, and RSVP routes", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("routes", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -71,6 +71,20 @@ test("renders wishlist and RSVP routes", async () => {
   assert.doesNotMatch(rsvpHtml, /Online RSVPs will open with invitations\./i);
   assert.doesNotMatch(rsvpHtml, /What to expect/i);
   assert.doesNotMatch(rsvpHtml, /http-equiv=["']refresh/i);
+
+  const logisticsResponse = await worker.fetch(
+    new Request("http://localhost/logistics", { headers: { accept: "text/html" } }),
+    environment,
+    context,
+  );
+  assert.equal(logisticsResponse.status, 200);
+  const logisticsHtml = await logisticsResponse.text();
+  assert.match(
+    logisticsHtml,
+    /https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO/i,
+  );
+  assert.doesNotMatch(logisticsHtml, /Hotel block update/i);
+  assert.doesNotMatch(logisticsHtml, /Booking link pending/i);
 
   const registryResponse = await worker.fetch(
     new Request("http://localhost/registry", { headers: { accept: "text/html" } }),

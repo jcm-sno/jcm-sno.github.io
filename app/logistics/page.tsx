@@ -38,6 +38,9 @@ const airports = [
 const shoresBookingUrl =
   "https://be.synxis.com/?Hotel=17713&Chain=21123&config=initialConfig&arrive=2027-05-14&depart=2027-05-16&adult=1&child=0&group=SAMJAMES27";
 
+const hyattBookingUrl =
+  "https://www.hyatt.com/events/en-US/group-booking/DABZD/G-OAMO";
+
 export default function LogisticsPage() {
   return (
     <main className="site-shell">
@@ -128,17 +131,6 @@ export default function LogisticsPage() {
             </p>
           </div>
 
-          <div className="pending-notice" role="note">
-            <p className="detail-label">Hotel block update</p>
-            <h3>The Shores booking link is live.</h3>
-            <p>
-              The Shores pricing below reflects the current written wedding-block
-              offer, and the official room-block booking link is now available.
-              The Hyatt booking link and any final reservation deadlines are
-              still pending.
-            </p>
-          </div>
-
           <div className="hotel-grid">
             <article className="hotel-card shores-card">
               <div className="hotel-card-topline">
@@ -191,7 +183,7 @@ export default function LogisticsPage() {
             <article className="hotel-card hyatt-card">
               <div className="hotel-card-topline">
                 <p className="detail-label">Easy oceanfront stay</p>
-                <span>Block pending</span>
+                <span>Booking available</span>
               </div>
               <h3>Hyatt Place Daytona Beach – Oceanfront</h3>
               <address>
@@ -224,9 +216,9 @@ export default function LogisticsPage() {
                 </div>
               </div>
               <div className="hotel-actions">
-                <span className="pending-link" aria-label="Hyatt Place room-block booking link is pending">
-                  Booking link pending
-                </span>
+                <a href={hyattBookingUrl} target="_blank" rel="noreferrer">
+                  Book the wedding block <span aria-hidden="true">↗</span>
+                </a>
                 <a
                   href="https://www.hyatt.com/hyatt-place/en-US/dabzd-hyatt-place-daytona-beach-oceanfront"
                   target="_blank"

@@ -103,6 +103,12 @@ assert.doesNotMatch(home, /A few moments, held onto/i);
 assert.doesNotMatch(home, /A little bit of our story/i);
 assert.doesNotMatch(home, /Welcome to our corner of the wedding weekend/i);
 assert.match(logistics, /Approximate nightly total after tax/i);
+assert.match(
+  logistics,
+  /href=["']https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO["']/i,
+);
+assert.doesNotMatch(logistics, /Hotel block update/i);
+assert.doesNotMatch(logistics, /Booking link pending/i);
 assert.doesNotMatch(logistics, /Come meet us by the ocean/i);
 assert.doesNotMatch(logistics, /Everything we know so far about the schedule/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
