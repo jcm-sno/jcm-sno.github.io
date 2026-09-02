@@ -61,8 +61,8 @@ export default function Home() {
             className="hero-photo"
             src="/about-banner.webp"
             alt="James and Samantha embracing as they look out at the ocean"
-            width="1536"
-            height="1024"
+            width="2048"
+            height="1365"
             fetchPriority="high"
           />
           <div className="hero-copy">
@@ -81,12 +81,6 @@ export default function Home() {
                 <span>Oates</span>
               </span>
             </h1>
-            <p className="script-lead">A little bit of our story...</p>
-            <p className="hero-description">
-              Welcome to our corner of the wedding weekend. We&apos;re collecting
-              the places, people, and small moments that brought us here—one
-              memory at a time.
-            </p>
           </div>
         </section>
 
@@ -148,34 +142,21 @@ export default function Home() {
             </figure>
 
             <figure className="field-day-map">
-              <a
-                className="field-day-map-frame"
-                href="https://www.openstreetmap.org/?mlat=42.370524&mlon=-71.091853#map=16/42.370524/-71.091853"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Open an interactive map of Donnelly Field"
-              >
+              <div className="field-day-map-frame">
                 <img
                   src="/donnelly-field-map.svg"
-                  alt="Street map of the East Cambridge neighborhood surrounding Donnelly Field"
+                  alt="Static street map of the East Cambridge neighborhood surrounding Donnelly Field"
                   width="900"
                   height="720"
                   loading="lazy"
                   decoding="async"
                 />
-              </a>
+              </div>
               <figcaption>
                 <span>
                   <strong>Donnelly Field · Cambridge, MA</strong>
                   <small>Map data: City of Cambridge GIS · PDDL 1.0</small>
                 </span>
-                <a
-                  href="https://www.openstreetmap.org/?mlat=42.370524&mlon=-71.091853#map=16/42.370524/-71.091853"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open map
-                </a>
               </figcaption>
             </figure>
           </div>
