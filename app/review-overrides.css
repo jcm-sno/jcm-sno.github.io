@@ -116,6 +116,10 @@
   text-align: center;
 }
 
+.field-day-story > p:not(.clip-kicker) + p:not(.clip-kicker) {
+  margin-top: 14px;
+}
+
 @media (min-width: 768px) {
   .hero-banner {
     min-height: 0;
@@ -411,6 +415,7 @@
 
   .hero-copy .eyebrow {
     margin-bottom: 18px;
+    text-align: left;
   }
 }
 
