@@ -35,6 +35,8 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /James and I first met in September 2024/i);
   assert.match(html, /The X-ray broke the ice/i);
   assert.match(html, /James was in grad school/i);
+  assert.match(html, /<a[^>]+href=["']\/registry\/["'][^>]*>Registry<\/a>/i);
+  assert.doesNotMatch(html, /<a[^>]+href=["']\/registry\/["'][^>]*>Wishlist<\/a>/i);
   assert.match(html, /Life in Cambridge Montage/i);
   assert.match(html, /donnelly-field-map\.svg/i);
   assert.match(html, /field-day-group-640\.webp/i);
@@ -58,7 +60,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.doesNotMatch(html, /A few moments, held onto/i);
 });
 
-test("renders logistics, wishlist, and RSVP routes", async () => {
+test("renders logistics, registry, and RSVP routes", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("routes", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -157,11 +159,25 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
     context,
   );
   assert.equal(registryResponse.status, 200);
-  const wishlistHtml = await registryResponse.text();
-  assert.match(wishlistHtml, /We have no expectation of receiving a gift/i);
-  assert.match(wishlistHtml, /please mark it as covered below/i);
-  assert.match(wishlistHtml, /free to shop wherever you like/i);
-  assert.match(wishlistHtml, /Opens with invitations/i);
-  assert.doesNotMatch(wishlistHtml, /Choose something you would love to give/i);
-  assert.doesNotMatch(wishlistHtml, /Zola/i);
+  const registryHtml = await registryResponse.text();
+  assert.match(registryHtml, /<title>Registry \| James &amp; Samantha<\/title>/i);
+  assert.match(registryHtml, /<h1[^>]*>Registry<\/h1>/i);
+  assert.match(registryHtml, /We have no expectation of receiving a gift/i);
+  assert.match(registryHtml, /free to shop wherever you like/i);
+  assert.match(registryHtml, /Crate &amp; Barrel/i);
+  assert.match(
+    registryHtml,
+    /href=["']https:\/\/www\.crateandbarrel\.com\/gift-registry\/samantha-and-james-morrison\/r7629037["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/i,
+  );
+  assert.match(registryHtml, /aria-label=["'][^"']*new tab["']/i);
+  assert.match(
+    registryHtml,
+    /<a[^>]+href=["']\/registry\/["'][^>]+aria-current=["']page["'][^>]*>Registry<\/a>/i,
+  );
+  assert.match(registryHtml, />View registry<\/a>/i);
+  assert.doesNotMatch(registryHtml, /<iframe[^>]+crateandbarrel/i);
+  assert.doesNotMatch(registryHtml, /Opens with invitations/i);
+  assert.doesNotMatch(registryHtml, />Wishlist</i);
+  assert.doesNotMatch(registryHtml, /Choose something you would love to give/i);
+  assert.doesNotMatch(registryHtml, /Zola/i);
 });

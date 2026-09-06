@@ -89,7 +89,8 @@ const donnellyMap = await readFile(
 );
 assert.doesNotMatch(home, /coffee shop stalker/i);
 assert.match(home, /href=["']\/rsvp\//i);
-assert.match(home, /href=["']\/registry\//i);
+assert.match(home, /<a[^>]+href=["']\/registry\/["'][^>]*>Registry<\/a>/i);
+assert.doesNotMatch(home, /<a[^>]+href=["']\/registry\/["'][^>]*>Wishlist<\/a>/i);
 assert.match(home, />Archive</i);
 assert.match(home, /So How.d You Meet\?/i);
 assert.match(home, /James and I first met in September 2024/i);
@@ -198,9 +199,23 @@ assert.doesNotMatch(rsvp, /Online RSVPs will open with invitations\./i);
 assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
 assert.match(registry, /We have no expectation of receiving a gift/i);
-assert.match(registry, /please mark it as covered below/i);
 assert.match(registry, /free to shop wherever you like/i);
-assert.match(registry, /Opens with invitations/i);
+assert.match(registry, /<title>Registry \| James &amp; Samantha<\/title>/i);
+assert.match(registry, /<h1[^>]*>Registry<\/h1>/i);
+assert.match(registry, /Crate &amp; Barrel/i);
+assert.match(
+  registry,
+  /href=["']https:\/\/www\.crateandbarrel\.com\/gift-registry\/samantha-and-james-morrison\/r7629037["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/i,
+);
+assert.match(registry, /aria-label=["'][^"']*new tab["']/i);
+assert.match(
+  registry,
+  /<a[^>]+href=["']\/registry\/["'][^>]+aria-current=["']page["'][^>]*>Registry<\/a>/i,
+);
+assert.match(registry, />View registry<\/a>/i);
+assert.doesNotMatch(registry, /<iframe[^>]+crateandbarrel/i);
+assert.doesNotMatch(registry, /Opens with invitations/i);
+assert.doesNotMatch(registry, />Wishlist</i);
 assert.doesNotMatch(registry, /Choose something you would love to give/i);
 assert.doesNotMatch(registry, /Zola/i);
 assert.match(donnellyMap, /^<\?xml[^>]*>\s*<svg\b/i);

@@ -1,7 +1,8 @@
 # Guest systems architecture decision
 
-Status: **wishlist architecture selected; RSVPify trial recommended; production
-authentication and storage intentionally not connected**
+Status: **registry decision superseded on 2026-09-06; Crate & Barrel is now the
+selected registry and the native wishlist design below is retained only as a
+historical alternative. RSVPify remains the RSVP system.**
 
 This record covers two related but independently deployable guest systems:
 

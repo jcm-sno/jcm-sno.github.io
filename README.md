@@ -19,21 +19,17 @@ than replacing or force-pushing the Sites source history.
 The repository owner may need to select **Settings → Pages → Source → GitHub
 Actions** once before the first GitHub Pages deployment.
 
-## Wishlist and RSVP
+## Registry and RSVP
 
-The former Registry page is now a native Wishlist route. Its production design
-uses invitation-based guest authentication and a Cloudflare D1 datastore so an
-invited party can reserve an item without exposing who selected it. The public
-page remains in a deliberate coming-soon state until credentials, migrations,
-administration, recovery, and concurrency tests are complete.
+The Registry route links guests to the public Crate & Barrel wedding registry.
+It uses a normal external link because Crate & Barrel prevents its registry
+pages from being embedded by another site.
 
-The RSVP route also remains closed. The current recommendation is to acceptance-
-test RSVPify Platinum with a synthetic adversarial guest list before paying or
-loading real guest data. A custom D1 implementation remains the fallback if the
-embedded product fails the test. A private Google Sheet may be generated as an
-administrative mirror, but it is not the authoritative datastore. The decision,
-tradeoffs, data model, and go-live gates are in
-[`docs/rsvp-architecture.md`](docs/rsvp-architecture.md).
+The RSVP route embeds the current RSVPify form and retains a direct-form link as
+a fallback. No real guest roster or RSVP response is stored in this public
+repository. Earlier custom-system analysis remains in
+[`docs/rsvp-architecture.md`](docs/rsvp-architecture.md) as a historical design
+record.
 
 A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
