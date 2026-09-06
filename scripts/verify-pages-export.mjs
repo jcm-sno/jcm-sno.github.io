@@ -137,14 +137,20 @@ assert.doesNotMatch(logistics, /Parking: \$10 per night \+ applicable tax/i);
 assert.doesNotMatch(logistics, /\$10 overnight self-parking \+ applicable tax/i);
 assert.doesNotMatch(logistics, /Wedding-block exceptions/i);
 assert.doesNotMatch(logistics, /\$10 overnight self-parking, excluded from the total/i);
-assert.match(
+assert.doesNotMatch(
   logistics,
   /Parking: Complimentary self-parking · one vehicle per guest room/i,
 );
+assert.doesNotMatch(logistics, /Pricing confirmed/i);
+assert.match(logistics, /<li>Complimentary self-parking<\/li>/i);
 assert.match(logistics, /href=["']https:\/\/www\.flydaytonafirst\.com\/["']/i);
 assert.match(logistics, /href=["']https:\/\/www\.orlandoairports\.net\/["']/i);
 assert.match(logistics, /href=["']https:\/\/flysfb\.com\/["']/i);
 assert.doesNotMatch(logistics, /Visit official airport site/i);
+assert.match(
+  logistics,
+  /<h3>\s*<a[^>]+href=["']https:\/\/www\.flydaytonafirst\.com\/["'][^>]*>\s*Daytona Beach International Airport\s*<\/a>\s*<\/h3>/i,
+);
 assert.doesNotMatch(rsvp, /Find your invitation below\./i);
 assert.doesNotMatch(rsvp, /Enter the name on your invitation/i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);

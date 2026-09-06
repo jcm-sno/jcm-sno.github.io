@@ -1059,10 +1059,30 @@ summary:focus-visible {
   position: absolute;
   top: -12px;
   right: 13%;
-  width: 92px;
-  height: 26px;
+  z-index: 2;
+  width: 96px;
+  height: 28px;
   transform: rotate(2deg);
-  background: color-mix(in srgb, var(--canvas-white) 62%, transparent);
+  clip-path: polygon(
+    2% 1%, 98% 0, 100% 17%, 97% 33%, 100% 50%, 97% 67%, 100% 84%,
+    98% 100%, 2% 98%, 0 83%, 3% 66%, 0 49%, 3% 32%, 0 16%
+  );
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 3px,
+      color-mix(in srgb, var(--deep-cypress) 3%, transparent) 3px 4px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--album-paper) 68%, transparent),
+      color-mix(in srgb, var(--canvas-white) 48%, transparent) 48%,
+      color-mix(in srgb, var(--album-paper) 70%, transparent)
+    );
+  box-shadow:
+    0 2px 3px color-mix(in srgb, var(--deep-cypress) 10%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--canvas-white) 45%, transparent);
+  pointer-events: none;
 }
 
 .date-card {
@@ -1189,11 +1209,6 @@ summary:focus-visible {
 .airport-card h3 a:hover {
   color: var(--deep-seagrass);
   text-decoration-color: currentColor;
-}
-
-.airport-card h3 a span {
-  white-space: nowrap;
-  font-size: 0.65em;
 }
 
 .airport-card .drive-time {
@@ -1354,8 +1369,7 @@ summary:focus-visible {
   line-height: 0.95;
 }
 
-.rate-block .parking-rate,
-.split-rates .parking-rate {
+.rate-block .parking-rate {
   margin: 14px 0 0;
   padding-top: 14px;
   border-top: 1px dashed var(--rule);
@@ -1364,10 +1378,6 @@ summary:focus-visible {
   letter-spacing: normal;
   line-height: 1.45;
   text-transform: none;
-}
-
-.split-rates .parking-rate {
-  grid-column: 1 / -1;
 }
 
 .split-rates {

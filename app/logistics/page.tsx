@@ -99,7 +99,7 @@ export default function LogisticsPage() {
                 </p>
                 <h3>
                   <a href={airport.href} target="_blank" rel="noreferrer">
-                    {airport.name} <span aria-hidden="true">↗</span>
+                    {airport.name}
                   </a>
                 </h3>
                 <p className="drive-time">{airport.time}</p>
@@ -119,9 +119,6 @@ export default function LogisticsPage() {
 
           <div className="hotel-grid">
             <article className="hotel-card shores-card">
-              <div className="hotel-card-topline">
-                <span>Pricing confirmed</span>
-              </div>
               <h3>The Shores Resort &amp; Spa</h3>
               <address>
                 2637 South Atlantic Avenue
@@ -172,15 +169,13 @@ export default function LogisticsPage() {
                   <span>Queen room</span>
                   <strong>$168</strong>
                 </div>
-                <p className="parking-rate">
-                  Parking: Complimentary self-parking · one vehicle per guest room
-                </p>
               </div>
               <div className="hotel-details single-list">
                 <div>
                   <h4>Current hotel amenities</h4>
                   <ul>
                     <li>Complimentary breakfast</li>
+                    <li>Complimentary self-parking</li>
                     <li>Oceanfront pool</li>
                     <li>Direct beach access</li>
                     <li>Free internet access</li>

@@ -113,14 +113,20 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /\$10 overnight self-parking \+ applicable tax/i);
   assert.doesNotMatch(logisticsHtml, /Wedding-block exceptions/i);
   assert.doesNotMatch(logisticsHtml, /\$10 overnight self-parking, excluded from the total/i);
-  assert.match(
+  assert.doesNotMatch(
     logisticsHtml,
     /Parking: Complimentary self-parking · one vehicle per guest room/i,
   );
+  assert.doesNotMatch(logisticsHtml, /Pricing confirmed/i);
+  assert.match(logisticsHtml, /<li>Complimentary self-parking<\/li>/i);
   assert.match(logisticsHtml, /href=["']https:\/\/www\.flydaytonafirst\.com\/["']/i);
   assert.match(logisticsHtml, /href=["']https:\/\/www\.orlandoairports\.net\/["']/i);
   assert.match(logisticsHtml, /href=["']https:\/\/flysfb\.com\/["']/i);
   assert.doesNotMatch(logisticsHtml, /Visit official airport site/i);
+  assert.match(
+    logisticsHtml,
+    /<h3>\s*<a[^>]+href=["']https:\/\/www\.flydaytonafirst\.com\/["'][^>]*>\s*Daytona Beach International Airport\s*<\/a>\s*<\/h3>/i,
+  );
 
   const registryResponse = await worker.fetch(
     new Request("http://localhost/registry", { headers: { accept: "text/html" } }),
