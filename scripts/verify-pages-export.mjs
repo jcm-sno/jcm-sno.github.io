@@ -132,7 +132,11 @@ assert.doesNotMatch(logistics, /estimated tax/i);
 assert.doesNotMatch(logistics, /Daytona Beach International is by far the closest/i);
 assert.doesNotMatch(logistics, /Drive times are estimates/i);
 assert.doesNotMatch(logistics, /Both options are oceanfront/i);
-assert.match(logistics, /Parking: \$10 per night/i);
+assert.match(
+  logistics,
+  /Discounted parking is available for an additional \$10 per night/i,
+);
+assert.doesNotMatch(logistics, /Parking: \$10 per night/i);
 assert.doesNotMatch(logistics, /Parking: \$10 per night \+ applicable tax/i);
 assert.doesNotMatch(logistics, /\$10 overnight self-parking \+ applicable tax/i);
 assert.doesNotMatch(logistics, /Wedding-block exceptions/i);

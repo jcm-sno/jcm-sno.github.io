@@ -128,7 +128,9 @@ export default function LogisticsPage() {
               <div className="rate-block" aria-label="Approximate Shores nightly total per room after tax and before parking">
                 <span>Approximate nightly total after tax</span>
                 <strong>$224</strong>
-                <p className="parking-rate">Parking: $10 per night</p>
+                <p className="parking-rate">
+                  Discounted parking is available for an additional $10 per night
+                </p>
               </div>
               <div className="hotel-details single-list">
                 <div>

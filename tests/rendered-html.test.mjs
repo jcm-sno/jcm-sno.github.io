@@ -108,7 +108,11 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /Daytona Beach International is by far the closest/i);
   assert.doesNotMatch(logisticsHtml, /Drive times are estimates/i);
   assert.doesNotMatch(logisticsHtml, /Both options are oceanfront/i);
-  assert.match(logisticsHtml, /Parking: \$10 per night/i);
+  assert.match(
+    logisticsHtml,
+    /Discounted parking is available for an additional \$10 per night/i,
+  );
+  assert.doesNotMatch(logisticsHtml, /Parking: \$10 per night/i);
   assert.doesNotMatch(logisticsHtml, /Parking: \$10 per night \+ applicable tax/i);
   assert.doesNotMatch(logisticsHtml, /\$10 overnight self-parking \+ applicable tax/i);
   assert.doesNotMatch(logisticsHtml, /Wedding-block exceptions/i);

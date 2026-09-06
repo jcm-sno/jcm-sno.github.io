@@ -1371,8 +1371,6 @@ summary:focus-visible {
 
 .rate-block .parking-rate {
   margin: 14px 0 0;
-  padding-top: 14px;
-  border-top: 1px dashed var(--rule);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: normal;
