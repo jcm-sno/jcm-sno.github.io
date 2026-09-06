@@ -1390,7 +1390,6 @@ summary:focus-visible {
 .split-rates > .split-rates-heading {
   grid-column: 1 / -1;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--rule);
 }
 
 .split-rates > div {
@@ -2361,7 +2360,6 @@ summary:focus-visible {
 
   .split-rates > div + div {
     padding: 16px 0 0;
-    border-top: 1px solid var(--rule);
     border-left: 0;
   }
 
