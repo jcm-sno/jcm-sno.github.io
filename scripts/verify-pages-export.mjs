@@ -181,6 +181,11 @@ assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);
 const scripts = (
   await Promise.all(scriptFiles.map((file) => readFile(file, "utf8")))
 ).join("\n");
+const styles = (
+  await Promise.all(styleFiles.map((file) => readFile(file, "utf8")))
+).join("\n");
+assert.match(styles, /\.site-nav nav\{[^}]*font-size:12px/i);
+assert.match(styles, /\.registry-link\{[^}]*font-size:\.875rem/i);
 assert.match(
   scripts,
   /https:\/\/weddingdraft3\.rsvpify\.com\/embed/i,

@@ -181,7 +181,7 @@ h3,
   display: flex;
   align-items: center;
   gap: clamp(18px, 2.7vw, 42px);
-  font-size: 0.875rem;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1631,7 +1631,7 @@ summary:focus-visible {
   border: 1px solid var(--deep-cypress);
   color: var(--deep-cypress);
   text-decoration: none;
-  font-size: 11px;
+  font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
