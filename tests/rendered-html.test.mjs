@@ -99,6 +99,11 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   );
   assert.doesNotMatch(logisticsHtml, /Hotel block update/i);
   assert.doesNotMatch(logisticsHtml, /Booking link pending/i);
+  assert.doesNotMatch(logisticsHtml, /Easy oceanfront stay/i);
+  assert.doesNotMatch(logisticsHtml, /Booking available/i);
+  assert.doesNotMatch(logisticsHtml, /Resort stay/i);
+  assert.doesNotMatch(logisticsHtml, /Includes tax and the reduced resort fee/i);
+  assert.doesNotMatch(logisticsHtml, /Includes 12\.5% lodging tax/i);
 
   const registryResponse = await worker.fetch(
     new Request("http://localhost/registry", { headers: { accept: "text/html" } }),

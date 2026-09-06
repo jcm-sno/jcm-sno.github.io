@@ -134,7 +134,6 @@ export default function LogisticsPage() {
           <div className="hotel-grid">
             <article className="hotel-card shores-card">
               <div className="hotel-card-topline">
-                <p className="detail-label">Resort stay</p>
                 <span>Pricing confirmed</span>
               </div>
               <h3>The Shores Resort &amp; Spa</h3>
@@ -146,7 +145,6 @@ export default function LogisticsPage() {
               <div className="rate-block" aria-label="Approximate Shores nightly total per room after tax and before parking">
                 <span>Approximate nightly total after tax</span>
                 <strong>$224</strong>
-                <span>Includes tax and the reduced resort fee</span>
                 <p className="parking-rate">Parking: $10 per night + applicable tax</p>
               </div>
               <div className="hotel-details">
@@ -181,10 +179,6 @@ export default function LogisticsPage() {
             </article>
 
             <article className="hotel-card hyatt-card">
-              <div className="hotel-card-topline">
-                <p className="detail-label">Easy oceanfront stay</p>
-                <span>Booking available</span>
-              </div>
               <h3>Hyatt Place Daytona Beach – Oceanfront</h3>
               <address>
                 3161 South Atlantic Avenue
@@ -201,7 +195,6 @@ export default function LogisticsPage() {
                   <span>Queen room</span>
                   <strong>$168</strong>
                 </div>
-                <p>Includes 12.5% lodging tax</p>
               </div>
               <div className="hotel-details single-list">
                 <div>
