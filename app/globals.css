@@ -1178,6 +1178,24 @@ summary:focus-visible {
   letter-spacing: 0.05em;
 }
 
+.airport-card h3 a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.airport-card h3 a:hover {
+  color: var(--deep-seagrass);
+  text-decoration-color: currentColor;
+}
+
+.airport-card h3 a span {
+  white-space: nowrap;
+  font-size: 0.65em;
+}
+
 .airport-card .drive-time {
   margin: 24px 0 8px;
   font-weight: 700;
@@ -1189,7 +1207,6 @@ summary:focus-visible {
   line-height: 1.7;
 }
 
-.airport-card > a,
 .hotel-actions > a {
   width: fit-content;
   margin-top: auto;
@@ -1337,13 +1354,20 @@ summary:focus-visible {
   line-height: 0.95;
 }
 
-.rate-block .parking-rate {
+.rate-block .parking-rate,
+.split-rates .parking-rate {
   margin: 14px 0 0;
   padding-top: 14px;
   border-top: 1px dashed var(--rule);
   font-size: 12px;
   font-weight: 700;
+  letter-spacing: normal;
   line-height: 1.45;
+  text-transform: none;
+}
+
+.split-rates .parking-rate {
+  grid-column: 1 / -1;
 }
 
 .split-rates {

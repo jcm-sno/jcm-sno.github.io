@@ -109,9 +109,18 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /Drive times are estimates/i);
   assert.doesNotMatch(logisticsHtml, /Both options are oceanfront/i);
   assert.match(logisticsHtml, /Parking: \$10 per night/i);
-  assert.match(logisticsHtml, /\$10 overnight self-parking, excluded from the total/i);
   assert.doesNotMatch(logisticsHtml, /Parking: \$10 per night \+ applicable tax/i);
   assert.doesNotMatch(logisticsHtml, /\$10 overnight self-parking \+ applicable tax/i);
+  assert.doesNotMatch(logisticsHtml, /Wedding-block exceptions/i);
+  assert.doesNotMatch(logisticsHtml, /\$10 overnight self-parking, excluded from the total/i);
+  assert.match(
+    logisticsHtml,
+    /Parking: Complimentary self-parking · one vehicle per guest room/i,
+  );
+  assert.match(logisticsHtml, /href=["']https:\/\/www\.flydaytonafirst\.com\/["']/i);
+  assert.match(logisticsHtml, /href=["']https:\/\/www\.orlandoairports\.net\/["']/i);
+  assert.match(logisticsHtml, /href=["']https:\/\/flysfb\.com\/["']/i);
+  assert.doesNotMatch(logisticsHtml, /Visit official airport site/i);
 
   const registryResponse = await worker.fetch(
     new Request("http://localhost/registry", { headers: { accept: "text/html" } }),

@@ -97,12 +97,13 @@ export default function LogisticsPage() {
                 <p className="airport-code" aria-hidden="true">
                   {airport.code}
                 </p>
-                <h3>{airport.name}</h3>
+                <h3>
+                  <a href={airport.href} target="_blank" rel="noreferrer">
+                    {airport.name} <span aria-hidden="true">↗</span>
+                  </a>
+                </h3>
                 <p className="drive-time">{airport.time}</p>
                 <p>{airport.note}</p>
-                <a href={airport.href} target="_blank" rel="noreferrer">
-                  Visit official airport site <span aria-hidden="true">↗</span>
-                </a>
               </article>
             ))}
           </div>
@@ -132,7 +133,7 @@ export default function LogisticsPage() {
                 <strong>$224</strong>
                 <p className="parking-rate">Parking: $10 per night</p>
               </div>
-              <div className="hotel-details">
+              <div className="hotel-details single-list">
                 <div>
                   <h4>Current resort amenities</h4>
                   <ul>
@@ -141,15 +142,6 @@ export default function LogisticsPage() {
                     <li>Shores s&apos;mores kit</li>
                     <li>Welcome drink</li>
                     <li>Complimentary cruiser bikes</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Wedding-block exceptions</h4>
-                  <ul>
-                    <li>Reduced $10 resort fee included in the total</li>
-                    <li>$10 overnight self-parking, excluded from the total</li>
-                    <li>Total uses the current 12.5% lodging-tax rate</li>
-                    <li>Official room-block booking link is live</li>
                   </ul>
                 </div>
               </div>
@@ -180,13 +172,15 @@ export default function LogisticsPage() {
                   <span>Queen room</span>
                   <strong>$168</strong>
                 </div>
+                <p className="parking-rate">
+                  Parking: Complimentary self-parking · one vehicle per guest room
+                </p>
               </div>
               <div className="hotel-details single-list">
                 <div>
                   <h4>Current hotel amenities</h4>
                   <ul>
                     <li>Complimentary breakfast</li>
-                    <li>Complimentary self-parking</li>
                     <li>Oceanfront pool</li>
                     <li>Direct beach access</li>
                     <li>Free internet access</li>
