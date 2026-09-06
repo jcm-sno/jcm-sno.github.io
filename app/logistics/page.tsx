@@ -89,12 +89,6 @@ export default function LogisticsPage() {
           <div className="logistics-section-heading centered-heading">
             <p className="section-number">02 · Getting here</p>
             <h2 id="travel-title">Choose Your Arrival</h2>
-            <p>
-              Daytona Beach International is by far the closest. Orlando
-              International is the strongest fallback for schedule and route
-              choice; Sanford is worth checking only when a specific itinerary
-              lines up well.
-            </p>
           </div>
           <div className="airport-grid">
             {airports.map((airport) => (
@@ -112,11 +106,6 @@ export default function LogisticsPage() {
               </article>
             ))}
           </div>
-          <p className="travel-caveat">
-            Drive times are estimates to the Daytona Beach Shores hotel area
-            under ordinary conditions. Please check live traffic before you
-            leave, especially around Orlando and Interstate 4.
-          </p>
         </section>
 
         <section id="lodging" className="logistics-section lodging-section" aria-labelledby="lodging-title">
@@ -125,10 +114,6 @@ export default function LogisticsPage() {
               <p className="section-number">03 · Where to stay</p>
               <h2 id="lodging-title">Hotel Details</h2>
             </div>
-            <p>
-              Both options are oceanfront in Daytona Beach Shores, with pools
-              and direct beach access.
-            </p>
           </div>
 
           <div className="hotel-grid">
@@ -145,7 +130,7 @@ export default function LogisticsPage() {
               <div className="rate-block" aria-label="Approximate Shores nightly total per room after tax and before parking">
                 <span>Approximate nightly total after tax</span>
                 <strong>$224</strong>
-                <p className="parking-rate">Parking: $10 per night + applicable tax</p>
+                <p className="parking-rate">Parking: $10 per night</p>
               </div>
               <div className="hotel-details">
                 <div>
@@ -162,7 +147,7 @@ export default function LogisticsPage() {
                   <h4>Wedding-block exceptions</h4>
                   <ul>
                     <li>Reduced $10 resort fee included in the total</li>
-                    <li>$10 overnight self-parking + applicable tax, excluded from the total</li>
+                    <li>$10 overnight self-parking, excluded from the total</li>
                     <li>Total uses the current 12.5% lodging-tax rate</li>
                     <li>Official room-block booking link is live</li>
                   </ul>

@@ -87,7 +87,7 @@ const donnellyMap = await readFile(
   path.join(exportRoot, "donnelly-field-map.svg"),
   "utf8",
 );
-assert.match(home, /coffee shop stalker/i);
+assert.doesNotMatch(home, /coffee shop stalker/i);
 assert.match(home, /href=["']\/rsvp\//i);
 assert.match(home, /href=["']\/registry\//i);
 assert.match(home, />Archive</i);
@@ -129,6 +129,13 @@ assert.doesNotMatch(logistics, /Booking link pending/i);
 assert.doesNotMatch(logistics, /Come meet us by the ocean/i);
 assert.doesNotMatch(logistics, /Everything we know so far about the schedule/i);
 assert.doesNotMatch(logistics, /estimated tax/i);
+assert.doesNotMatch(logistics, /Daytona Beach International is by far the closest/i);
+assert.doesNotMatch(logistics, /Drive times are estimates/i);
+assert.doesNotMatch(logistics, /Both options are oceanfront/i);
+assert.match(logistics, /Parking: \$10 per night/i);
+assert.match(logistics, /\$10 overnight self-parking, excluded from the total/i);
+assert.doesNotMatch(logistics, /Parking: \$10 per night \+ applicable tax/i);
+assert.doesNotMatch(logistics, /\$10 overnight self-parking \+ applicable tax/i);
 assert.doesNotMatch(rsvp, /Find your invitation below\./i);
 assert.doesNotMatch(rsvp, /Enter the name on your invitation/i);
 assert.match(rsvp, /class=["']rsvpify-embed-host["']/i);

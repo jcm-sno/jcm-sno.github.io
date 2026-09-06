@@ -42,6 +42,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /engagement-walk-1280\.webp/i);
   assert.match(html, /about-banner-1536\.webp/i);
   assert.match(html, /about-banner-2048\.webp/i);
+  assert.doesNotMatch(html, /coffee shop stalker/i);
   assert.match(html, /rel=["']preload["'][^>]+as=["']image["']/i);
   assert.match(html, /decoding=["']sync["']/i);
   assert.equal(
@@ -104,6 +105,13 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /Resort stay/i);
   assert.doesNotMatch(logisticsHtml, /Includes tax and the reduced resort fee/i);
   assert.doesNotMatch(logisticsHtml, /Includes 12\.5% lodging tax/i);
+  assert.doesNotMatch(logisticsHtml, /Daytona Beach International is by far the closest/i);
+  assert.doesNotMatch(logisticsHtml, /Drive times are estimates/i);
+  assert.doesNotMatch(logisticsHtml, /Both options are oceanfront/i);
+  assert.match(logisticsHtml, /Parking: \$10 per night/i);
+  assert.match(logisticsHtml, /\$10 overnight self-parking, excluded from the total/i);
+  assert.doesNotMatch(logisticsHtml, /Parking: \$10 per night \+ applicable tax/i);
+  assert.doesNotMatch(logisticsHtml, /\$10 overnight self-parking \+ applicable tax/i);
 
   const registryResponse = await worker.fetch(
     new Request("http://localhost/registry", { headers: { accept: "text/html" } }),

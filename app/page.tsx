@@ -254,9 +254,6 @@ export default function Home() {
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption className="photo-sticky-caption">
-                coffee shop stalker
-              </figcaption>
             </figure>
 
             <figure className="cluster-photo boston-kayak">
