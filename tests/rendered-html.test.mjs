@@ -108,6 +108,21 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /Daytona Beach International is by far the closest/i);
   assert.doesNotMatch(logisticsHtml, /Drive times are estimates/i);
   assert.doesNotMatch(logisticsHtml, /Both options are oceanfront/i);
+  assert.match(logisticsHtml, /Nearby Airports/i);
+  assert.match(logisticsHtml, /Nearest major airport/i);
+  assert.match(logisticsHtml, /Lodging Information/i);
+  assert.doesNotMatch(logisticsHtml, /Choose Your Arrival/i);
+  assert.doesNotMatch(logisticsHtml, /Best major-airport fallback/i);
+  assert.doesNotMatch(logisticsHtml, /Hotel Details/i);
+  assert.doesNotMatch(logisticsHtml, /Book the wedding block/i);
+  assert.match(
+    logisticsHtml,
+    /class=["']hotel-booking-link["'][^>]+href=["'][^"']*SAMJAMES27[^"']*["'][^>]*>\s*Booking link/i,
+  );
+  assert.match(
+    logisticsHtml,
+    /class=["']hotel-booking-link["'][^>]+href=["']https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO["'][^>]*>\s*Booking link/i,
+  );
   assert.match(
     logisticsHtml,
     /Discounted parking is available for an additional \$10 per night/i,

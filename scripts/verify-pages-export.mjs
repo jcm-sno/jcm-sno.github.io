@@ -132,6 +132,21 @@ assert.doesNotMatch(logistics, /estimated tax/i);
 assert.doesNotMatch(logistics, /Daytona Beach International is by far the closest/i);
 assert.doesNotMatch(logistics, /Drive times are estimates/i);
 assert.doesNotMatch(logistics, /Both options are oceanfront/i);
+assert.match(logistics, /Nearby Airports/i);
+assert.match(logistics, /Nearest major airport/i);
+assert.match(logistics, /Lodging Information/i);
+assert.doesNotMatch(logistics, /Choose Your Arrival/i);
+assert.doesNotMatch(logistics, /Best major-airport fallback/i);
+assert.doesNotMatch(logistics, /Hotel Details/i);
+assert.doesNotMatch(logistics, /Book the wedding block/i);
+assert.match(
+  logistics,
+  /class=["']hotel-booking-link["'][^>]+href=["'][^"']*SAMJAMES27[^"']*["'][^>]*>\s*Booking link/i,
+);
+assert.match(
+  logistics,
+  /class=["']hotel-booking-link["'][^>]+href=["']https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO["'][^>]*>\s*Booking link/i,
+);
 assert.match(
   logistics,
   /Discounted parking is available for an additional \$10 per night/i,

@@ -21,8 +21,8 @@ const airports = [
     code: "MCO",
     name: "Orlando International Airport",
     time: "About 1 hour 20 minutes–1 hour 45 minutes",
-    note: "Usually the broadest selection of airlines and nonstop routes, making it the best major-airport fallback despite the longer drive.",
-    label: "Best major-airport fallback",
+    note: "Usually the broadest selection of airlines and nonstop routes, making it the most practical major-airport option despite the longer drive.",
+    label: "Nearest major airport",
     href: "https://www.orlandoairports.net/",
   },
   {
@@ -88,7 +88,7 @@ export default function LogisticsPage() {
         <section id="travel" className="logistics-section travel-section" aria-labelledby="travel-title">
           <div className="logistics-section-heading centered-heading">
             <p className="section-number">02 · Getting here</p>
-            <h2 id="travel-title">Choose Your Arrival</h2>
+            <h2 id="travel-title">Nearby Airports</h2>
           </div>
           <div className="airport-grid">
             {airports.map((airport) => (
@@ -113,7 +113,7 @@ export default function LogisticsPage() {
           <div className="logistics-section-heading lodging-heading">
             <div>
               <p className="section-number">03 · Where to stay</p>
-              <h2 id="lodging-title">Hotel Details</h2>
+              <h2 id="lodging-title">Lodging Information</h2>
             </div>
           </div>
 
@@ -131,6 +131,14 @@ export default function LogisticsPage() {
                 <p className="parking-rate">
                   Discounted parking is available for an additional $10 per night
                 </p>
+                <a
+                  className="hotel-booking-link"
+                  href={shoresBookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Booking link <span aria-hidden="true">↗</span>
+                </a>
               </div>
               <div className="hotel-details single-list">
                 <div>
@@ -145,9 +153,6 @@ export default function LogisticsPage() {
                 </div>
               </div>
               <div className="hotel-actions">
-                <a href={shoresBookingUrl} target="_blank" rel="noreferrer">
-                  Book the wedding block <span aria-hidden="true">↗</span>
-                </a>
                 <a href="https://www.shoresresort.com/" target="_blank" rel="noreferrer">
                   Explore the hotel <span aria-hidden="true">↗</span>
                 </a>
@@ -171,6 +176,14 @@ export default function LogisticsPage() {
                   <span>Queen room</span>
                   <strong>$168</strong>
                 </div>
+                <a
+                  className="hotel-booking-link"
+                  href={hyattBookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Booking link <span aria-hidden="true">↗</span>
+                </a>
               </div>
               <div className="hotel-details single-list">
                 <div>
@@ -185,9 +198,6 @@ export default function LogisticsPage() {
                 </div>
               </div>
               <div className="hotel-actions">
-                <a href={hyattBookingUrl} target="_blank" rel="noreferrer">
-                  Book the wedding block <span aria-hidden="true">↗</span>
-                </a>
                 <a
                   href="https://www.hyatt.com/hyatt-place/en-US/dabzd-hyatt-place-daytona-beach-oceanfront"
                   target="_blank"

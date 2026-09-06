@@ -1007,6 +1007,7 @@ summary:focus-visible {
 
 .logistics-jump a:focus-visible,
 .airport-card a:focus-visible,
+.hotel-booking-link:focus-visible,
 .hotel-actions a:focus-visible {
   outline: 2px solid var(--deep-cypress);
   outline-offset: 4px;
@@ -1222,9 +1223,9 @@ summary:focus-visible {
   line-height: 1.7;
 }
 
-.hotel-actions > a {
+.hotel-actions > a,
+.hotel-booking-link {
   width: fit-content;
-  margin-top: auto;
   padding-bottom: 4px;
   border-bottom: 1px solid currentColor;
   text-decoration: none;
@@ -1247,8 +1248,9 @@ summary:focus-visible {
 }
 
 .lodging-heading {
+  margin-bottom: clamp(32px, 4vw, 52px);
   display: grid;
-  grid-template-columns: 1fr minmax(280px, 0.75fr);
+  grid-template-columns: 1fr;
   gap: clamp(40px, 7vw, 100px);
   align-items: end;
 }
@@ -1298,7 +1300,7 @@ summary:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(24px, 4vw, 54px);
-  align-items: stretch;
+  align-items: start;
 }
 
 .hotel-card {
@@ -1335,7 +1337,7 @@ summary:focus-visible {
 }
 
 .hotel-card h3 {
-  margin: 28px 0 14px;
+  margin: 0 0 14px;
   font-size: clamp(35px, 4.2vw, 54px);
   line-height: 0.98;
   letter-spacing: 0.055em;
@@ -1360,6 +1362,12 @@ summary:focus-visible {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.hotel-booking-link {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 20px;
 }
 
 .rate-block strong {
@@ -1440,7 +1448,7 @@ summary:focus-visible {
 }
 
 .hotel-actions {
-  margin-top: auto;
+  margin-top: 0;
   padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
