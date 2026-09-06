@@ -115,6 +115,10 @@ test("renders logistics, wishlist, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /Best major-airport fallback/i);
   assert.doesNotMatch(logisticsHtml, /Hotel Details/i);
   assert.doesNotMatch(logisticsHtml, /Book the wedding block/i);
+  assert.match(logisticsHtml, /<strong>\$156<\/strong><span>- king bed<\/span>/i);
+  assert.match(logisticsHtml, /<strong>\$168<\/strong><span>- two queen beds<\/span>/i);
+  assert.doesNotMatch(logisticsHtml, />King room</i);
+  assert.doesNotMatch(logisticsHtml, />Queen room</i);
   assert.match(
     logisticsHtml,
     /class=["']hotel-booking-link["'][^>]+href=["'][^"']*SAMJAMES27[^"']*["'][^>]*>\s*Booking link/i,

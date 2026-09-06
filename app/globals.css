@@ -1390,7 +1390,7 @@ summary:focus-visible {
   margin: 34px 0;
   padding-block: 26px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 16px;
   border-block: 1px solid var(--rule);
 }
@@ -1401,20 +1401,24 @@ summary:focus-visible {
 }
 
 .split-rates > div {
-  display: grid;
-  gap: 7px;
-}
-
-.split-rates > div + div {
-  padding-left: 16px;
-  border-left: 1px solid var(--rule);
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
 }
 
 .split-rates strong {
   font-family: "Cormorant SC", Georgia, serif;
-  font-size: 52px;
+  font-size: 46px;
   font-weight: 500;
   line-height: 1;
+}
+
+.split-rates .room-rate span {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: none;
 }
 
 .split-rates > p {
@@ -2360,15 +2364,6 @@ summary:focus-visible {
 
   .hotel-card-topline {
     flex-direction: column;
-  }
-
-  .split-rates {
-    grid-template-columns: 1fr;
-  }
-
-  .split-rates > div + div {
-    padding: 16px 0 0;
-    border-left: 0;
   }
 
   .split-rates > p {

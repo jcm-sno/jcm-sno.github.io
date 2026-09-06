@@ -168,13 +168,13 @@ export default function LogisticsPage() {
               </address>
               <div className="split-rates" aria-label="Approximate Hyatt Place nightly totals per room after tax">
                 <span className="split-rates-heading">Approximate nightly total after tax</span>
-                <div>
-                  <span>King room</span>
+                <div className="room-rate">
                   <strong>$156</strong>
+                  <span>- king bed</span>
                 </div>
-                <div>
-                  <span>Queen room</span>
+                <div className="room-rate">
                   <strong>$168</strong>
+                  <span>- two queen beds</span>
                 </div>
                 <a
                   className="hotel-booking-link"

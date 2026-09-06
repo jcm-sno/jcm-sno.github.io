@@ -139,6 +139,10 @@ assert.doesNotMatch(logistics, /Choose Your Arrival/i);
 assert.doesNotMatch(logistics, /Best major-airport fallback/i);
 assert.doesNotMatch(logistics, /Hotel Details/i);
 assert.doesNotMatch(logistics, /Book the wedding block/i);
+assert.match(logistics, /<strong>\$156<\/strong><span>- king bed<\/span>/i);
+assert.match(logistics, /<strong>\$168<\/strong><span>- two queen beds<\/span>/i);
+assert.doesNotMatch(logistics, />King room</i);
+assert.doesNotMatch(logistics, />Queen room</i);
 assert.match(
   logistics,
   /class=["']hotel-booking-link["'][^>]+href=["'][^"']*SAMJAMES27[^"']*["'][^>]*>\s*Booking link/i,
