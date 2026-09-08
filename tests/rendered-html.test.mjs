@@ -1,5 +1,19 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
+
+test("keeps the mobile RSVP tab rectangular", async () => {
+  const css = await readFile(
+    new URL("../app/review-overrides.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(css, /\.rsvp-page \.site-nav::after/);
+  assert.doesNotMatch(
+    css,
+    /\.rsvp-page \.nav-rsvp\[aria-current="page"\]::after/,
+  );
+});
 
 test("renders wedding metadata and the selected default palette", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);

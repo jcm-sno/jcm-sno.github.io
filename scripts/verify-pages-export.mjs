@@ -189,6 +189,11 @@ assert.match(styles, /\.registry-link\{[^}]*font-size:\.875rem/i);
 assert.match(styles, /\.story-card\{[^}]*text-align:left/i);
 assert.doesNotMatch(styles, /\.story-card\{[^}]*text-align:center/i);
 assert.match(styles, /\.no-bookmark:{1,2}after\{[^}]*content:none/i);
+assert.doesNotMatch(
+  styles,
+  /\.rsvp-page\s+\.nav-rsvp\[aria-current=(?:page|["']page["'])\]:{1,2}after\{/i,
+  "Mobile RSVP tab must not render a bookmark tail",
+);
 assert.match(
   scripts,
   /https:\/\/weddingdraft3\.rsvpify\.com\/embed/i,

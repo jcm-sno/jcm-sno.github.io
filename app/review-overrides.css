@@ -112,18 +112,6 @@
     z-index: 1;
     padding-inline: 11px;
   }
-
-  .rsvp-page .nav-rsvp[aria-current="page"]::after {
-    content: "";
-    position: absolute;
-    top: calc(100% - 1px);
-    right: 0;
-    left: 0;
-    height: 24px;
-    clip-path: polygon(0 0, 100% 0, 100% 42%, 0 100%);
-    background: var(--coral-ribbon);
-    pointer-events: none;
-  }
 }
 
 /* RSVP spacing lives here rather than in inline styles so mobile can stay compact. */
@@ -162,10 +150,6 @@
 }
 
 @media (max-width: 767px) {
-  .rsvp-page .nav-rsvp[aria-current="page"]::after {
-    height: 18px;
-  }
-
   .rsvp-page .utility-hero {
     padding: 52px 20px 36px;
   }
