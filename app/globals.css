@@ -1009,7 +1009,7 @@ summary:focus-visible {
 .logistics-jump a:focus-visible,
 .airport-card a:focus-visible,
 .hotel-booking-link:focus-visible,
-.hotel-actions a:focus-visible {
+.hotel-card h3 a:focus-visible {
   outline: 2px solid var(--deep-cypress);
   outline-offset: 4px;
 }
@@ -1224,7 +1224,6 @@ summary:focus-visible {
   line-height: 1.7;
 }
 
-.hotel-actions > a,
 .hotel-booking-link {
   width: fit-content;
   padding-bottom: 4px;
@@ -1344,13 +1343,26 @@ summary:focus-visible {
   letter-spacing: 0.055em;
 }
 
+.hotel-card h3 a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+
+.hotel-card h3 a:hover {
+  color: var(--deep-seagrass);
+  text-decoration-color: currentColor;
+}
+
 .hotel-card address {
   font-size: 13px;
   line-height: 1.7;
 }
 
 .rate-block {
-  margin: 34px 0;
+  margin: 34px 0 0;
   padding-block: 26px;
   display: grid;
   border-block: 1px solid var(--rule);
@@ -1388,7 +1400,7 @@ summary:focus-visible {
 }
 
 .split-rates {
-  margin: 34px 0;
+  margin: 34px 0 0;
   padding-block: 26px;
   display: grid;
   grid-template-columns: 1fr;
@@ -1428,6 +1440,7 @@ summary:focus-visible {
 }
 
 .hotel-details {
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 26px;
@@ -1450,15 +1463,6 @@ summary:focus-visible {
   padding-left: 18px;
   font-size: 13px;
   line-height: 1.75;
-}
-
-.hotel-actions {
-  margin-top: 0;
-  padding-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
-  align-items: center;
 }
 
 .pending-link {
@@ -1611,7 +1615,9 @@ summary:focus-visible {
 }
 
 .registry-connection-minimal {
-  padding: clamp(34px, 5vw, 52px);
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .registry-connection h2,
@@ -1651,6 +1657,18 @@ summary:focus-visible {
 .registry-link:hover {
   color: var(--canvas-white);
   background: var(--deep-cypress);
+}
+
+.registry-connection-minimal .registry-link {
+  margin-top: 0;
+  border-color: var(--coral-ribbon);
+  color: var(--deep-cypress);
+  background: var(--coral-ribbon);
+}
+
+.registry-connection-minimal .registry-link:hover {
+  color: var(--deep-cypress);
+  background: color-mix(in srgb, var(--coral-ribbon) 82%, var(--canvas-white));
 }
 
 .registry-link:focus-visible {
@@ -2369,6 +2387,10 @@ summary:focus-visible {
     padding: 38px 24px;
   }
 
+  .registry-connection-minimal {
+    padding: 0;
+  }
+
   .rsvp-input-row {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -2405,11 +2427,6 @@ summary:focus-visible {
 
   .split-rates > p {
     grid-column: 1;
-  }
-
-  .hotel-actions {
-    align-items: flex-start;
-    flex-direction: column;
   }
 
   .palette-review {

@@ -13,7 +13,6 @@ export default function RegistryPage() {
         <SiteHeader active="registry" />
 
         <section className="utility-hero no-bookmark" aria-labelledby="registry-title">
-          <p className="eyebrow">For our next chapter</p>
           <h1 id="registry-title">Registry</h1>
         </section>
 

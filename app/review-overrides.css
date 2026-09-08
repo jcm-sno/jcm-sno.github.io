@@ -410,6 +410,33 @@
   box-shadow: 0 1px 1px color-mix(in srgb, var(--deep-cypress) 8%, transparent);
 }
 
+/* Translucent fibers and irregular edges make the collage strips read as tape. */
+.cluster-photo::before,
+.field-day-map::before,
+.schedule-card::before {
+  clip-path: polygon(
+    2% 2%, 20% 0, 37% 2%, 55% 0, 73% 2%, 98% 0,
+    100% 17%, 97% 33%, 100% 50%, 97% 67%, 100% 84%,
+    98% 100%, 78% 98%, 61% 100%, 43% 98%, 24% 100%,
+    2% 98%, 0 83%, 3% 66%, 0 49%, 3% 32%, 0 16%
+  );
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 4px,
+      color-mix(in srgb, var(--deep-cypress) 3%, transparent) 4px 5px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--album-paper) 68%, transparent),
+      color-mix(in srgb, var(--canvas-white) 50%, transparent) 48%,
+      color-mix(in srgb, var(--album-paper) 70%, transparent)
+    );
+  box-shadow:
+    0 2px 3px color-mix(in srgb, var(--deep-cypress) 10%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--canvas-white) 45%, transparent);
+}
+
 .field-day-map-frame {
   aspect-ratio: 5 / 4;
   display: block;

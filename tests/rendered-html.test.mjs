@@ -105,6 +105,7 @@ test("renders logistics, registry, and RSVP routes", async () => {
     /https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO/i,
   );
   assert.doesNotMatch(logisticsHtml, /Hotel block update/i);
+  assert.doesNotMatch(logisticsHtml, /The wedding weekend/i);
   assert.doesNotMatch(logisticsHtml, /Booking link pending/i);
   assert.doesNotMatch(logisticsHtml, /Easy oceanfront stay/i);
   assert.doesNotMatch(logisticsHtml, /Booking available/i);
@@ -121,6 +122,23 @@ test("renders logistics, registry, and RSVP routes", async () => {
   assert.doesNotMatch(logisticsHtml, /Best major-airport fallback/i);
   assert.doesNotMatch(logisticsHtml, /Hotel Details/i);
   assert.doesNotMatch(logisticsHtml, /Book the wedding block/i);
+  assert.doesNotMatch(logisticsHtml, /Explore the hotel/i);
+  assert.match(
+    logisticsHtml,
+    /<h3>\s*<a[^>]+href=["']https:\/\/www\.shoresresort\.com\/["'][^>]*>\s*The Shores Resort &amp; Spa\s*<\/a>\s*<\/h3>/i,
+  );
+  assert.match(
+    logisticsHtml,
+    /<h3>\s*<a[^>]+href=["']https:\/\/www\.hyatt\.com\/hyatt-place\/en-US\/dabzd-hyatt-place-daytona-beach-oceanfront["'][^>]*>\s*Hyatt Place Daytona Beach . Oceanfront\s*<\/a>\s*<\/h3>/i,
+  );
+  assert.match(
+    logisticsHtml,
+    /class=["']hotel-card shores-card["'][\s\S]*?class=["']hotel-details single-list["'][\s\S]*?class=["']rate-block["']/i,
+  );
+  assert.match(
+    logisticsHtml,
+    /class=["']hotel-card hyatt-card["'][\s\S]*?class=["']hotel-details single-list["'][\s\S]*?class=["']split-rates["']/i,
+  );
   assert.match(logisticsHtml, /<strong>\$156<\/strong><span>- king bed<\/span>/i);
   assert.match(logisticsHtml, /<strong>\$168<\/strong><span>- two queen beds<\/span>/i);
   assert.doesNotMatch(logisticsHtml, />King room</i);
@@ -166,6 +184,7 @@ test("renders logistics, registry, and RSVP routes", async () => {
   const registryHtml = await registryResponse.text();
   assert.match(registryHtml, /<title>Registry \| James &amp; Samantha<\/title>/i);
   assert.match(registryHtml, /<h1[^>]*>Registry<\/h1>/i);
+  assert.doesNotMatch(registryHtml, /For our next chapter/i);
   assert.match(
     registryHtml,
     /If you would like to send us a gift, our registry is linked below\./i,

@@ -37,9 +37,12 @@ const airports = [
 
 const shoresBookingUrl =
   "https://be.synxis.com/?Hotel=17713&Chain=21123&config=initialConfig&arrive=2027-05-14&depart=2027-05-16&adult=1&child=0&group=SAMJAMES27";
+const shoresHotelUrl = "https://www.shoresresort.com/";
 
 const hyattBookingUrl =
   "https://www.hyatt.com/events/en-US/group-booking/DABZD/G-OAMO";
+const hyattHotelUrl =
+  "https://www.hyatt.com/hyatt-place/en-US/dabzd-hyatt-place-daytona-beach-oceanfront";
 
 export default function LogisticsPage() {
   return (
@@ -48,7 +51,6 @@ export default function LogisticsPage() {
         <SiteHeader active="logistics" />
 
         <section className="logistics-hero no-bookmark" aria-labelledby="logistics-title">
-          <p className="eyebrow">The wedding weekend</p>
           <h1 id="logistics-title">Logistics</h1>
           <FastAnchorNav />
         </section>
@@ -119,12 +121,28 @@ export default function LogisticsPage() {
 
           <div className="hotel-grid">
             <article className="hotel-card shores-card">
-              <h3>The Shores Resort &amp; Spa</h3>
+              <h3>
+                <a href={shoresHotelUrl} target="_blank" rel="noreferrer">
+                  The Shores Resort &amp; Spa
+                </a>
+              </h3>
               <address>
                 2637 South Atlantic Avenue
                 <br />
                 Daytona Beach Shores, FL 32118
               </address>
+              <div className="hotel-details single-list">
+                <div>
+                  <h4>Current resort amenities</h4>
+                  <ul>
+                    <li>Oceanfront pool and direct beach access</li>
+                    <li>Morning beach yoga</li>
+                    <li>Shores s&apos;mores kit</li>
+                    <li>Welcome drink</li>
+                    <li>Complimentary cruiser bikes</li>
+                  </ul>
+                </div>
+              </div>
               <div className="rate-block" aria-label="Approximate Shores nightly total per room after tax and before parking">
                 <span>Approximate nightly total after tax</span>
                 <strong>$224</strong>
@@ -140,32 +158,31 @@ export default function LogisticsPage() {
                   Booking link <span aria-hidden="true">↗</span>
                 </a>
               </div>
-              <div className="hotel-details single-list">
-                <div>
-                  <h4>Current resort amenities</h4>
-                  <ul>
-                    <li>Oceanfront pool and direct beach access</li>
-                    <li>Morning beach yoga</li>
-                    <li>Shores s&apos;mores kit</li>
-                    <li>Welcome drink</li>
-                    <li>Complimentary cruiser bikes</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="hotel-actions">
-                <a href="https://www.shoresresort.com/" target="_blank" rel="noreferrer">
-                  Explore the hotel <span aria-hidden="true">↗</span>
-                </a>
-              </div>
             </article>
 
             <article className="hotel-card hyatt-card">
-              <h3>Hyatt Place Daytona Beach – Oceanfront</h3>
+              <h3>
+                <a href={hyattHotelUrl} target="_blank" rel="noreferrer">
+                  Hyatt Place Daytona Beach – Oceanfront
+                </a>
+              </h3>
               <address>
                 3161 South Atlantic Avenue
                 <br />
                 Daytona Beach Shores, FL 32118
               </address>
+              <div className="hotel-details single-list">
+                <div>
+                  <h4>Current hotel amenities</h4>
+                  <ul>
+                    <li>Complimentary breakfast</li>
+                    <li>Complimentary self-parking</li>
+                    <li>Oceanfront pool</li>
+                    <li>Direct beach access</li>
+                    <li>Free internet access</li>
+                  </ul>
+                </div>
+              </div>
               <div className="split-rates" aria-label="Approximate Hyatt Place nightly totals per room after tax">
                 <span className="split-rates-heading">Approximate nightly total after tax</span>
                 <div className="room-rate">
@@ -183,27 +200,6 @@ export default function LogisticsPage() {
                   rel="noreferrer"
                 >
                   Booking link <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-              <div className="hotel-details single-list">
-                <div>
-                  <h4>Current hotel amenities</h4>
-                  <ul>
-                    <li>Complimentary breakfast</li>
-                    <li>Complimentary self-parking</li>
-                    <li>Oceanfront pool</li>
-                    <li>Direct beach access</li>
-                    <li>Free internet access</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="hotel-actions">
-                <a
-                  href="https://www.hyatt.com/hyatt-place/en-US/dabzd-hyatt-place-daytona-beach-oceanfront"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Explore the hotel <span aria-hidden="true">↗</span>
                 </a>
               </div>
             </article>
