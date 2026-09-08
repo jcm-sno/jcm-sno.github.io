@@ -24,7 +24,7 @@ export default function RegistryPage() {
             </p>
           </section>
 
-          <section className="registry-connection registry-connection-minimal" aria-label="Wedding registry link">
+          <section className="registry-connection registry-connection-minimal" aria-label="Registry link">
             <a
               className="registry-link"
               href="https://www.crateandbarrel.com/gift-registry/samantha-and-james-morrison/r7629037"

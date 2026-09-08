@@ -187,6 +187,7 @@ const styles = (
 assert.match(styles, /\.site-nav nav\{[^}]*font-size:12px/i);
 assert.match(styles, /\.registry-link\{[^}]*font-size:\.875rem/i);
 assert.match(styles, /\.story-card\{[^}]*text-align:left/i);
+assert.doesNotMatch(styles, /\.story-card\{[^}]*text-align:center/i);
 assert.match(styles, /\.no-bookmark:{1,2}after\{[^}]*content:none/i);
 assert.match(
   scripts,

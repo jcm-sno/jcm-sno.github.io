@@ -166,11 +166,11 @@
   }
 }
 
-/* Center the narrative card within each desktop collage and let photos orbit it. */
+/* Center each narrative card within its desktop collage while keeping its text left-aligned. */
 @media (min-width: 1024px) {
   .story-card {
     justify-self: center;
-    text-align: center;
+    text-align: left;
   }
 
   .story-card > p:not(.clip-kicker) {
