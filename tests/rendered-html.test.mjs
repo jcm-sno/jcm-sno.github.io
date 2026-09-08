@@ -84,6 +84,9 @@ test("renders logistics, registry, and RSVP routes", async () => {
   assert.doesNotMatch(rsvpHtml, /Find your invitation below\./i);
   assert.doesNotMatch(rsvpHtml, /respond for your household/i);
   assert.match(rsvpHtml, /class=["']rsvpify-embed-host["']/i);
+  assert.match(rsvpHtml, /class=["']rsvp-form-section["']/i);
+  assert.match(rsvpHtml, /class=["']rsvp-form-shell["']/i);
+  assert.match(rsvpHtml, /class=["']rsvp-fallback["']/i);
   assert.match(rsvpHtml, /href=["']https:\/\/weddingdraft3\.rsvpify\.com["']/i);
   assert.doesNotMatch(rsvpHtml, /Online RSVPs will open with invitations\./i);
   assert.doesNotMatch(rsvpHtml, /What to expect/i);

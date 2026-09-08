@@ -18,48 +18,17 @@ export default function RsvpPage() {
           <h1 id="rsvp-title">RSVP</h1>
         </section>
 
-        <section
-          aria-label="RSVP form"
-          style={{
-            padding: "clamp(42px, 7vw, 92px) clamp(18px, 5vw, 72px)",
-            background: "var(--canvas-white)",
-          }}
-        >
-          <div
-            style={{
-              width: "min(920px, 100%)",
-              marginInline: "auto",
-            }}
-          >
+        <section className="rsvp-form-section" aria-label="RSVP form">
+          <div className="rsvp-form-shell">
             <RsvpifyEmbed />
 
-            <div
-              style={{
-                marginTop: "32px",
-                paddingTop: "22px",
-                borderTop: "1px solid var(--rule)",
-                textAlign: "center",
-                fontSize: "13px",
-                lineHeight: 1.7,
-              }}
-            >
-              <p style={{ margin: "0 0 10px" }}>
-                Having trouble with the embedded form?
-              </p>
+            <div className="rsvp-fallback">
+              <p>Having trouble with the embedded form?</p>
               <a
+                className="rsvp-fallback-link"
                 href="https://weddingdraft3.rsvpify.com"
                 target="_blank"
                 rel="noreferrer"
-                style={{
-                  display: "inline-block",
-                  paddingBottom: "3px",
-                  borderBottom: "1px solid currentColor",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textDecoration: "none",
-                  textTransform: "uppercase",
-                  fontSize: "10px",
-                }}
               >
                 Open RSVP in a new window
               </a>

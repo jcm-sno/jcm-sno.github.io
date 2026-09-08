@@ -17,9 +17,8 @@
   padding-block: 0;
 }
 
-/* Desktop navigation: wordmark at left, one-line tabs at right, full-height RSVP tab. */
-.utility-page,
-.logistics-page {
+/* Keep the desktop RSVP tab width stable; only its own page gets the long ribbon. */
+.album-page {
   --nav-edge: clamp(24px, 4.5vw, 72px);
   --rsvp-band-width: clamp(84px, 7vw, 104px);
 }
@@ -63,16 +62,14 @@
     padding-inline: clamp(16px, 1.8vw, 24px);
   }
 
-  .utility-page .nav-rsvp,
-  .logistics-page .nav-rsvp {
+  .album-page .nav-rsvp {
     flex: 0 0 var(--rsvp-band-width);
     width: var(--rsvp-band-width);
     padding-inline: 0;
     justify-content: center;
   }
 
-  .utility-page .site-nav::after,
-  .logistics-page .site-nav::after {
+  .rsvp-page .site-nav::after {
     content: "";
     position: absolute;
     top: calc(100% - 1px);
@@ -90,8 +87,7 @@
     content: none;
   }
 
-  .utility-hero,
-  .logistics-hero {
+  .rsvp-page .utility-hero {
     padding-right: max(
       clamp(28px, 8vw, 118px),
       calc(var(--nav-edge) + var(--rsvp-band-width) + 28px)
@@ -103,6 +99,84 @@
   .utility-hero::after,
   .logistics-hero::after {
     content: none;
+  }
+
+  .rsvp-page .site-nav {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .rsvp-page .nav-rsvp[aria-current="page"] {
+    position: relative;
+    z-index: 1;
+    padding-inline: 11px;
+  }
+
+  .rsvp-page .nav-rsvp[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 0;
+    left: 0;
+    height: 24px;
+    clip-path: polygon(0 0, 100% 0, 100% 42%, 0 100%);
+    background: var(--coral-ribbon);
+    pointer-events: none;
+  }
+}
+
+/* RSVP spacing lives here rather than in inline styles so mobile can stay compact. */
+.rsvp-form-section {
+  padding: clamp(42px, 7vw, 92px) clamp(18px, 5vw, 72px);
+  background: var(--canvas-white);
+}
+
+.rsvp-form-shell {
+  width: min(920px, 100%);
+  margin-inline: auto;
+}
+
+.rsvp-fallback {
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.rsvp-fallback p {
+  margin: 0 0 10px;
+}
+
+.rsvp-fallback-link {
+  display: inline-block;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .rsvp-page .nav-rsvp[aria-current="page"]::after {
+    height: 18px;
+  }
+
+  .rsvp-page .utility-hero {
+    padding: 52px 20px 36px;
+  }
+
+  .rsvp-form-section {
+    padding: 20px 12px 28px;
+  }
+
+  .rsvp-fallback {
+    margin-top: 18px;
+    padding-top: 16px;
   }
 }
 
