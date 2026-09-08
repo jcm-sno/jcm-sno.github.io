@@ -96,6 +96,7 @@ test("renders logistics, registry, and RSVP routes", async () => {
   );
   assert.equal(logisticsResponse.status, 200);
   const logisticsHtml = await logisticsResponse.text();
+  assert.match(logisticsHtml, /class=["'][^"']*logistics-hero[^"']*no-bookmark[^"']*["']/i);
   assert.match(
     logisticsHtml,
     /https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO/i,
@@ -162,9 +163,11 @@ test("renders logistics, registry, and RSVP routes", async () => {
   const registryHtml = await registryResponse.text();
   assert.match(registryHtml, /<title>Registry \| James &amp; Samantha<\/title>/i);
   assert.match(registryHtml, /<h1[^>]*>Registry<\/h1>/i);
-  assert.match(registryHtml, /We have no expectation of receiving a gift/i);
-  assert.match(registryHtml, /free to shop wherever you like/i);
-  assert.match(registryHtml, /Crate &amp; Barrel/i);
+  assert.match(
+    registryHtml,
+    /If you would like to send us a gift, our registry is linked below\./i,
+  );
+  assert.match(registryHtml, /class=["'][^"']*utility-hero[^"']*no-bookmark[^"']*["']/i);
   assert.match(
     registryHtml,
     /href=["']https:\/\/www\.crateandbarrel\.com\/gift-registry\/samantha-and-james-morrison\/r7629037["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/i,
@@ -176,6 +179,12 @@ test("renders logistics, registry, and RSVP routes", async () => {
   );
   assert.match(registryHtml, />View registry<\/a>/i);
   assert.doesNotMatch(registryHtml, /<iframe[^>]+crateandbarrel/i);
+  assert.doesNotMatch(registryHtml, /We have no expectation of receiving a gift/i);
+  assert.doesNotMatch(registryHtml, /Purchases made through the registry/i);
+  assert.doesNotMatch(registryHtml, /free to shop wherever you like/i);
+  assert.doesNotMatch(registryHtml, />Wedding registry</i);
+  assert.doesNotMatch(registryHtml, />Crate &amp; Barrel</i);
+  assert.doesNotMatch(registryHtml, /Browse our registry/i);
   assert.doesNotMatch(registryHtml, /Opens with invitations/i);
   assert.doesNotMatch(registryHtml, />Wishlist</i);
   assert.doesNotMatch(registryHtml, /Choose something you would love to give/i);

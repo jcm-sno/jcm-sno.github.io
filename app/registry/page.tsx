@@ -12,7 +12,7 @@ export default function RegistryPage() {
       <article className="album-page utility-page registry-page">
         <SiteHeader active="registry" />
 
-        <section className="utility-hero" aria-labelledby="registry-title">
+        <section className="utility-hero no-bookmark" aria-labelledby="registry-title">
           <p className="eyebrow">For our next chapter</p>
           <h1 id="registry-title">Registry</h1>
         </section>
@@ -20,27 +20,11 @@ export default function RegistryPage() {
         <div className="registry-workspace">
           <section className="registry-intro" aria-label="About our registry">
             <p>
-              We have no expectation of receiving a gift from you, but if you
-              would like to send one, our Crate &amp; Barrel registry is linked
-              below.
-            </p>
-            <p>
-              Purchases made through the registry are reflected there, helping
-              everyone see what is still needed. And if there’s something you
-              own and love—or something that simply makes you think of us—please
-              feel free to ignore the registry entirely.
-            </p>
-            <p>
-              You’re also free to shop wherever you like and choose whatever
-              brand you think is best. If you send us something, please include
-              a note with your name so we can make sure to thank you.
+              If you would like to send us a gift, our registry is linked below.
             </p>
           </section>
 
-          <section className="registry-connection" aria-labelledby="registry-link-title">
-            <p className="section-number">Wedding registry</p>
-            <h2 id="registry-link-title">Crate &amp; Barrel</h2>
-            <p>Browse our registry and see which items are still available.</p>
+          <section className="registry-connection registry-connection-minimal" aria-label="Wedding registry link">
             <a
               className="registry-link"
               href="https://www.crateandbarrel.com/gift-registry/samantha-and-james-morrison/r7629037"

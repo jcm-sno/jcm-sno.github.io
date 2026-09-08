@@ -186,6 +186,8 @@ const styles = (
 ).join("\n");
 assert.match(styles, /\.site-nav nav\{[^}]*font-size:12px/i);
 assert.match(styles, /\.registry-link\{[^}]*font-size:\.875rem/i);
+assert.match(styles, /\.story-card\{[^}]*text-align:left/i);
+assert.match(styles, /\.no-bookmark:{1,2}after\{[^}]*content:none/i);
 assert.match(
   scripts,
   /https:\/\/weddingdraft3\.rsvpify\.com\/embed/i,
@@ -203,11 +205,14 @@ assert.match(
 assert.doesNotMatch(rsvp, /Online RSVPs will open with invitations\./i);
 assert.doesNotMatch(rsvp, /What to expect/i);
 assert.doesNotMatch(rsvp, /http-equiv=["']refresh/i);
-assert.match(registry, /We have no expectation of receiving a gift/i);
-assert.match(registry, /free to shop wherever you like/i);
+assert.match(
+  registry,
+  /If you would like to send us a gift, our registry is linked below\./i,
+);
 assert.match(registry, /<title>Registry \| James &amp; Samantha<\/title>/i);
 assert.match(registry, /<h1[^>]*>Registry<\/h1>/i);
-assert.match(registry, /Crate &amp; Barrel/i);
+assert.match(registry, /class=["'][^"']*utility-hero[^"']*no-bookmark[^"']*["']/i);
+assert.match(logistics, /class=["'][^"']*logistics-hero[^"']*no-bookmark[^"']*["']/i);
 assert.match(
   registry,
   /href=["']https:\/\/www\.crateandbarrel\.com\/gift-registry\/samantha-and-james-morrison\/r7629037["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/i,
@@ -219,6 +224,12 @@ assert.match(
 );
 assert.match(registry, />View registry<\/a>/i);
 assert.doesNotMatch(registry, /<iframe[^>]+crateandbarrel/i);
+assert.doesNotMatch(registry, /We have no expectation of receiving a gift/i);
+assert.doesNotMatch(registry, /Purchases made through the registry/i);
+assert.doesNotMatch(registry, /free to shop wherever you like/i);
+assert.doesNotMatch(registry, />Wedding registry</i);
+assert.doesNotMatch(registry, />Crate &amp; Barrel</i);
+assert.doesNotMatch(registry, /Browse our registry/i);
 assert.doesNotMatch(registry, /Opens with invitations/i);
 assert.doesNotMatch(registry, />Wishlist</i);
 assert.doesNotMatch(registry, /Choose something you would love to give/i);

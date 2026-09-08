@@ -47,7 +47,7 @@ export default function LogisticsPage() {
       <article className="album-page logistics-page">
         <SiteHeader active="logistics" />
 
-        <section className="logistics-hero" aria-labelledby="logistics-title">
+        <section className="logistics-hero no-bookmark" aria-labelledby="logistics-title">
           <p className="eyebrow">The wedding weekend</p>
           <h1 id="logistics-title">Logistics</h1>
           <FastAnchorNav />
