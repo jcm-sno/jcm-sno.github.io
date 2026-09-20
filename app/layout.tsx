@@ -7,12 +7,12 @@ import "./review-overrides.css";
 import { defaultPaletteId } from "./palettes";
 
 const siteTitle = "James & Samantha";
-const siteDescription =
-  "Wedding details and stories for James Morrison and Samantha Oates — May 15, 2027 in Port Orange, Florida.";
+const siteDescription = "May 15, 2027 · Port Orange, Florida";
 const siteOrigin =
   process.env.NEXT_PUBLIC_SITE_ORIGIN ??
   "https://james-samantha-wedding.jamescmorrison00.chatgpt.site";
-const socialImage = new URL("/og.png", siteOrigin).toString();
+const socialImage = new URL("/wedding-banner-share.jpg", siteOrigin).toString();
+const socialImageAlt = "James and Samantha embracing as they look out at the ocean";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -30,9 +30,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: socialImage,
-        width: 1200,
-        height: 630,
-        alt: "James and Samantha — May 15, 2027 in Port Orange, Florida",
+        type: "image/jpeg",
+        width: 1536,
+        height: 1024,
+        alt: socialImageAlt,
       },
     ],
   },
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [socialImage],
+    images: [{ url: socialImage, alt: socialImageAlt }],
   },
 };
 
