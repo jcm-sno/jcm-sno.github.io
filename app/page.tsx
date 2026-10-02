@@ -335,15 +335,41 @@ export default function Home() {
                 <h3 id="engagement-heading">The Big Weekend</h3>
               </div>
               <p>
-                During one of the visits that made long distance feel briefly
-                ordinary, Samantha flew to Santa Barbara to spend a few days
-                with James. She expected their familiar rhythm of making the
-                most of limited time together and never suspected a carefully
-                disguised plan. A casual suggestion to walk through a park led
-                to a seemingly serendipitous turn down a few wooden steps to
-                the beach. There, James asked Samantha to marry him. At dinner
-                afterward, the surprises continued: many of their siblings
-                were waiting to surprise Samantha and celebrate with them.
+                Once I’d settled on a ring, I could finally focus on the perfect
+                way to propose to Samantha. It had to be outside—and somewhere
+                prettier than my sand-filled front yard in the Mojave Desert.
+                But my intensive flight test program meant I couldn’t take time
+                off, so she would have to fly out to visit me. If only I could
+                find a way to bring some family along with her…
+              </p>
+              <p>
+                After months of planning and a generous offer of lodging from
+                family friends, I invited her to Santa Barbara just late enough
+                to make it seem like an ordinary visit. On our first day
+                together, we arrived at an inviting wooden archway in a park at
+                3 p.m (right on time!) She tugged my hand and said, “Look! Can
+                we go over there?” (Wow, she’s doing all the heavy lifting for
+                me).
+              </p>
+              <p>
+                Beyond the archway, we tromped down wooden steps along the cliff
+                to a nearly empty beach. The only other person there was a
+                photographer, who was just inconspicuous enough to not taking
+                pictures of the ocean.
+              </p>
+              <p>
+                Shaking, I led her through the water at high tide and got down
+                on one knee. As I attempted an eloquent declaration of
+                love—with plenty of choking up and stumbling over my words—she
+                kept saying, “What? What? I’m so confused!” I kept going until
+                I heard a “yes,” followed by another “I’m so confused.” “You
+                mean you’re surprised, right?” I asked.
+              </p>
+              <p>
+                After clarifying the semantics on a park bench and making a
+                couple of important phone calls, we headed to dinner. There,
+                Samantha was “confused” once more: the people hiding their faces
+                behind open menus turned out to be several of our siblings.
               </p>
             </article>
 
