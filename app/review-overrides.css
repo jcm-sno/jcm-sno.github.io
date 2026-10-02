@@ -178,6 +178,10 @@
   margin-top: 14px;
 }
 
+.engagement-story > p:not(.clip-kicker) + p:not(.clip-kicker) {
+  margin-top: 14px;
+}
+
 @media (min-width: 768px) {
   .hero-banner {
     min-height: 0;
