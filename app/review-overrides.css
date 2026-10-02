@@ -231,7 +231,7 @@
 /* Center each narrative card within its desktop collage while keeping its text left-aligned. */
 @media (min-width: 1024px) {
   .story-card {
-    width: min(520px, 100%);
+    width: 520px;
     justify-self: center;
     text-align: left;
   }
