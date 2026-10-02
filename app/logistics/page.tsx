@@ -12,7 +12,7 @@ const airports = [
   {
     code: "DAB",
     name: "Daytona Beach International Airport",
-    time: "About 15–25 minutes",
+    time: "About 15–25min",
     note: "The closest and simplest option for our Daytona Beach Shores hotels.",
     label: "Closest airport",
     href: "https://www.flydaytonafirst.com/",
@@ -28,7 +28,7 @@ const airports = [
   {
     code: "SFB",
     name: "Orlando Sanford International Airport",
-    time: "About 50–65 minutes",
+    time: "About 50–65min",
     note: "Best only when a nonstop itinerary happens to match your city and dates; compare the full fare and schedule before choosing it.",
     label: "Limited-route alternative",
     href: "https://flysfb.com/",
