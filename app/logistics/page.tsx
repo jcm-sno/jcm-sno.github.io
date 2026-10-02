@@ -20,7 +20,7 @@ const airports = [
   {
     code: "MCO",
     name: "Orlando International Airport",
-    time: "About 1 hour 20 minutes–1 hour 45 minutes",
+    time: "About 1 hr 20–45 min",
     note: "Usually the broadest selection of airlines and nonstop routes, making it the most practical major-airport option despite the longer drive.",
     label: "Nearest major airport",
     href: "https://www.orlandoairports.net/",
