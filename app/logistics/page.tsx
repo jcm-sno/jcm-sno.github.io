@@ -55,6 +55,43 @@ export default function LogisticsPage() {
           <FastAnchorNav />
         </section>
 
+        <div className="logistics-tab-workspace">
+          <input
+            className="sr-only logistics-tab-input"
+            type="radio"
+            name="logistics-desktop-tab"
+            id="logistics-tab-schedule"
+            defaultChecked
+          />
+          <input
+            className="sr-only logistics-tab-input"
+            type="radio"
+            name="logistics-desktop-tab"
+            id="logistics-tab-travel"
+          />
+          <input
+            className="sr-only logistics-tab-input"
+            type="radio"
+            name="logistics-desktop-tab"
+            id="logistics-tab-lodging"
+          />
+
+          <aside className="logistics-tab-rail" aria-label="Logistics sections">
+            <label htmlFor="logistics-tab-schedule">
+              <span>01</span>
+              <strong>Schedule</strong>
+            </label>
+            <label htmlFor="logistics-tab-travel">
+              <span>02</span>
+              <strong>Travel</strong>
+            </label>
+            <label htmlFor="logistics-tab-lodging">
+              <span>03</span>
+              <strong>Lodging</strong>
+            </label>
+          </aside>
+
+          <div className="logistics-tab-panels">
         <section id="schedule" className="logistics-section schedule-section" aria-labelledby="schedule-title">
           <div className="logistics-section-heading">
             <p className="section-number">01 · Schedule</p>
@@ -206,6 +243,8 @@ export default function LogisticsPage() {
           </div>
 
         </section>
+          </div>
+        </div>
       </article>
     </main>
   );
