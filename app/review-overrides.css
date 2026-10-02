@@ -505,6 +505,161 @@
   }
 }
 
+/* Desktop Logistics becomes a three-tab workspace; mobile keeps the stacked flow. */
+.logistics-tab-rail {
+  display: none;
+}
+
+.logistics-tab-panels {
+  display: contents;
+}
+
+@media (min-width: 1024px) {
+  .logistics-page {
+    --logistics-schedule-bg: color-mix(
+      in srgb,
+      var(--coral-ribbon) 38%,
+      var(--canvas-white)
+    );
+    --logistics-travel-bg: color-mix(
+      in srgb,
+      var(--hazy-atlantic) 78%,
+      var(--canvas-white)
+    );
+    --logistics-lodging-bg: color-mix(
+      in srgb,
+      var(--seagrass) 42%,
+      var(--canvas-white)
+    );
+  }
+
+  .logistics-hero .logistics-jump {
+    display: none;
+  }
+
+  .logistics-tab-workspace {
+    display: grid;
+    grid-template-columns: clamp(150px, 14vw, 190px) minmax(0, 1fr);
+    align-items: stretch;
+    min-height: 760px;
+  }
+
+  .logistics-tab-rail {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    background: var(--deep-cypress);
+  }
+
+  .logistics-tab-rail label {
+    min-height: 176px;
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+    color: var(--deep-cypress);
+    cursor: pointer;
+    border: 0;
+  }
+
+  .logistics-tab-rail label[for="logistics-tab-schedule"] {
+    background: var(--logistics-schedule-bg);
+  }
+
+  .logistics-tab-rail label[for="logistics-tab-travel"] {
+    background: var(--logistics-travel-bg);
+  }
+
+  .logistics-tab-rail label[for="logistics-tab-lodging"] {
+    background: var(--logistics-lodging-bg);
+  }
+
+  .logistics-tab-rail label span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  .logistics-tab-rail label strong {
+    font-family: "Cormorant SC", Georgia, serif;
+    font-size: clamp(25px, 2.3vw, 34px);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: 0.06em;
+  }
+
+  .logistics-tab-panels {
+    display: block;
+    min-width: 0;
+  }
+
+  .logistics-tab-panels .logistics-section {
+    display: none;
+    min-height: 760px;
+    background: transparent;
+  }
+
+  #logistics-tab-schedule:checked ~ .logistics-tab-panels {
+    background: var(--logistics-schedule-bg);
+  }
+
+  #logistics-tab-travel:checked ~ .logistics-tab-panels {
+    background: var(--logistics-travel-bg);
+  }
+
+  #logistics-tab-lodging:checked ~ .logistics-tab-panels {
+    background: var(--logistics-lodging-bg);
+  }
+
+  #logistics-tab-schedule:checked ~ .logistics-tab-panels .schedule-section {
+    display: grid;
+  }
+
+  #logistics-tab-travel:checked ~ .logistics-tab-panels .travel-section,
+  #logistics-tab-lodging:checked ~ .logistics-tab-panels .lodging-section {
+    display: block;
+  }
+
+  #logistics-tab-schedule:checked
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-schedule"],
+  #logistics-tab-travel:checked
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-travel"],
+  #logistics-tab-lodging:checked
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-lodging"] {
+    box-shadow:
+      inset 6px 0 0 var(--deep-cypress),
+      inset 0 0 0 1px color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+  }
+
+  #logistics-tab-schedule:focus-visible
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-schedule"],
+  #logistics-tab-travel:focus-visible
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-travel"],
+  #logistics-tab-lodging:focus-visible
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-lodging"] {
+    outline: 3px solid var(--canvas-white);
+    outline-offset: -6px;
+  }
+
+  .logistics-tab-panels .logistics-section-heading {
+    text-align: left;
+  }
+
+  .logistics-tab-panels .centered-heading {
+    max-width: none;
+    margin-inline: 0;
+  }
+}
+
 @media print {
   .album-page,
   .scrapbook-section,
