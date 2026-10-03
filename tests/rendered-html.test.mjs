@@ -113,7 +113,8 @@ test("renders logistics, registry, and RSVP routes", async () => {
   );
   assert.equal(logisticsResponse.status, 200);
   const logisticsHtml = await logisticsResponse.text();
-  assert.match(logisticsHtml, /class=["'][^"']*logistics-hero[^"']*no-bookmark[^"']*["']/i);
+  assert.match(logisticsHtml, /<h1[^>]+class=["']sr-only["'][^>]*>Logistics<\/h1>/i);
+  assert.doesNotMatch(logisticsHtml, /<section[^>]+class=["'][^"']*logistics-hero/i);
   assert.match(
     logisticsHtml,
     /https:\/\/www\.hyatt\.com\/events\/en-US\/group-booking\/DABZD\/G-OAMO/i,
@@ -197,13 +198,13 @@ test("renders logistics, registry, and RSVP routes", async () => {
   assert.equal(registryResponse.status, 200);
   const registryHtml = await registryResponse.text();
   assert.match(registryHtml, /<title>Registry \| James &amp; Samantha<\/title>/i);
-  assert.match(registryHtml, /<h1[^>]*>Registry<\/h1>/i);
+  assert.match(registryHtml, /<h1[^>]+class=["']sr-only["'][^>]*>Registry<\/h1>/i);
   assert.doesNotMatch(registryHtml, /For our next chapter/i);
   assert.match(
     registryHtml,
     /If you would like to send us a gift, our registry is linked below\./i,
   );
-  assert.match(registryHtml, /class=["'][^"']*utility-hero[^"']*no-bookmark[^"']*["']/i);
+  assert.doesNotMatch(registryHtml, /<section[^>]+class=["'][^"']*utility-hero/i);
   assert.match(
     registryHtml,
     /href=["']https:\/\/www\.crateandbarrel\.com\/gift-registry\/samantha-and-james-morrison\/r7629037["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/i,

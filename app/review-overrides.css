@@ -513,7 +513,31 @@
   }
 }
 
-/* Desktop Logistics becomes a three-tab workspace; mobile keeps the stacked flow. */
+/* A filled marker makes the selected page clear without changing link widths. */
+.site-nav nav a {
+  font-weight: 700;
+}
+
+.site-nav nav a:not(.nav-rsvp) {
+  padding-inline: 10px;
+}
+
+.site-nav nav a[aria-current="page"] {
+  border-bottom-color: transparent;
+  box-shadow: inset 0 -4px 0 var(--deep-cypress);
+}
+
+.site-nav nav a[aria-current="page"]:not(.nav-rsvp) {
+  background: color-mix(in srgb, var(--coral-ribbon) 28%, transparent);
+}
+
+/* Desktop Logistics uses overlapping paper tabs; mobile keeps the stacked flow. */
+.logistics-page > .logistics-jump {
+  margin: 0;
+  padding: 24px;
+}
+
+.logistics-tab-input,
 .logistics-tab-rail {
   display: none;
 }
@@ -541,13 +565,17 @@
     );
   }
 
-  .logistics-hero .logistics-jump {
+  .logistics-page > .logistics-jump {
     display: none;
+  }
+
+  .logistics-tab-input {
+    display: block;
   }
 
   .logistics-tab-workspace {
     display: grid;
-    grid-template-columns: clamp(150px, 14vw, 190px) minmax(0, 1fr);
+    grid-template-columns: max-content minmax(0, 1fr);
     align-items: stretch;
     min-height: 760px;
   }
@@ -557,20 +585,35 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    align-self: stretch;
-    background: var(--deep-cypress);
+    align-items: flex-end;
+    align-self: start;
+    padding: 24px 0 24px 12px;
+    background: transparent;
   }
 
   .logistics-tab-rail label {
-    min-height: 176px;
-    padding: 28px 22px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 8px;
+    position: relative;
+    z-index: 1;
+    width: max-content;
+    min-height: 60px;
+    margin-right: -12px;
+    padding: 14px 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    white-space: nowrap;
     color: var(--deep-cypress);
     cursor: pointer;
-    border: 0;
+    border: 1px solid color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+    border-radius: 14px;
+    box-shadow: -3px 3px 8px color-mix(in srgb, var(--deep-cypress) 10%, transparent);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .logistics-tab-rail label + label {
+    margin-top: -8px;
   }
 
   .logistics-tab-rail label[for="logistics-tab-schedule"] {
@@ -585,23 +628,22 @@
     background: var(--logistics-lodging-bg);
   }
 
-  .logistics-tab-rail label span {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-  }
-
   .logistics-tab-rail label strong {
     font-family: "Cormorant SC", Georgia, serif;
-    font-size: clamp(25px, 2.3vw, 34px);
+    font-size: clamp(1.25rem, 1.8vw, 1.625rem);
     font-weight: 500;
-    line-height: 0.95;
-    letter-spacing: 0.06em;
+    line-height: 1.15;
+    letter-spacing: 0.035em;
   }
 
   .logistics-tab-panels {
+    position: relative;
+    z-index: 1;
     display: block;
     min-width: 0;
+    border: 1px solid color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--deep-cypress) 10%, transparent);
   }
 
   .logistics-tab-panels .logistics-section {
@@ -640,9 +682,12 @@
   #logistics-tab-lodging:checked
     ~ .logistics-tab-rail
     label[for="logistics-tab-lodging"] {
+    z-index: 3;
+    transform: translateX(4px);
+    border-color: color-mix(in srgb, var(--deep-cypress) 28%, transparent);
     box-shadow:
-      inset 6px 0 0 var(--deep-cypress),
-      inset 0 0 0 1px color-mix(in srgb, var(--deep-cypress) 18%, transparent);
+      0 7px 16px color-mix(in srgb, var(--deep-cypress) 20%, transparent),
+      0 1px 3px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
   }
 
   #logistics-tab-schedule:focus-visible
@@ -654,8 +699,8 @@
   #logistics-tab-lodging:focus-visible
     ~ .logistics-tab-rail
     label[for="logistics-tab-lodging"] {
-    outline: 3px solid var(--canvas-white);
-    outline-offset: -6px;
+    outline: 3px solid var(--deep-cypress);
+    outline-offset: 3px;
   }
 
   .logistics-tab-panels .logistics-section-heading {
@@ -665,6 +710,12 @@
   .logistics-tab-panels .centered-heading {
     max-width: none;
     margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .logistics-tab-panels .schedule-section {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

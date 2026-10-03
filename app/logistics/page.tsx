@@ -50,10 +50,8 @@ export default function LogisticsPage() {
       <article className="album-page logistics-page">
         <SiteHeader active="logistics" />
 
-        <section className="logistics-hero no-bookmark" aria-labelledby="logistics-title">
-          <h1 id="logistics-title">Logistics</h1>
-          <FastAnchorNav />
-        </section>
+        <h1 id="logistics-title" className="sr-only">Logistics</h1>
+        <FastAnchorNav />
 
         <div className="logistics-tab-workspace">
           <input
@@ -78,15 +76,12 @@ export default function LogisticsPage() {
 
           <aside className="logistics-tab-rail" aria-label="Logistics sections">
             <label htmlFor="logistics-tab-schedule">
-              <span>01</span>
               <strong>Schedule</strong>
             </label>
             <label htmlFor="logistics-tab-travel">
-              <span>02</span>
               <strong>Travel</strong>
             </label>
             <label htmlFor="logistics-tab-lodging">
-              <span>03</span>
               <strong>Lodging</strong>
             </label>
           </aside>
@@ -94,7 +89,7 @@ export default function LogisticsPage() {
           <div className="logistics-tab-panels">
         <section id="schedule" className="logistics-section schedule-section" aria-labelledby="schedule-title">
           <div className="logistics-section-heading">
-            <p className="section-number">01 · Schedule</p>
+            <p className="section-number">Schedule</p>
             <h2 id="schedule-title">Save the Weekend</h2>
           </div>
           <article className="schedule-card">
@@ -126,7 +121,7 @@ export default function LogisticsPage() {
 
         <section id="travel" className="logistics-section travel-section" aria-labelledby="travel-title">
           <div className="logistics-section-heading centered-heading">
-            <p className="section-number">02 · Getting here</p>
+            <p className="section-number">Getting here</p>
             <h2 id="travel-title">Nearby Airports</h2>
           </div>
           <div className="airport-grid">
@@ -151,7 +146,7 @@ export default function LogisticsPage() {
         <section id="lodging" className="logistics-section lodging-section" aria-labelledby="lodging-title">
           <div className="logistics-section-heading lodging-heading">
             <div>
-              <p className="section-number">03 · Where to stay</p>
+              <p className="section-number">Where to stay</p>
               <h2 id="lodging-title">Lodging Information</h2>
             </div>
           </div>

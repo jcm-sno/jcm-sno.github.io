@@ -216,9 +216,10 @@ assert.match(
   /If you would like to send us a gift, our registry is linked below\./i,
 );
 assert.match(registry, /<title>Registry \| James &amp; Samantha<\/title>/i);
-assert.match(registry, /<h1[^>]*>Registry<\/h1>/i);
-assert.match(registry, /class=["'][^"']*utility-hero[^"']*no-bookmark[^"']*["']/i);
-assert.match(logistics, /class=["'][^"']*logistics-hero[^"']*no-bookmark[^"']*["']/i);
+assert.match(registry, /<h1[^>]+class=["']sr-only["'][^>]*>Registry<\/h1>/i);
+assert.match(logistics, /<h1[^>]+class=["']sr-only["'][^>]*>Logistics<\/h1>/i);
+assert.doesNotMatch(registry, /<section[^>]+class=["'][^"']*utility-hero/i);
+assert.doesNotMatch(logistics, /<section[^>]+class=["'][^"']*logistics-hero/i);
 assert.match(
   registry,
   /href=["']https:\/\/www\.crateandbarrel\.com\/gift-registry\/samantha-and-james-morrison\/r7629037["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/i,

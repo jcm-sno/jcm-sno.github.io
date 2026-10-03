@@ -12,9 +12,7 @@ export default function RegistryPage() {
       <article className="album-page utility-page registry-page">
         <SiteHeader active="registry" />
 
-        <section className="utility-hero no-bookmark" aria-labelledby="registry-title">
-          <h1 id="registry-title">Registry</h1>
-        </section>
+        <h1 id="registry-title" className="sr-only">Registry</h1>
 
         <div className="registry-workspace">
           <section className="registry-intro" aria-label="About our registry">
