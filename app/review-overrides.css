@@ -513,9 +513,22 @@
   }
 }
 
-/* Recess the selected page into the existing paper without changing link widths. */
+/* Open the selected tab into the page below, with an inset top and open bottom. */
+.site-nav {
+  position: relative;
+  z-index: 2;
+}
+
 .site-nav nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid transparent;
+  color: var(--muted-ink);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .site-nav nav a:not(.nav-rsvp) {
@@ -523,15 +536,44 @@
 }
 
 .site-nav nav a[aria-current="page"] {
+  z-index: 1;
+  margin-bottom: -2px;
+  border-color: color-mix(in srgb, var(--deep-cypress) 32%, transparent);
   border-bottom-color: transparent;
+  color: var(--deep-cypress);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--deep-cypress) 16%, transparent),
+    transparent 14px
+  );
   box-shadow:
-    inset 0 2px 6px color-mix(in srgb, var(--deep-cypress) 16%, transparent),
-    inset 0 -1px 0 color-mix(in srgb, var(--canvas-white) 80%, transparent);
+    inset 1px 0 2px color-mix(in srgb, var(--deep-cypress) 12%, transparent),
+    inset -1px 0 2px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
 }
 
 .site-nav nav a[aria-current="page"]:not(.nav-rsvp) {
-  border-radius: 8px;
-  background: var(--album-paper);
+  border-radius: 10px 10px 0 0;
+  background-color: var(--selected-nav-bg, var(--album-paper));
+}
+
+.site-nav nav a:hover,
+.site-nav nav a:focus-visible,
+.site-nav nav a.nav-rsvp {
+  color: var(--deep-cypress);
+}
+
+.registry-page {
+  --selected-nav-bg: var(--canvas-white);
+}
+
+@media (max-width: 900px) {
+  .site-nav {
+    padding-bottom: 0;
+  }
+
+  .site-nav nav {
+    align-items: stretch;
+  }
 }
 
 /* Desktop Logistics uses overlapping paper tabs; mobile keeps the stacked flow. */
@@ -551,11 +593,7 @@
 
 @media (min-width: 1024px) {
   .logistics-page {
-    --logistics-schedule-bg: color-mix(
-      in srgb,
-      var(--coral-ribbon) 38%,
-      var(--canvas-white)
-    );
+    --logistics-schedule-bg: var(--album-paper);
     --logistics-travel-bg: color-mix(
       in srgb,
       var(--hazy-atlantic) 78%,
@@ -568,6 +606,18 @@
     );
   }
 
+  .logistics-page:has(#logistics-tab-schedule:checked) {
+    --selected-nav-bg: var(--logistics-schedule-bg);
+  }
+
+  .logistics-page:has(#logistics-tab-travel:checked) {
+    --selected-nav-bg: var(--logistics-travel-bg);
+  }
+
+  .logistics-page:has(#logistics-tab-lodging:checked) {
+    --selected-nav-bg: var(--logistics-lodging-bg);
+  }
+
   .logistics-page > .logistics-jump {
     display: none;
   }
@@ -577,8 +627,10 @@
   }
 
   .logistics-tab-workspace {
+    --tab-overlap: 12px;
+    --tab-outset: 24px;
     display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-columns: clamp(168px, 16vw, 200px) minmax(0, 1fr);
     align-items: stretch;
     min-height: 760px;
     isolation: isolate;
@@ -592,17 +644,19 @@
     flex-direction: column;
     align-items: flex-end;
     align-self: start;
-    padding: 24px 0 24px 12px;
+    padding: 24px 0 24px calc(var(--tab-outset) + 12px);
     background: transparent;
   }
 
   .logistics-tab-rail label {
     position: relative;
     z-index: 1;
-    width: max-content;
+    /* Resize the label itself so its native hit area follows the visible tab. */
+    width: calc(100% + var(--tab-overlap));
     min-height: 60px;
-    margin-right: -12px;
+    margin-right: calc(-1 * var(--tab-overlap));
     padding: 14px 24px;
+    padding-right: calc(24px + var(--tab-overlap));
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -614,7 +668,7 @@
     border: 1px solid color-mix(in srgb, var(--deep-cypress) 18%, transparent);
     border-radius: 14px;
     box-shadow: -3px 3px 8px color-mix(in srgb, var(--deep-cypress) 10%, transparent);
-    transition: box-shadow 150ms ease;
+    transition: width 160ms ease, box-shadow 160ms ease;
   }
 
   /* The selected tab covers the page's left border where the two papers meet. */
@@ -625,7 +679,7 @@
     top: -1px;
     right: -1px;
     bottom: -1px;
-    width: 14px;
+    width: calc(var(--tab-overlap) + 2px);
     background: inherit;
     pointer-events: none;
   }
@@ -701,6 +755,7 @@
     ~ .logistics-tab-rail
     label[for="logistics-tab-lodging"] {
     z-index: 3;
+    width: calc(100% + var(--tab-overlap) + var(--tab-outset));
     border-color: color-mix(in srgb, var(--deep-cypress) 12%, transparent);
     border-right-color: transparent;
     border-radius: 14px 0 0 14px;
@@ -739,6 +794,12 @@
   .logistics-tab-panels .centered-heading {
     max-width: none;
     margin-inline: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logistics-tab-rail label {
+    transition: none;
   }
 }
 
