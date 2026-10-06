@@ -513,7 +513,7 @@
   }
 }
 
-/* A filled marker makes the selected page clear without changing link widths. */
+/* Recess the selected page into the existing paper without changing link widths. */
 .site-nav nav a {
   font-weight: 700;
 }
@@ -524,11 +524,14 @@
 
 .site-nav nav a[aria-current="page"] {
   border-bottom-color: transparent;
-  box-shadow: inset 0 -4px 0 var(--deep-cypress);
+  box-shadow:
+    inset 0 2px 6px color-mix(in srgb, var(--deep-cypress) 16%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--canvas-white) 80%, transparent);
 }
 
 .site-nav nav a[aria-current="page"]:not(.nav-rsvp) {
-  background: color-mix(in srgb, var(--coral-ribbon) 28%, transparent);
+  border-radius: 8px;
+  background: var(--album-paper);
 }
 
 /* Desktop Logistics uses overlapping paper tabs; mobile keeps the stacked flow. */
@@ -578,11 +581,13 @@
     grid-template-columns: max-content minmax(0, 1fr);
     align-items: stretch;
     min-height: 760px;
+    isolation: isolate;
   }
 
   .logistics-tab-rail {
     position: relative;
-    z-index: 2;
+    /* Each tab must share the page's stacking context, not sit above it as a rail. */
+    z-index: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -609,7 +614,20 @@
     border: 1px solid color-mix(in srgb, var(--deep-cypress) 18%, transparent);
     border-radius: 14px;
     box-shadow: -3px 3px 8px color-mix(in srgb, var(--deep-cypress) 10%, transparent);
-    transition: transform 150ms ease, box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+
+  /* The selected tab covers the page's left border where the two papers meet. */
+  .logistics-tab-rail label::after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    width: 14px;
+    background: inherit;
+    pointer-events: none;
   }
 
   .logistics-tab-rail label + label {
@@ -638,7 +656,7 @@
 
   .logistics-tab-panels {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: block;
     min-width: 0;
     border: 1px solid color-mix(in srgb, var(--deep-cypress) 12%, transparent);
@@ -683,11 +701,22 @@
     ~ .logistics-tab-rail
     label[for="logistics-tab-lodging"] {
     z-index: 3;
-    transform: translateX(4px);
-    border-color: color-mix(in srgb, var(--deep-cypress) 28%, transparent);
-    box-shadow:
-      0 7px 16px color-mix(in srgb, var(--deep-cypress) 20%, transparent),
-      0 1px 3px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+    border-color: color-mix(in srgb, var(--deep-cypress) 12%, transparent);
+    border-right-color: transparent;
+    border-radius: 14px 0 0 14px;
+    box-shadow: none;
+  }
+
+  #logistics-tab-schedule:checked
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-schedule"]::after,
+  #logistics-tab-travel:checked
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-travel"]::after,
+  #logistics-tab-lodging:checked
+    ~ .logistics-tab-rail
+    label[for="logistics-tab-lodging"]::after {
+    display: block;
   }
 
   #logistics-tab-schedule:focus-visible
