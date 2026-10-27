@@ -350,6 +350,100 @@
   }
 }
 
+/* A compact, tentative two-day schedule within the existing paper layout. */
+.schedule-section {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+}
+
+.schedule-intro {
+  max-width: 58ch;
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.weekend-schedule {
+  display: grid;
+  gap: 32px;
+  min-width: 0;
+}
+
+.weekend-schedule .schedule-card {
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 28px;
+  padding: clamp(24px, 3vw, 36px);
+  align-items: start;
+}
+
+.weekend-schedule .date-card {
+  width: 100%;
+  min-height: 138px;
+  padding: 20px 12px;
+}
+
+.weekend-schedule .date-card strong {
+  font-size: 60px;
+}
+
+.weekend-schedule .schedule-card h3 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  letter-spacing: 0.035em;
+  line-height: 1.05;
+}
+
+.schedule-venue a {
+  text-underline-offset: 3px;
+}
+
+.schedule-timeline {
+  margin: 22px 0 0;
+}
+
+.schedule-timeline > div {
+  display: grid;
+  grid-template-columns: 6.2rem minmax(0, 1fr);
+  gap: 16px;
+  padding-block: 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--deep-cypress) 16%, transparent);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.schedule-timeline dt {
+  font-weight: 700;
+}
+
+.schedule-timeline dd {
+  margin: 0;
+}
+
+.weekend-schedule .status-pill {
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .weekend-schedule .schedule-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .weekend-schedule .date-card {
+    width: 90px;
+    min-height: 114px;
+    padding: 16px 12px;
+  }
+
+  .weekend-schedule .date-card strong {
+    font-size: 48px;
+  }
+
+  .schedule-timeline > div {
+    grid-template-columns: 5.4rem minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
 /* The map is a static pinned clipping, not an interactive widget. */
 .field-day-map {
   position: relative;

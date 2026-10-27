@@ -13,7 +13,7 @@ const airports = [
     code: "DAB",
     name: "Daytona Beach International Airport",
     time: "About 15–25min",
-    note: "The closest and simplest option for our Daytona Beach Shores hotels.",
+    note: "The closest and simplest option for our hotel blocks and venue.",
     label: "Closest airport",
     href: "https://www.flydaytonafirst.com/",
   },
@@ -91,7 +91,28 @@ export default function LogisticsPage() {
           <div className="logistics-section-heading">
             <p className="section-number">Schedule</p>
             <h2 id="schedule-title">Save the Weekend</h2>
+            <p className="schedule-intro">
+              A first look at our plans. Times are tentative and shown in
+              Eastern Time; we’ll share final details here as they come together.
+            </p>
           </div>
+          <div className="weekend-schedule">
+          <article className="schedule-card">
+            <div className="date-card" aria-label="May 14, 2027">
+              <span>May</span>
+              <strong>14</strong>
+              <span>2027</span>
+            </div>
+            <div>
+              <p className="detail-label">Friday evening</p>
+              <h3>Welcome Party</h3>
+              <p>
+                All wedding guests are welcome to join us for a relaxed evening
+                together before the big day.
+              </p>
+              <span className="status-pill">Time &amp; location to come</span>
+            </div>
+          </article>
           <article className="schedule-card">
             <div className="date-card" aria-label="May 15, 2027">
               <span>May</span>
@@ -101,13 +122,29 @@ export default function LogisticsPage() {
             <div>
               <p className="detail-label">Saturday · Port Orange, Florida</p>
               <h3>Wedding Day</h3>
-              <p>
-                Ceremony, reception, and surrounding weekend-event times will
-                be added as soon as they are finalized.
+              <p className="schedule-venue">
+                <a href="https://estateonthehalifax.com/" target="_blank" rel="noreferrer">
+                  The Estate on the Halifax
+                </a>
               </p>
-              <span className="status-pill">Full schedule pending</span>
+              <dl className="schedule-timeline">
+                <div>
+                  <dt>4 p.m.</dt>
+                  <dd>Ceremony</dd>
+                </div>
+                <div>
+                  <dt>Afterward</dt>
+                  <dd>Cocktail hour</dd>
+                </div>
+                <div>
+                  <dt>6–10 p.m.</dt>
+                  <dd>Reception · dinner &amp; dancing</dd>
+                </div>
+              </dl>
+              <span className="status-pill">Tentative timing</span>
             </div>
           </article>
+          </div>
           <aside className="transport-note schedule-transport" aria-labelledby="transport-title">
             <p className="section-number">Wedding-day transportation</p>
             <h3 id="transport-title">Leave the driving to us.</h3>

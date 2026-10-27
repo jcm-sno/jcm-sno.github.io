@@ -207,7 +207,7 @@ export default function Home() {
               <div className="field-day-map-frame">
                 <img
                   src="/donnelly-field-map.svg"
-                  alt="Static street map of the East Cambridge neighborhood surrounding Donnelly Field"
+                  alt="Static map showing Donnelly Field highlighted in green, northwest of Kendall Square in red, with the Charles River in blue to the south and east"
                   width="900"
                   height="720"
                   loading="lazy"
