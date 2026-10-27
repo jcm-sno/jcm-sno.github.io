@@ -234,14 +234,21 @@ export default function Home() {
                 <h3 id="boston-heading">Life in Cambridge Montage</h3>
               </div>
               <p>
-                Once they began dating, James and Samantha were notoriously bad
-                at taking pictures—perhaps because neither of them was on social
-                media. Thankfully, an employee at a little Cambridge coffee
-                shop stopped long enough to take one for them. James was
-                finishing graduate school and would soon return to his Air
-                Force duties. Samantha was working in consulting and hoping to
-                make a career change. They were excited about what came next,
-                yet increasingly reluctant for their time together to end.
+                After we began dating, our lives in Cambridge had a calm,
+                contemplative quality. I think Samantha and I helped each other
+                slow down—I have vivid memories of staring at ivy on a building,
+                reading the NYT’s “Essential Knowledge” monolith, and having
+                spontaneous kitchen dance parties. Once, we drove through the
+                car wash twice in a row just for the show, much to the chagrin
+                of the guy who’d sold Samantha a month-long unlimited-use pass.
+                Sadly, these aren’t the sorts of things we take pictures of.
+              </p>
+              <p>
+                Our first photo together came from a chance encounter with a
+                barista who had a photography side hustle. The coffee shop had
+                a fun wall of customer Polaroids, and apparently, our discussion
+                of Samantha’s national parks water bottle had earned us a spot.
+                Or maybe just not being on our phones was all it took.
               </p>
             </article>
 

@@ -146,6 +146,7 @@
   margin-top: 14px;
 }
 
+.boston-story > p:not(.clip-kicker) + p:not(.clip-kicker),
 .engagement-story > p:not(.clip-kicker) + p:not(.clip-kicker) {
   margin-top: 14px;
 }
