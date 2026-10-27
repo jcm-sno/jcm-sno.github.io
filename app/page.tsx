@@ -344,7 +344,7 @@ export default function Home() {
               </p>
               <p>
                 After months of planning and a generous offer of lodging from
-                family friends, I invited her to Santa Barbara just late enough
+                family friends, I invited her to Santa Barbara just last-minute enough
                 to make it seem like an ordinary visit. On our first day
                 together, we arrived at an inviting wooden archway in a park at
                 3 p.m (right on time!) She tugged my hand and said, “Look! Can
@@ -354,8 +354,8 @@ export default function Home() {
               <p>
                 Beyond the archway, we tromped down wooden steps along the cliff
                 to a nearly empty beach. The only other person there was a
-                photographer, who was just inconspicuous enough to not taking
-                pictures of the ocean.
+                photographer, who was just inconspicuous enough while taking
+                pictures of the ocean to not pique Samantha’s attention.
               </p>
               <p>
                 Shaking, I led her through the water at high tide and got down
