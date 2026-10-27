@@ -772,6 +772,10 @@
     text-align: left;
   }
 
+  .logistics-tab-panels .schedule-section .logistics-section-heading h2 {
+    font-size: clamp(2.5rem, 4vw, 3.25rem);
+  }
+
   .logistics-tab-panels .centered-heading {
     max-width: none;
     margin-inline: 0;
