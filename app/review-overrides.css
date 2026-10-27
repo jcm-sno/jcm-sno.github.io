@@ -17,10 +17,10 @@
   padding-block: 0;
 }
 
-/* Keep the desktop RSVP tab width stable; only its own page gets the long ribbon. */
+/* Keep the wordmark and navigation aligned consistently across desktop pages. */
 .album-page {
   --nav-edge: clamp(24px, 4.5vw, 72px);
-  --rsvp-band-width: clamp(84px, 7vw, 104px);
+  --rsvp-tab-width: clamp(84px, 7vw, 104px);
 }
 
 @media (min-width: 901px) {
@@ -46,7 +46,7 @@
     align-self: stretch;
     height: 88px;
     justify-content: flex-end;
-    align-items: stretch;
+    align-items: center;
   }
 
   .site-nav nav a {
@@ -57,41 +57,21 @@
   }
 
   .nav-rsvp {
-    align-self: stretch;
+    align-self: center;
     margin-left: 0;
     padding-inline: clamp(16px, 1.8vw, 24px);
   }
 
   .album-page .nav-rsvp {
-    flex: 0 0 var(--rsvp-band-width);
-    width: var(--rsvp-band-width);
+    flex: 0 0 var(--rsvp-tab-width);
+    width: var(--rsvp-tab-width);
     padding-inline: 0;
     justify-content: center;
-  }
-
-  .rsvp-page .site-nav::after {
-    content: "";
-    position: absolute;
-    top: calc(100% - 1px);
-    right: var(--nav-edge);
-    z-index: 0;
-    width: var(--rsvp-band-width);
-    height: clamp(150px, 16vw, 210px);
-    clip-path: polygon(0 0, 100% 0, 100% 74%, 0 100%);
-    background: var(--coral-ribbon);
-    pointer-events: none;
   }
 
   .utility-hero::after,
   .logistics-hero::after {
     content: none;
-  }
-
-  .rsvp-page .utility-hero {
-    padding-right: max(
-      clamp(28px, 8vw, 118px),
-      calc(var(--nav-edge) + var(--rsvp-band-width) + 28px)
-    );
   }
 }
 
@@ -99,18 +79,6 @@
   .utility-hero::after,
   .logistics-hero::after {
     content: none;
-  }
-
-  .rsvp-page .site-nav {
-    position: relative;
-    z-index: 2;
-    overflow: visible;
-  }
-
-  .rsvp-page .nav-rsvp[aria-current="page"] {
-    position: relative;
-    z-index: 1;
-    padding-inline: 11px;
   }
 }
 
@@ -513,10 +481,19 @@
   }
 }
 
-/* Open the selected tab into the page below, with an inset top and open bottom. */
+/* A quiet editorial header: flat links, a fine current-page marker, and one CTA. */
 .site-nav {
   position: relative;
   z-index: 2;
+  background: var(--album-paper);
+  border-bottom-color: color-mix(in srgb, var(--deep-cypress) 10%, transparent);
+}
+
+.site-nav nav {
+  --nav-link-inset: 10px;
+  align-items: center;
+  gap: clamp(16px, 2vw, 30px);
+  letter-spacing: 0.12em;
 }
 
 .site-nav nav a {
@@ -524,55 +501,71 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
+  height: 44px;
   min-height: 44px;
-  border: 1px solid transparent;
+  margin: 0;
+  padding: 0 var(--nav-link-inset);
+  border: 0;
   color: var(--muted-ink);
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
+  transition: color 150ms ease, background-color 150ms ease;
 }
 
-.site-nav nav a:not(.nav-rsvp) {
-  padding-inline: 10px;
-}
-
-.site-nav nav a[aria-current="page"] {
-  z-index: 1;
-  margin-bottom: -2px;
-  border-color: color-mix(in srgb, var(--deep-cypress) 32%, transparent);
-  border-bottom-color: transparent;
-  color: var(--deep-cypress);
-  background-image: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--deep-cypress) 16%, transparent),
-    transparent 14px
-  );
-  box-shadow:
-    inset 1px 0 2px color-mix(in srgb, var(--deep-cypress) 12%, transparent),
-    inset -1px 0 2px color-mix(in srgb, var(--deep-cypress) 12%, transparent);
-}
-
-.site-nav nav a[aria-current="page"]:not(.nav-rsvp) {
-  border-radius: 10px 10px 0 0;
-  background-color: var(--selected-nav-bg, var(--album-paper));
+.site-nav nav a:not(.nav-rsvp)::after {
+  content: "";
+  position: absolute;
+  right: var(--nav-link-inset);
+  bottom: 5px;
+  left: var(--nav-link-inset);
+  height: 1.5px;
+  background: var(--deep-cypress);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .site-nav nav a:hover,
 .site-nav nav a:focus-visible,
-.site-nav nav a.nav-rsvp {
+.site-nav nav a[aria-current="page"] {
   color: var(--deep-cypress);
 }
 
-.registry-page {
-  --selected-nav-bg: var(--canvas-white);
+.site-nav nav a:not(.nav-rsvp):hover::after {
+  opacity: 0.35;
+}
+
+.site-nav nav a:not(.nav-rsvp)[aria-current="page"]::after {
+  opacity: 1;
+}
+
+.site-nav nav a.nav-rsvp {
+  padding-inline: 16px;
+  border-radius: 3px;
+  background: var(--coral-ribbon);
+  color: var(--deep-cypress);
+}
+
+.site-nav nav a.nav-rsvp:hover,
+.site-nav nav a.nav-rsvp[aria-current="page"] {
+  background: var(--deep-cypress);
+  color: var(--canvas-white);
 }
 
 @media (max-width: 900px) {
   .site-nav {
-    padding-bottom: 0;
+    padding-bottom: 12px;
   }
 
   .site-nav nav {
-    align-items: stretch;
+    --nav-link-inset: 8px;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .site-nav nav a.nav-rsvp {
+    padding-inline: 12px;
   }
 }
 
@@ -604,18 +597,6 @@
       var(--seagrass) 42%,
       var(--canvas-white)
     );
-  }
-
-  .logistics-page:has(#logistics-tab-schedule:checked) {
-    --selected-nav-bg: var(--logistics-schedule-bg);
-  }
-
-  .logistics-page:has(#logistics-tab-travel:checked) {
-    --selected-nav-bg: var(--logistics-travel-bg);
-  }
-
-  .logistics-page:has(#logistics-tab-lodging:checked) {
-    --selected-nav-bg: var(--logistics-lodging-bg);
   }
 
   .logistics-page > .logistics-jump {
