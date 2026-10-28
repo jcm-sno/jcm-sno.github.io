@@ -183,11 +183,11 @@
   }
 
   .hero-name-james {
-    justify-items: end;
+    justify-items: start;
   }
 
   .hero-name-samantha {
-    justify-items: start;
+    justify-items: end;
   }
 }
 

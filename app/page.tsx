@@ -41,7 +41,7 @@ const longDistancePhotos = [
   {
     className: "long-distance-harbor",
     src: "/long-distance-harbor.webp",
-    alt: "James and Samantha smile together beside a harbor in Scotland",
+    alt: "Samantha and James smile together beside a harbor in Scotland",
     width: 1536,
     height: 1152,
     candidateWidths: [640, 960, 1280],
@@ -54,7 +54,7 @@ const engagementPhotos = [
   {
     className: "engagement-walk",
     src: "/engagement-walk.webp",
-    alt: "James and Samantha hold hands while walking across rocks at the beach",
+    alt: "Samantha and James hold hands while walking across rocks at the beach",
     width: 1536,
     height: 1023,
     candidateWidths: [640, 960, 1280],
@@ -74,7 +74,7 @@ const engagementPhotos = [
   {
     className: "engagement-reaction",
     src: "/engagement-reaction.webp",
-    alt: "James and Samantha laugh together immediately after the proposal",
+    alt: "Samantha and James laugh together immediately after the proposal",
     width: 1024,
     height: 1536,
     candidateWidths: [640, 960],
@@ -93,7 +93,7 @@ export default function Home() {
           <img
             className="hero-photo"
             src="/about-banner-2048.webp"
-            alt="James and Samantha embracing as they look out at the ocean"
+            alt="Samantha and James embracing as they look out at the ocean"
             width="2048"
             height="1365"
             srcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner-2048.webp 2048w"
@@ -106,16 +106,16 @@ export default function Home() {
             <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
             <h1
               id="hero-title"
-              aria-label="James Morrison and Samantha Oates"
+              aria-label="Samantha Oates and James Morrison"
             >
-              <span className="hero-full-name hero-name-james" aria-hidden="true">
-                <span>James</span>
-                <span>Morrison</span>
-              </span>
-              <span className="hero-amp" aria-hidden="true">&amp;</span>
               <span className="hero-full-name hero-name-samantha" aria-hidden="true">
                 <span>Samantha</span>
                 <span>Oates</span>
+              </span>
+              <span className="hero-amp" aria-hidden="true">&amp;</span>
+              <span className="hero-full-name hero-name-james" aria-hidden="true">
+                <span>James</span>
+                <span>Morrison</span>
               </span>
             </h1>
           </div>
@@ -208,8 +208,8 @@ export default function Home() {
                 <img
                   src="/donnelly-field-map.svg"
                   alt="Static map showing Donnelly Field highlighted in green, northwest of Kendall Square in red, with the Charles River in blue to the south and east"
-                  width="900"
-                  height="720"
+                  width="820"
+                  height="656"
                   loading="lazy"
                   decoding="async"
                 />

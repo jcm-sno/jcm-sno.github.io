@@ -41,7 +41,7 @@ test("renders wedding metadata and the selected default palette", async () => {
     /^text\/html\b/i,
   );
   const html = await response.text();
-  assert.match(html, /<title>James &amp; Samantha<\/title>/i);
+  assert.match(html, /<title>Samantha &amp; James<\/title>/i);
   assert.match(html, /data-wedding-palette=["']atlantic-garden["']/i);
   assert.doesNotMatch(html, /Color Study/i);
   assert.match(html, />Archive</i);
@@ -197,7 +197,7 @@ test("renders logistics, registry, and RSVP routes", async () => {
   );
   assert.equal(registryResponse.status, 200);
   const registryHtml = await registryResponse.text();
-  assert.match(registryHtml, /<title>Registry \| James &amp; Samantha<\/title>/i);
+  assert.match(registryHtml, /<title>Registry \| Samantha &amp; James<\/title>/i);
   assert.match(registryHtml, /<h1[^>]+class=["']sr-only["'][^>]*>Registry<\/h1>/i);
   assert.doesNotMatch(registryHtml, /For our next chapter/i);
   assert.match(

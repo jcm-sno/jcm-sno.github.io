@@ -1,6 +1,6 @@
-# James & Samantha Wedding Website
+# Samantha & James Wedding Website
 
-This repository is the public source mirror for the James & Samantha wedding
+This repository is the public source mirror for the Samantha & James wedding
 website. The same verified source snapshot is deployed to both OpenAI Sites and
 GitHub Pages.
 

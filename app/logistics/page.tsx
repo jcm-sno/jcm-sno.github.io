@@ -3,9 +3,9 @@ import FastAnchorNav from "../components/fast-anchor-nav";
 import SiteHeader from "../components/site-header";
 
 export const metadata: Metadata = {
-  title: "Logistics | James & Samantha",
+  title: "Logistics | Samantha & James",
   description:
-    "Schedule, airport, and lodging information for James and Samantha’s wedding weekend in Port Orange, Florida.",
+    "Schedule, airport, and lodging information for Samantha and James’s wedding weekend in Port Orange, Florida.",
 };
 
 const airports = [

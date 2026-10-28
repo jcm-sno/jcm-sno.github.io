@@ -6,13 +6,13 @@ import "./globals.css";
 import "./review-overrides.css";
 import { defaultPaletteId } from "./palettes";
 
-const siteTitle = "James & Samantha";
+const siteTitle = "Samantha & James";
 const siteDescription = "May 15, 2027 · Port Orange, Florida";
 const siteOrigin =
   process.env.NEXT_PUBLIC_SITE_ORIGIN ??
   "https://james-samantha-wedding.jamescmorrison00.chatgpt.site";
 const socialImage = new URL("/wedding-banner-share.jpg", siteOrigin).toString();
-const socialImageAlt = "James and Samantha embracing as they look out at the ocean";
+const socialImageAlt = "Samantha and James embracing as they look out at the ocean";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),

@@ -280,8 +280,7 @@ summary:focus-visible {
 }
 
 .hero-name-james {
-  justify-self: end;
-  text-align: right;
+  justify-self: start;
 }
 
 .hero-amp {
@@ -290,7 +289,8 @@ summary:focus-visible {
 }
 
 .hero-name-samantha {
-  justify-self: start;
+  justify-self: end;
+  text-align: right;
 }
 
 .script-lead,
@@ -2122,11 +2122,11 @@ summary:focus-visible {
   }
 
   .hero-name-james {
-    justify-self: end;
+    justify-self: start;
   }
 
   .hero-name-samantha {
-    justify-self: start;
+    justify-self: end;
   }
 
   .hero-amp {

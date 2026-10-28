@@ -3,8 +3,8 @@ import RsvpifyEmbed from "../components/rsvpify-embed";
 import SiteHeader from "../components/site-header";
 
 export const metadata: Metadata = {
-  title: "RSVP | James & Samantha",
-  description: "Respond to James and Samantha's wedding invitation.",
+  title: "RSVP | Samantha & James",
+  description: "Respond to Samantha and James’s wedding invitation.",
 };
 
 export default function RsvpPage() {

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import SiteHeader from "../components/site-header";
 
 export const metadata: Metadata = {
-  title: "Registry | James & Samantha",
-  description: "James and Samantha's wedding registry.",
+  title: "Registry | Samantha & James",
+  description: "Samantha and James’s wedding registry.",
 };
 
 export default function RegistryPage() {

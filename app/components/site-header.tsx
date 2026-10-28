@@ -12,8 +12,8 @@ const links = [
 export default function SiteHeader({ active }: SiteHeaderProps) {
   return (
     <header className="site-nav">
-      <Link className="wordmark" href="/" aria-label="James and Samantha home">
-        James <span>&amp;</span> Samantha
+      <Link className="wordmark" href="/" aria-label="Samantha and James home">
+        Samantha <span>&amp;</span> James
       </Link>
       <nav aria-label="Wedding website navigation">
         {links.map((link) => (
