@@ -905,3 +905,26 @@
     page-break-inside: avoid;
   }
 }
+
+/* Keep all four navigation links within the smallest phone widths. */
+@media (max-width: 380px) {
+  .site-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wordmark {
+    font-size: 22px;
+    letter-spacing: 0.08em;
+  }
+
+  .site-nav nav {
+    --nav-link-inset: 6px;
+    min-width: 0;
+    gap: 4px;
+    font-size: 9px;
+  }
+
+  .site-nav nav a.nav-rsvp {
+    padding-inline: 10px;
+  }
+}

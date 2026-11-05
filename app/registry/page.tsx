@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "../components/site-header";
+import RingOrnament from "../components/ring-ornament";
 
 export const metadata: Metadata = {
   title: "Registry | Samantha & James",
@@ -15,6 +16,7 @@ export default function RegistryPage() {
         <h1 id="registry-title" className="sr-only">Registry</h1>
 
         <div className="registry-workspace">
+          <RingOrnament />
           <section className="registry-intro" aria-label="About our registry">
             <p>
               If you would like to send us a gift, our registry is linked below.

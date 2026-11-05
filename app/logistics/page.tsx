@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FastAnchorNav from "../components/fast-anchor-nav";
 import SiteHeader from "../components/site-header";
+import RingOrnament from "../components/ring-ornament";
 
 export const metadata: Metadata = {
   title: "Logistics | Samantha & James",
@@ -91,6 +92,7 @@ export default function LogisticsPage() {
           <div className="logistics-section-heading">
             <p className="section-number">Schedule</p>
             <h2 id="schedule-title">Save the Weekend</h2>
+            <RingOrnament />
             <p className="schedule-intro">
               A first look at our plans. Times are tentative and shown in
               Eastern Time; we’ll share final details here as they come together.
@@ -160,6 +162,7 @@ export default function LogisticsPage() {
           <div className="logistics-section-heading centered-heading">
             <p className="section-number">Getting here</p>
             <h2 id="travel-title">Nearby Airports</h2>
+            <RingOrnament />
           </div>
           <div className="airport-grid">
             {airports.map((airport) => (
@@ -185,6 +188,7 @@ export default function LogisticsPage() {
             <div>
               <p className="section-number">Where to stay</p>
               <h2 id="lodging-title">Lodging Information</h2>
+              <RingOrnament />
             </div>
           </div>
 

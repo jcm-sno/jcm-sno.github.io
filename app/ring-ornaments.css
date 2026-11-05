@@ -1,0 +1,122 @@
+/* Engraved scrollwork, milgrain edges, and diamond settings from Samantha's ring.
+   CSS masks keep the vectors crisp and reuse one small asset across all routes. */
+:root {
+  --engraved-gold: #98733c;
+}
+
+.ring-ornament {
+  display: block;
+  width: min(280px, 100%);
+  aspect-ratio: 360 / 64;
+  margin-inline: auto;
+  background: var(--engraved-gold);
+  mask: url("/ring-engraving.svg") center / contain no-repeat;
+  -webkit-mask: url("/ring-engraving.svg") center / contain no-repeat;
+  pointer-events: none;
+}
+
+/* A narrow beaded edge carries the motif through every page's navigation. */
+.site-nav {
+  position: relative;
+  border-bottom-color: color-mix(in srgb, var(--engraved-gold) 38%, transparent);
+}
+
+.site-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 3px;
+  height: 1px;
+  opacity: .45;
+  background: radial-gradient(circle, var(--engraved-gold) .7px, transparent .9px) 0 0 / 5px 1px repeat-x;
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: relative;
+}
+
+.ring-frame {
+  position: absolute;
+  inset: 7px;
+  border: 1px solid color-mix(in srgb, var(--engraved-gold) 38%, transparent);
+  pointer-events: none;
+}
+
+.ring-corner {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  background: var(--engraved-gold);
+  mask: url("/ring-scroll-corner.svg") center / contain no-repeat;
+  -webkit-mask: url("/ring-scroll-corner.svg") center / contain no-repeat;
+}
+
+.ring-corner-tl { top: -5px; left: -5px; }
+.ring-corner-tr { top: -5px; right: -5px; transform: scaleX(-1); }
+.ring-corner-bl { bottom: -5px; left: -5px; transform: scaleY(-1); }
+.ring-corner-br { bottom: -5px; right: -5px; transform: scale(-1); }
+
+.hero-copy > .ring-ornament {
+  width: 190px;
+  margin-top: 16px;
+  margin-bottom: -8px;
+}
+
+.scrapbook-heading .ring-ornament {
+  --engraved-gold: #806438;
+  width: min(300px, 80%);
+  margin-top: 8px;
+}
+
+/* Leave the photographs untouched; a small engraved corner belongs to the paper. */
+.story-card::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 48px;
+  height: 48px;
+  background: var(--engraved-gold);
+  mask: url("/ring-scroll-corner.svg") center / contain no-repeat;
+  -webkit-mask: url("/ring-scroll-corner.svg") center / contain no-repeat;
+  transform: scaleX(-1);
+  opacity: .75;
+  pointer-events: none;
+}
+
+.registry-workspace > .ring-ornament {
+  margin-bottom: 32px;
+}
+
+.utility-hero > .ring-ornament,
+.logistics-section-heading .ring-ornament {
+  width: 220px;
+  margin: 24px 0 0;
+}
+
+.centered-heading .ring-ornament {
+  margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+  .hero-copy {
+    padding: 36px 30px 32px;
+  }
+
+  .hero-copy .eyebrow {
+    text-align: center;
+  }
+
+  .hero-copy > .ring-ornament {
+    margin-bottom: 0;
+  }
+
+  .ring-corner {
+    width: 54px;
+    height: 54px;
+  }
+
+  .scrapbook-heading .ring-ornament {
+    width: min(250px, 90%);
+  }
+}
