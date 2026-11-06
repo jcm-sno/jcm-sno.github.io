@@ -1,4 +1,4 @@
-import RingOrnament from "./ring-ornament";
+import Link from "next/link";
 
 type SiteHeaderProps = {
   active: "about" | "logistics" | "registry" | "rsvp";
@@ -13,8 +13,6 @@ const links = [
 
 export default function SiteHeader({ active }: SiteHeaderProps) {
   return (
-    <>
-      <div className="site-engraving" aria-hidden="true"><RingOrnament /></div>
     <header className="site-nav">
       <Link className="wordmark" href="/" aria-label="Samantha and James home">
         Samantha <span>&amp;</span> James
@@ -32,7 +30,5 @@ export default function SiteHeader({ active }: SiteHeaderProps) {
         ))}
       </nav>
     </header>
-    </>
   );
 }
-import Link from "next/link";

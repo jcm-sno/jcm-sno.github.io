@@ -1,111 +1,100 @@
-/* Continuous green acanthus borders inspired by the ring's engraved band. */
+/* A restrained stationery accent: open corners, never a continuous frame. */
 :root {
-  --engraved-green: #43543d;
-}
-
-.ring-ornament {
-  display: block;
-  width: min(340px, 100%);
-  height: auto;
-  aspect-ratio: 2172 / 184;
-  min-height: 32px;
-  margin-inline: auto;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.site-engraving {
-  padding: 24px 20px 12px;
-  background: var(--album-paper);
-}
-
-.site-engraving .ring-ornament {
-  width: 100%;
-  height: auto;
-  min-height: 58px;
-  aspect-ratio: 2172 / 184;
-}
-
-.site-nav {
-  border-bottom-color: color-mix(in srgb, var(--engraved-green) 30%, transparent);
+  --engraved-green: #65785f;
 }
 
 .hero-copy {
   position: relative;
 }
 
-.ring-frame {
+.ring-corners,
+.ring-corner {
   position: absolute;
-  inset: 8px;
-  border: 3px double color-mix(in srgb, var(--engraved-green) 60%, transparent);
   pointer-events: none;
 }
 
-.hero-copy > .ring-ornament {
-  width: 100%;
-  min-height: 30px;
-  margin-top: 24px;
-  margin-bottom: -6px;
+.ring-corners {
+  inset: 0;
+  color: var(--engraved-green);
 }
 
-.scrapbook-heading .ring-ornament {
-  width: min(440px, 100%);
-  min-height: 40px;
-  margin-top: 26px;
+.ring-corner {
+  width: 74px;
+  height: 74px;
+  opacity: .85;
 }
 
-.story-heading-fields > .ring-ornament {
-  width: 100%;
-  min-height: 28px;
-  margin-bottom: 24px;
+.ring-corner-top {
+  top: -13px;
+  right: -13px;
+  transform: rotate(180deg);
+}
+
+.ring-corner-bottom {
+  bottom: -13px;
+  left: -13px;
+}
+
+/* A tiny diamond is the only echo on the registry and RSVP pages. */
+.ring-ornament {
+  display: block;
+  width: 54px;
+  height: auto;
+  color: var(--engraved-green);
+  pointer-events: none;
 }
 
 .registry-workspace > .ring-ornament {
-  width: min(520px, 100%);
-  min-height: 44px;
-  margin-bottom: 36px;
+  margin: 0 auto 24px;
 }
 
-.utility-hero > .ring-ornament,
-.logistics-section-heading .ring-ornament {
-  width: min(340px, 100%);
-  min-height: 30px;
-  margin: 26px 0 0;
+.utility-hero > .ring-ornament {
+  margin-top: 16px;
 }
 
-.centered-heading .ring-ornament {
-  margin-inline: auto;
+@media (max-width: 1199px) {
+  .ring-corner {
+    width: 64px;
+    height: 64px;
+  }
+
+  .ring-corner-top {
+    top: 0;
+    right: 2px;
+  }
+
+  .ring-corner-bottom {
+    bottom: 0;
+    left: 2px;
+  }
 }
 
 @media (max-width: 767px) {
-  .site-engraving {
-    padding: 16px 12px 4px;
+  .ring-corner {
+    width: 44px;
+    height: 44px;
+  }
+
+  .ring-corner-top {
+    top: -2px;
+    right: 4px;
+  }
+
+  .ring-corner-bottom {
+    bottom: 2px;
+    left: 4px;
   }
 
   .hero-copy {
-    padding: 36px 28px 32px;
+    padding: 40px 28px;
   }
 
   .hero-copy .eyebrow {
     text-align: center;
   }
-
-  .hero-copy > .ring-ornament {
-    min-height: 30px;
-    margin-bottom: 0;
-  }
-
-  .scrapbook-heading .ring-ornament {
-    width: 100%;
-    min-height: 36px;
-  }
-
-  .registry-workspace > .ring-ornament {
-    min-height: 36px;
-  }
 }
 
-/* At tablet widths the larger engraved card belongs below the photograph. */
+/* Keep the invitation beneath the photograph at intermediate widths. */
 @media (min-width: 768px) and (max-width: 1199px) {
   .hero-banner {
     display: flex;
@@ -133,9 +122,5 @@
   .hero-copy h1 {
     width: min(360px, 100%);
     margin-inline: auto;
-  }
-
-  .hero-copy > .ring-ornament {
-    width: min(360px, 100%);
   }
 }

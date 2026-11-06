@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
-import RingOrnament, { RingFrame } from "./components/ring-ornament";
+import { RingCorners } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
 
@@ -104,7 +104,7 @@ export default function Home() {
             fetchPriority="high"
           />
           <div className="hero-copy">
-            <RingFrame />
+            <RingCorners />
             <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
             <h1
               id="hero-title"
@@ -120,14 +120,12 @@ export default function Home() {
                 <span>Morrison</span>
               </span>
             </h1>
-            <RingOrnament />
           </div>
         </section>
 
         <section id="our-story" className="scrapbook-section" aria-labelledby="story-heading">
           <div className="scrapbook-heading">
             <h2 id="story-heading">Archive</h2>
-            <RingOrnament />
           </div>
 
           <div
@@ -137,7 +135,6 @@ export default function Home() {
           >
             <article className="story-card field-day-story">
               <div className="story-heading-fields">
-                <RingOrnament />
                 <p className="clip-kicker">Same neighborhood · first Field Day</p>
                 <h3 id="field-day-heading">So How’d You Meet?</h3>
               </div>
@@ -235,7 +232,6 @@ export default function Home() {
           >
             <article className="story-card boston-story">
               <div className="story-heading-fields">
-                <RingOrnament />
                 <p className="clip-kicker">Boston · beginning to date</p>
                 <h3 id="boston-heading">Life in Cambridge Montage</h3>
               </div>
@@ -304,7 +300,6 @@ export default function Home() {
           >
             <article className="story-card long-distance-story">
               <div className="story-heading-fields">
-                <RingOrnament />
                 <p className="clip-kicker">Scotland · California · long distance</p>
                 <h3 id="long-distance-heading">Across the Distance</h3>
               </div>
@@ -345,7 +340,6 @@ export default function Home() {
           >
             <article className="story-card engagement-story">
               <div className="story-heading-fields">
-                <RingOrnament />
                 <p className="clip-kicker">Engagement</p>
                 <h3 id="engagement-heading">The Big Weekend</h3>
               </div>
