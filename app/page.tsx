@@ -137,6 +137,7 @@ export default function Home() {
           >
             <article className="story-card field-day-story">
               <div className="story-heading-fields">
+                <RingOrnament />
                 <p className="clip-kicker">Same neighborhood · first Field Day</p>
                 <h3 id="field-day-heading">So How’d You Meet?</h3>
               </div>
@@ -234,6 +235,7 @@ export default function Home() {
           >
             <article className="story-card boston-story">
               <div className="story-heading-fields">
+                <RingOrnament />
                 <p className="clip-kicker">Boston · beginning to date</p>
                 <h3 id="boston-heading">Life in Cambridge Montage</h3>
               </div>
@@ -302,6 +304,7 @@ export default function Home() {
           >
             <article className="story-card long-distance-story">
               <div className="story-heading-fields">
+                <RingOrnament />
                 <p className="clip-kicker">Scotland · California · long distance</p>
                 <h3 id="long-distance-heading">Across the Distance</h3>
               </div>
@@ -342,6 +345,7 @@ export default function Home() {
           >
             <article className="story-card engagement-story">
               <div className="story-heading-fields">
+                <RingOrnament />
                 <p className="clip-kicker">Engagement</p>
                 <h3 id="engagement-heading">The Big Weekend</h3>
               </div>

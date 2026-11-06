@@ -928,3 +928,15 @@
     padding-inline: 10px;
   }
 }
+
+/* The lodging title and its border must fit inside narrow phone gutters. */
+.lodging-heading {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 480px) {
+  .lodging-heading h2 {
+    font-size: clamp(32px, 10vw, 48px);
+    letter-spacing: 0.045em;
+  }
+}
