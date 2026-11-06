@@ -197,7 +197,7 @@
   }
 }
 
-/* Center each narrative card within its desktop collage while keeping its text left-aligned. */
+/* Center the desktop narrative cards and justify their body paragraphs. */
 @media (min-width: 1024px) {
   .story-card {
     width: 520px;
@@ -208,6 +208,8 @@
   .story-card > p:not(.clip-kicker) {
     max-width: 46ch;
     margin-inline: auto;
+    text-align: justify;
+    text-align-last: left;
   }
 
   .story-card h3 {
