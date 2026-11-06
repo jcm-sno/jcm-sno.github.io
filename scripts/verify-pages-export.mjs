@@ -216,7 +216,7 @@ assert.match(
   /If you would like to send us a gift, our registry is linked below\./i,
 );
 assert.match(registry, /<title>Registry \| Samantha &amp; James<\/title>/i);
-assert.match(registry, /<h1[^>]+class=["']sr-only["'][^>]*>Registry<\/h1>/i);
+assert.match(registry, /<h1[^>]*>Registry<\/h1>/i);
 assert.match(logistics, /<h1[^>]+class=["']sr-only["'][^>]*>Logistics<\/h1>/i);
 assert.doesNotMatch(registry, /<section[^>]+class=["'][^"']*utility-hero/i);
 assert.doesNotMatch(logistics, /<section[^>]+class=["'][^"']*logistics-hero/i);

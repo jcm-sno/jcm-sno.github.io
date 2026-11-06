@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import RsvpifyEmbed from "../components/rsvpify-embed";
 import SiteHeader from "../components/site-header";
-import RingOrnament from "../components/ring-ornament";
+import { RingAxis } from "../components/ring-ornament";
 
 export const metadata: Metadata = {
   title: "RSVP | Samantha & James",
@@ -17,7 +17,7 @@ export default function RsvpPage() {
         <section className="utility-hero" aria-labelledby="rsvp-title">
           <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
           <h1 id="rsvp-title">RSVP</h1>
-          <RingOrnament />
+          <RingAxis />
         </section>
 
         <section className="rsvp-form-section" aria-label="RSVP form">

@@ -198,7 +198,7 @@ test("renders logistics, registry, and RSVP routes", async () => {
   assert.equal(registryResponse.status, 200);
   const registryHtml = await registryResponse.text();
   assert.match(registryHtml, /<title>Registry \| Samantha &amp; James<\/title>/i);
-  assert.match(registryHtml, /<h1[^>]+class=["']sr-only["'][^>]*>Registry<\/h1>/i);
+  assert.match(registryHtml, /<h1[^>]*>Registry<\/h1>/i);
   assert.doesNotMatch(registryHtml, /For our next chapter/i);
   assert.match(
     registryHtml,

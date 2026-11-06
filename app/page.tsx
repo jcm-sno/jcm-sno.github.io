@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
-import { RingCorners } from "./components/ring-ornament";
+import RingOrnament, { RingCorners, RingScroll } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
 
@@ -126,6 +126,7 @@ export default function Home() {
         <section id="our-story" className="scrapbook-section" aria-labelledby="story-heading">
           <div className="scrapbook-heading">
             <h2 id="story-heading">Archive</h2>
+            <RingOrnament />
           </div>
 
           <div
@@ -298,7 +299,8 @@ export default function Home() {
             role="group"
             aria-labelledby="long-distance-heading"
           >
-            <article className="story-card long-distance-story">
+            <article id="across-the-distance" className="story-card long-distance-story">
+              <RingScroll className="story-scroll" />
               <div className="story-heading-fields">
                 <p className="clip-kicker">Scotland · California · long distance</p>
                 <h3 id="long-distance-heading">Across the Distance</h3>

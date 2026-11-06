@@ -1,126 +1,117 @@
-/* A restrained stationery accent: open corners, never a continuous frame. */
-:root {
-  --engraved-green: #65785f;
-}
+/* Six distinct stationery treatments, drawn from the ring's acanthus and milgrain. */
+:root { --engraved-green: #4e654c; }
 
-.hero-copy {
-  position: relative;
+.ring-corners, .ring-corner, .ring-scroll, .ring-ornament, .ring-rule, .ring-axis {
+  pointer-events: none;
 }
+.ring-scroll, .ring-ornament { display: block; mix-blend-mode: multiply; }
+.ring-rule, .ring-axis { display: block; color: var(--engraved-green); }
 
-.ring-corners,
+/* 1. Open acanthus corners on the invitation. */
+.hero-copy { position: relative; padding: 38px 44px; isolation: isolate; }
+.ring-corners { position: absolute; inset: 0; }
 .ring-corner {
   position: absolute;
-  pointer-events: none;
+  width: 96px;
+  height: 96px;
+  background: url('/ring-acanthus-corner.webp') center / contain no-repeat;
+  mix-blend-mode: multiply;
+  opacity: .9;
 }
+.ring-corner-top { top: 4px; right: 4px; transform: rotate(180deg); }
+.ring-corner-bottom { bottom: 4px; left: 4px; }
 
-.ring-corners {
-  inset: 0;
-  color: var(--engraved-green);
-}
-
-.ring-corner {
-  width: 74px;
-  height: 74px;
+/* 2. A single horizontal scroll gives the Archive heading a botanical signature. */
+.scrapbook-heading .ring-ornament {
+  width: 216px;
+  height: auto;
+  margin: 12px auto 0;
   opacity: .85;
 }
+.scrapbook-heading { margin-bottom: clamp(60px, 7vw, 92px); }
 
-.ring-corner-top {
-  top: -13px;
-  right: -13px;
-  transform: rotate(180deg);
+/* 3. A vertical scroll belongs to one story, with a reserved margin for the art. */
+.long-distance-story { padding-left: 92px; scroll-margin-top: 28px; }
+.long-distance-story .story-scroll {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 60px;
+  height: 180px;
+  transform: translateY(-50%);
+  opacity: .9;
 }
+.long-distance-story h3 { white-space: normal; }
 
-.ring-corner-bottom {
-  bottom: -13px;
-  left: -13px;
+/* 4. The fine beaded edge of the band becomes a quiet schedule rule. */
+.schedule-section .ring-rule { width: min(440px, 100%); height: auto; margin-top: 28px; }
+
+/* 5. Paired scrolls surround a centered registry invitation. */
+.registry-workspace {
+  position: relative;
+  isolation: isolate;
+  width: min(900px, calc(100% - 64px));
+  margin: 64px auto;
+  padding: 64px 130px;
+  background: var(--album-paper);
+  text-align: center;
 }
-
-/* A tiny diamond is the only echo on the registry and RSVP pages. */
-.ring-ornament {
-  display: block;
-  width: 54px;
-  height: auto;
-  color: var(--engraved-green);
-  pointer-events: none;
+.registry-title {
+  margin: 0 0 30px;
+  font-size: clamp(44px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: .07em;
 }
-
-.registry-workspace > .ring-ornament {
-  margin: 0 auto 24px;
+.registry-intro { max-width: 440px; margin-bottom: 36px; }
+.registry-workspace > .ring-scroll {
+  position: absolute;
+  width: 90px;
+  height: 270px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: .8;
 }
+.registry-scroll-left { left: 24px; }
+.registry-workspace > .registry-scroll-right { right: 24px; transform: translateY(-50%) scaleX(-1); }
 
-.utility-hero > .ring-ornament {
-  margin-top: 16px;
+/* 6. The RSVP title uses a vertical setting and milgrain, leaving its form clear. */
+.rsvp-page .utility-hero { isolation: isolate; }
+.rsvp-page .ring-axis {
+  position: absolute;
+  top: 50%;
+  left: clamp(28px, 4vw, 58px);
+  width: 20px;
+  height: 200px;
+  transform: translateY(-50%);
 }
 
 @media (max-width: 1199px) {
-  .ring-corner {
-    width: 64px;
-    height: 64px;
-  }
-
-  .ring-corner-top {
-    top: 0;
-    right: 2px;
-  }
-
-  .ring-corner-bottom {
-    bottom: 0;
-    left: 2px;
-  }
+  .ring-corner { width: 88px; height: 88px; }
 }
-
 @media (max-width: 767px) {
-  .ring-corner {
-    width: 44px;
-    height: 44px;
-  }
-
-  .ring-corner-top {
-    top: -2px;
-    right: 4px;
-  }
-
-  .ring-corner-bottom {
-    bottom: 2px;
-    left: 4px;
-  }
-
-  .hero-copy {
-    padding: 40px 28px;
-  }
-
-  .hero-copy .eyebrow {
-    text-align: center;
-  }
+  .hero-copy { padding: 46px 28px; }
+  .hero-copy .eyebrow { text-align: center; }
+  .ring-corner { width: 74px; height: 74px; }
+  .ring-corner-top { top: 2px; right: 2px; }
+  .ring-corner-bottom { bottom: 2px; left: 2px; }
+  .scrapbook-heading .ring-ornament { width: 190px; margin-top: 8px; }
+  .long-distance-story { padding-left: 76px; }
+  .long-distance-story .story-scroll { left: 6px; width: 56px; height: 168px; }
+  .long-distance-story h3 { font-size: clamp(28px, 8vw, 36px); line-height: 1.08; }
+  .registry-workspace { width: calc(100% - 32px); margin: 32px auto; padding: 44px 40px; }
+  .registry-title { font-size: 42px; margin-bottom: 24px; }
+  .registry-intro { font-size: 15px; margin-bottom: 28px; }
+  .registry-workspace > .ring-scroll { width: 44px; height: 132px; top: 42px; transform: none; }
+  .registry-scroll-left { left: 2px; }
+  .registry-workspace > .registry-scroll-right { right: 2px; transform: scaleX(-1); }
+  .rsvp-page .utility-hero { padding: 52px 32px 42px 54px; }
+  .rsvp-page .ring-axis { left: 18px; width: 16px; height: 160px; }
 }
 
 /* Keep the invitation beneath the photograph at intermediate widths. */
 @media (min-width: 768px) and (max-width: 1199px) {
-  .hero-banner {
-    display: flex;
-    flex-direction: column;
-    aspect-ratio: auto;
-    overflow: visible;
-  }
-
-  .hero-photo {
-    position: static;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
-
-  .hero-copy {
-    width: 100%;
-    margin: 0;
-    padding: 32px;
-    box-shadow: none;
-    backdrop-filter: none;
-  }
-
-  .hero-copy h1 {
-    width: min(360px, 100%);
-    margin-inline: auto;
-  }
+  .hero-banner { display: flex; flex-direction: column; aspect-ratio: auto; overflow: visible; }
+  .hero-photo { position: static; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .hero-copy { width: 100%; margin: 0; padding: 38px 44px; box-shadow: none; backdrop-filter: none; }
+  .hero-copy h1 { width: min(360px, 100%); margin-inline: auto; }
 }

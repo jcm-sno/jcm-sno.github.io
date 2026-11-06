@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "../components/site-header";
-import RingOrnament from "../components/ring-ornament";
+import { RingScroll } from "../components/ring-ornament";
 
 export const metadata: Metadata = {
   title: "Registry | Samantha & James",
@@ -13,10 +13,10 @@ export default function RegistryPage() {
       <article className="album-page utility-page registry-page">
         <SiteHeader active="registry" />
 
-        <h1 id="registry-title" className="sr-only">Registry</h1>
-
         <div className="registry-workspace">
-          <RingOrnament />
+          <RingScroll className="registry-scroll-left" />
+          <RingScroll className="registry-scroll-right" />
+          <h1 id="registry-title" className="registry-title">Registry</h1>
           <section className="registry-intro" aria-label="About our registry">
             <p>
               If you would like to send us a gift, our registry is linked below.
