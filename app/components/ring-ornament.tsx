@@ -4,30 +4,38 @@ export function RingDivider() {
     <svg className="ring-divider" viewBox="0 0 760 104" width="760" height="104"
       aria-hidden="true" focusable="false">
       <g fill="none" stroke="currentColor" strokeWidth="1">
-        <path d="M0 52H110M350 52H362M398 52H410M650 52H760" />
         <path d="M380 34L398 52L380 70L362 52ZM380 41L391 52L380 63L369 52Z" />
         <path d="M377 52H383M380 49V55" />
       </g>
       <image href="/ring-acanthus-scroll.webp" width="80" height="240"
-        transform="translate(110 92) rotate(-90)" />
+        transform="translate(110 85) rotate(-90)" />
       <g transform="translate(760 0) scale(-1 1)">
         <image href="/ring-acanthus-scroll.webp" width="80" height="240"
-          transform="translate(110 92) rotate(-90)" />
+          transform="translate(110 85) rotate(-90)" />
       </g>
     </svg>
   );
 }
 
-/** Paired botanical scrolls, without a rule or gem setting. */
+/** One connected, exactly mirrored botanical ornament for the mobile invitation. */
 export function RingFlourish() {
   return (
-    <svg className="ring-flourish" viewBox="0 0 500 100" width="500" height="100"
+    <svg className="ring-flourish" viewBox="0 0 460 100" width="460" height="100"
       aria-hidden="true" focusable="false">
-      <image href="/ring-acanthus-scroll.webp" width="80" height="240"
-        transform="translate(0 90) rotate(-90)" />
-      <g transform="translate(500 0) scale(-1 1)">
+      <defs>
+        <clipPath id="invitation-flourish-half">
+          <path d="M0 0H230V100H0Z" />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#invitation-flourish-half)">
         <image href="/ring-acanthus-scroll.webp" width="80" height="240"
           transform="translate(0 90) rotate(-90)" />
+      </g>
+      <g transform="translate(460 0) scale(-1 1)">
+        <g clipPath="url(#invitation-flourish-half)">
+          <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+            transform="translate(0 90) rotate(-90)" />
+        </g>
       </g>
     </svg>
   );
@@ -72,7 +80,7 @@ export function RingHeadingAxis() {
       preserveAspectRatio="none" fill="none" stroke="currentColor"
       aria-hidden="true" focusable="false">
       <path d="M8 0V34M8 66V100" strokeWidth=".9" />
-      <path d="M4 4V33M4 67V96" strokeWidth="1.2" strokeDasharray=".1 4" strokeLinecap="round" />
+      <path d="M12 4V33M12 67V96" strokeWidth="1.2" strokeDasharray=".1 4" strokeLinecap="round" />
       <path d="M8 39L15 50L8 61L1 50ZM8 44L12 50L8 56L4 50Z" strokeWidth=".85" />
     </svg>
   );

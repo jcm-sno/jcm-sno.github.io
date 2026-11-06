@@ -50,3 +50,8 @@ Date tiles use muted peach-orange to echo the RSVP button. Each logistics title 
 ## Floral-only invitation and quieter story cards
 
 The date now has a paired acanthus flourish without rules or diamonds. Story titles use one-line sizing across desktop and phone widths, with smaller, equal corner ornaments and wider text insets. The schedule retains only its vertical heading ornament. The active navigation marker combines a fitted solid rule, beaded rule, and nested diamonds.
+
+
+## Connected mobile flourish and open Archive divider
+
+Kept the story corner sizes and moved each engraving six pixels farther from its card edges. The name flourish appears only on phones, where its two mirrored halves join at the center. Archive vines end level with the central diamond, separated by open space rather than horizontal rules. All logistics headings now retain only the vertical diamond rule, with its dotted side facing the text; the main navigation marker follows the same orientation. Schedule cards use a slightly deeper, low-saturation sage.

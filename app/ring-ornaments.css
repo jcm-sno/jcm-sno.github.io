@@ -7,9 +7,9 @@
 .ring-scroll, .ring-divider, .ring-flourish { display: block; mix-blend-mode: multiply; }
 .ring-axis { display: block; color: var(--engraved-green); }
 
-/* A small horizontal engraving introduces the date and names. */
+/* A joined botanical engraving introduces the date and names on phones. */
 .hero-copy { position: relative; padding: 30px 44px 36px; isolation: isolate; }
-.hero-copy .ring-flourish { width: min(196px, 100%); height: auto; margin: 0 auto 14px; opacity: .85; }
+.hero-copy .ring-flourish { display: none; width: min(196px, 100%); height: auto; margin: 0 auto 14px; opacity: .85; }
 .ring-corners { position: absolute; inset: 0; }
 .ring-corner {
   position: absolute;
@@ -19,12 +19,12 @@
   mix-blend-mode: multiply;
   opacity: .9;
 }
-.ring-corner-top-left { top: 4px; left: 4px; transform: scaleY(-1); }
-.ring-corner-top-right { top: 4px; right: 4px; transform: rotate(180deg); }
-.ring-corner-bottom-left { bottom: 4px; left: 4px; }
-.ring-corner-bottom-right { bottom: 4px; right: 4px; transform: scaleX(-1); }
+.ring-corner-top-left { top: 10px; left: 10px; transform: scaleY(-1); }
+.ring-corner-top-right { top: 10px; right: 10px; transform: rotate(180deg); }
+.ring-corner-bottom-left { bottom: 10px; left: 10px; }
+.ring-corner-bottom-right { bottom: 10px; right: 10px; transform: scaleX(-1); }
 
-/* Mirrored vines meet at a diamond to close the Archive masthead. */
+/* Mirrored vines end beside the Archive diamond with an open gap. */
 .ring-divider { color: var(--engraved-green); }
 .scrapbook-heading {
   width: min(900px, calc(100% - 48px));
@@ -87,12 +87,13 @@
 }
 @media (max-width: 767px) {
   .hero-copy { padding: 40px 28px 46px; }
+  .hero-copy .ring-flourish { display: block; }
   .hero-copy .eyebrow { text-align: center; }
   .ring-corner { width: 74px; height: 74px; }
-  .ring-corner-top-left { top: 2px; left: 2px; }
-  .ring-corner-top-right { top: 2px; right: 2px; }
-  .ring-corner-bottom-left { bottom: 2px; left: 2px; }
-  .ring-corner-bottom-right { bottom: 2px; right: 2px; }
+  .ring-corner-top-left { top: 8px; left: 8px; }
+  .ring-corner-top-right { top: 8px; right: 8px; }
+  .ring-corner-bottom-left { bottom: 8px; left: 8px; }
+  .ring-corner-bottom-right { bottom: 8px; right: 8px; }
   .scrapbook-heading .ring-divider { margin-top: 8px; }
   .story-card { padding: 44px 34px 52px; }
   .story-card h3 { text-align: left; font-size: clamp(16px, calc(8vw - 10px), 26px); letter-spacing: 0; }

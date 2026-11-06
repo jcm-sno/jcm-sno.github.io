@@ -1,7 +1,7 @@
 /* One typography and paper system across the three logistics sections. */
 .logistics-page {
   --logistics-card-paper: #f7f4ed;
-  --schedule-card-paper: #e5ebe1;
+  --schedule-card-paper: #d2dccd;
   --logistics-card-rule: color-mix(in srgb, var(--engraved-green) 18%, transparent);
 }
 
@@ -14,13 +14,6 @@
   font-weight: 500;
   line-height: 1.02;
   letter-spacing: .045em;
-}
-
-.logistics-section-heading .ring-divider {
-  width: min(300px, 100%);
-  height: auto;
-  margin: 0 0 24px;
-  opacity: .85;
 }
 
 .logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) {
@@ -92,7 +85,6 @@
 
 @media (max-width: 1023px) {
   .logistics-page .centered-heading { text-align: left; }
-  .centered-heading .ring-divider { margin-inline: 0; }
 }
 
 @media (max-width: 767px) {
@@ -104,7 +96,6 @@
   .logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) h3 {
     font-size: 30px;
   }
-  .logistics-section-heading .ring-divider { width: 260px; }
 }
 
 @media (min-width: 1024px) {
