@@ -119,3 +119,23 @@
   color: var(--engraved-green);
   pointer-events: none;
 }
+
+/* A small engraved corner signs off each hotel's rates and booking link. */
+.logistics-page :is(.rate-block, .split-rates) {
+  position: relative;
+  isolation: isolate;
+}
+.logistics-page :is(.rate-block, .split-rates)::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: 14px;
+  width: 64px;
+  height: 64px;
+  background: url('/ring-acanthus-corner.webp') center / contain no-repeat;
+  transform: scaleX(-1);
+  mix-blend-mode: multiply;
+  opacity: .75;
+  pointer-events: none;
+}
+.logistics-page .hotel-booking-link { margin-right: 64px; }

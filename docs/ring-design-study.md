@@ -55,3 +55,8 @@ The date now has a paired acanthus flourish without rules or diamonds. Story tit
 ## Connected mobile flourish and open Archive divider
 
 Kept the story corner sizes and moved each engraving six pixels farther from its card edges. The name flourish appears only on phones, where its two mirrored halves join at the center. Archive vines end level with the central diamond, separated by open space rather than horizontal rules. All logistics headings now retain only the vertical diamond rule, with its dotted side facing the text; the main navigation marker follows the same orientation. Schedule cards use a slightly deeper, low-saturation sage.
+
+
+## Equal story insets and hotel signatures
+
+Story cards use equal top and side padding: 48px on desktop/tablet and 36px on phones. Removed the separate desktop paragraph width cap so the body copy follows the same inset. Corner sizes and edge offsets stay consistent; the smallest-phone title scale preserves single-line headings within the slightly wider inset. Both hotel rate blocks now carry a small lower-right acanthus corner beside the booking link, with reserved horizontal clearance and no pointer interaction.
