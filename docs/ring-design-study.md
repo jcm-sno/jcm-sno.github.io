@@ -60,3 +60,8 @@ Kept the story corner sizes and moved each engraving six pixels farther from its
 ## Equal story insets and hotel signatures
 
 Story cards use equal top and side padding: 48px on desktop/tablet and 36px on phones. Removed the separate desktop paragraph width cap so the body copy follows the same inset. Corner sizes and edge offsets stay consistent; the smallest-phone title scale preserves single-line headings within the slightly wider inset. Both hotel rate blocks now carry a small lower-right acanthus corner beside the booking link, with reserved horizontal clearance and no pointer interaction.
+
+
+## Desktop Archive alignment
+
+At desktop widths (1024px and above), story body paragraphs are justified, with each final line left-aligned. Story titles keep their centered alignment, and phone/tablet body copy remains left-aligned.
