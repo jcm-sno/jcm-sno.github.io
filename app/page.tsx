@@ -104,7 +104,7 @@ export default function Home() {
             fetchPriority="high"
           />
           <div className="hero-copy">
-            <RingCorners />
+            <RingDivider />
             <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
             <h1
               id="hero-title"

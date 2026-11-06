@@ -38,3 +38,10 @@ Refine this exact tall acanthus scroll for fine wedding stationery. Preserve the
 ## Selected refinements — November 6, 2026
 
 Centered the four story titles and repeated the open corner engraving on each story card. Replaced the single Archive scroll with mirrored acanthus vines, a central diamond, and a fine horizontal boundary; repeated a smaller version above Airports and Lodging. Renamed the main schedule title to Schedule and removed its duplicate eyebrow. Unified logistics heading and card typography, hotel rate sizes, and backgrounds within card groups; softened the schedule cards and transportation note to pale sage.
+
+
+## Invitation and corner refinements
+
+Replaced the name panel's corners with a small horizontal vine above the date and names, adding breathing room below the photograph on stacked layouts. Story cards now have four mirrored corner engravings, with left-aligned headings on phones and centered headings on larger screens. Navigation uses a diamond-and-line selection marker. Removed the decorative tape from logistics schedule cards.
+
+Date tiles use muted peach-orange to echo the RSVP button. Each logistics title has a vertical milgrain line with a diamond setting.

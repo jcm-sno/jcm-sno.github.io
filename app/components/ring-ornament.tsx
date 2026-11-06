@@ -30,8 +30,10 @@ export function RingScroll({ className = "" }: { className?: string }) {
 export function RingCorners() {
   return (
     <span className="ring-corners" aria-hidden="true">
-      <span className="ring-corner ring-corner-top" />
-      <span className="ring-corner ring-corner-bottom" />
+      <span className="ring-corner ring-corner-top-left" />
+      <span className="ring-corner ring-corner-top-right" />
+      <span className="ring-corner ring-corner-bottom-left" />
+      <span className="ring-corner ring-corner-bottom-right" />
     </span>
   );
 }
@@ -56,6 +58,19 @@ export function RingAxis() {
       <path d="M7 4V98M7 142V236" strokeDasharray=".1 4" strokeLinecap="round" strokeWidth="1.3" />
       <path d="M12 105L22 120L12 135L2 120ZM12 111L18 120L12 129L6 120Z" strokeWidth=".9" />
       <path d="M12 116C16 111 21 120 12 124C3 120 8 111 12 116Z" strokeWidth=".7" />
+    </svg>
+  );
+}
+
+/** A short engraved edge for a logistics section title. */
+export function RingHeadingAxis() {
+  return (
+    <svg className="ring-heading-axis" viewBox="0 0 16 100" width="16" height="100"
+      preserveAspectRatio="none" fill="none" stroke="currentColor"
+      aria-hidden="true" focusable="false">
+      <path d="M8 0V34M8 66V100" strokeWidth=".9" />
+      <path d="M4 4V33M4 67V96" strokeWidth="1.2" strokeDasharray=".1 4" strokeLinecap="round" />
+      <path d="M8 39L15 50L8 61L1 50ZM8 44L12 50L8 56L4 50Z" strokeWidth=".85" />
     </svg>
   );
 }

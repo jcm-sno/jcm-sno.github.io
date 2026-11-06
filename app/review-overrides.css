@@ -608,14 +608,15 @@
   transition: color 150ms ease, background-color 150ms ease;
 }
 
-.site-nav nav a:not(.nav-rsvp)::after {
+.site-nav nav a::after {
   content: "";
   position: absolute;
   right: var(--nav-link-inset);
-  bottom: 5px;
+  bottom: 2px;
   left: var(--nav-link-inset);
-  height: 1.5px;
-  background: var(--deep-cypress);
+  height: 9px;
+  background: currentColor;
+  mask: url("/ring-nav-rule.svg") center / 100% 100% no-repeat;
   opacity: 0;
   pointer-events: none;
 }
@@ -630,7 +631,7 @@
   opacity: 0.35;
 }
 
-.site-nav nav a:not(.nav-rsvp)[aria-current="page"]::after {
+.site-nav nav a[aria-current="page"]::after {
   opacity: 1;
 }
 

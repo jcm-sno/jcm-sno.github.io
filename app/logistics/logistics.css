@@ -6,6 +6,9 @@
 }
 
 .logistics-page .logistics-section-heading h2 {
+  position: relative;
+  padding-left: 34px;
+  text-align: left;
   font-family: "Cormorant SC", Georgia, serif;
   font-size: clamp(52px, 6vw, 76px);
   font-weight: 500;
@@ -65,7 +68,7 @@
 }
 
 .logistics-page .date-card {
-  background: #d4dece;
+  background: #dfb6a3;
   box-shadow: 0 3px 10px color-mix(in srgb, var(--deep-cypress) 5%, transparent);
 }
 
@@ -88,12 +91,15 @@
 .logistics-page .airport-grid { margin-top: 40px; }
 
 @media (max-width: 1023px) {
-  .centered-heading .ring-divider { margin-inline: auto; }
+  .logistics-page .centered-heading { text-align: left; }
+  .centered-heading .ring-divider { margin-inline: 0; }
 }
 
 @media (max-width: 767px) {
   .logistics-page .logistics-section-heading h2 {
-    font-size: clamp(42px, 13vw, 56px);
+    padding-left: 26px;
+    font-size: clamp(38px, 12vw, 56px);
+    letter-spacing: .025em;
   }
   .logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) h3 {
     font-size: 30px;
@@ -108,4 +114,17 @@
 
 @media (min-width: 1024px) and (max-width: 1199px) {
   .logistics-page .airport-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* The logistics cards are clean paper, without collage tape. */
+.logistics-page .schedule-card::before { content: none; }
+
+.logistics-section-heading .ring-heading-axis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 100%;
+  color: var(--engraved-green);
+  pointer-events: none;
 }

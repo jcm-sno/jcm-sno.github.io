@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import FastAnchorNav from "../components/fast-anchor-nav";
 import SiteHeader from "../components/site-header";
-import { RingDivider, RingRule } from "../components/ring-ornament";
+import { RingDivider, RingHeadingAxis, RingRule } from "../components/ring-ornament";
 
 export const metadata: Metadata = {
   title: "Logistics | Samantha & James",
@@ -90,7 +90,7 @@ export default function LogisticsPage() {
           <div className="logistics-tab-panels">
         <section id="schedule" className="logistics-section schedule-section" aria-labelledby="schedule-title">
           <div className="logistics-section-heading">
-            <h2 id="schedule-title">Schedule</h2>
+            <h2 id="schedule-title"><RingHeadingAxis /><span>Schedule</span></h2>
             <RingRule />
             <p className="schedule-intro">
               A first look at our plans. Times are tentative and shown in
@@ -161,7 +161,7 @@ export default function LogisticsPage() {
           <div className="logistics-section-heading centered-heading">
             <RingDivider />
             <p className="section-number">Getting here</p>
-            <h2 id="travel-title">Nearby Airports</h2>
+            <h2 id="travel-title"><RingHeadingAxis /><span>Nearby Airports</span></h2>
           </div>
           <div className="airport-grid">
             {airports.map((airport) => (
@@ -187,7 +187,7 @@ export default function LogisticsPage() {
             <div>
               <RingDivider />
               <p className="section-number">Where to stay</p>
-              <h2 id="lodging-title">Lodging Information</h2>
+              <h2 id="lodging-title"><RingHeadingAxis /><span>Lodging Information</span></h2>
             </div>
           </div>
 
