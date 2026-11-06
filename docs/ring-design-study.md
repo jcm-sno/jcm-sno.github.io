@@ -45,3 +45,8 @@ Centered the four story titles and repeated the open corner engraving on each st
 Replaced the name panel's corners with a small horizontal vine above the date and names, adding breathing room below the photograph on stacked layouts. Story cards now have four mirrored corner engravings, with left-aligned headings on phones and centered headings on larger screens. Navigation uses a diamond-and-line selection marker. Removed the decorative tape from logistics schedule cards.
 
 Date tiles use muted peach-orange to echo the RSVP button. Each logistics title has a vertical milgrain line with a diamond setting.
+
+
+## Floral-only invitation and quieter story cards
+
+The date now has a paired acanthus flourish without rules or diamonds. Story titles use one-line sizing across desktop and phone widths, with smaller, equal corner ornaments and wider text insets. The schedule retains only its vertical heading ornament. The active navigation marker combines a fitted solid rule, beaded rule, and nested diamonds.

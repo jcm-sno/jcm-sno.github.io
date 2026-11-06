@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import FastAnchorNav from "../components/fast-anchor-nav";
 import SiteHeader from "../components/site-header";
-import { RingDivider, RingHeadingAxis, RingRule } from "../components/ring-ornament";
+import { RingDivider, RingHeadingAxis } from "../components/ring-ornament";
 
 export const metadata: Metadata = {
   title: "Logistics | Samantha & James",
@@ -91,7 +91,6 @@ export default function LogisticsPage() {
         <section id="schedule" className="logistics-section schedule-section" aria-labelledby="schedule-title">
           <div className="logistics-section-heading">
             <h2 id="schedule-title"><RingHeadingAxis /><span>Schedule</span></h2>
-            <RingRule />
             <p className="schedule-intro">
               A first look at our plans. Times are tentative and shown in
               Eastern Time; we’ll share final details here as they come together.

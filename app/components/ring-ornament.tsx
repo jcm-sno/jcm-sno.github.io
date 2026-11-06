@@ -18,6 +18,21 @@ export function RingDivider() {
   );
 }
 
+/** Paired botanical scrolls, without a rule or gem setting. */
+export function RingFlourish() {
+  return (
+    <svg className="ring-flourish" viewBox="0 0 500 100" width="500" height="100"
+      aria-hidden="true" focusable="false">
+      <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+        transform="translate(0 90) rotate(-90)" />
+      <g transform="translate(500 0) scale(-1 1)">
+        <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+          transform="translate(0 90) rotate(-90)" />
+      </g>
+    </svg>
+  );
+}
+
 export function RingScroll({ className = "" }: { className?: string }) {
   return (
     <svg className={`ring-scroll ${className}`.trim()} viewBox="0 0 320 960"
@@ -35,18 +50,6 @@ export function RingCorners() {
       <span className="ring-corner ring-corner-bottom-left" />
       <span className="ring-corner ring-corner-bottom-right" />
     </span>
-  );
-}
-
-export function RingRule() {
-  return (
-    <svg className="ring-rule" viewBox="0 0 500 22" width="500" height="22"
-      fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
-      <path d="M0 9H229M271 9H500" strokeWidth=".8" />
-      <path d="M3 14H229M271 14H497" strokeDasharray=".1 4" strokeLinecap="round" strokeWidth="1.3" />
-      <path d="M250 1L260 11L250 21L240 11ZM250 5L256 11L250 17L244 11Z" strokeWidth=".9" />
-      <path d="M248 11H252M250 9V13" strokeWidth=".8" />
-    </svg>
   );
 }
 

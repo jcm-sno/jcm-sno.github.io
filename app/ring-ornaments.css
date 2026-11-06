@@ -1,15 +1,15 @@
 /* Stationery details drawn from the ring's acanthus and milgrain. */
 :root { --engraved-green: #4e654c; }
 
-.ring-corners, .ring-corner, .ring-scroll, .ring-divider, .ring-rule, .ring-axis {
+.ring-corners, .ring-corner, .ring-scroll, .ring-divider, .ring-flourish, .ring-axis {
   pointer-events: none;
 }
-.ring-scroll, .ring-divider { display: block; mix-blend-mode: multiply; }
-.ring-rule, .ring-axis { display: block; color: var(--engraved-green); }
+.ring-scroll, .ring-divider, .ring-flourish { display: block; mix-blend-mode: multiply; }
+.ring-axis { display: block; color: var(--engraved-green); }
 
 /* A small horizontal engraving introduces the date and names. */
 .hero-copy { position: relative; padding: 30px 44px 36px; isolation: isolate; }
-.hero-copy .ring-divider { width: min(224px, 100%); height: auto; margin: 0 auto 14px; opacity: .85; }
+.hero-copy .ring-flourish { width: min(196px, 100%); height: auto; margin: 0 auto 14px; opacity: .85; }
 .ring-corners { position: absolute; inset: 0; }
 .ring-corner {
   position: absolute;
@@ -38,13 +38,10 @@
 }
 
 /* Open corners frame each centered story title without crowding the text. */
-.story-card { padding: 44px 42px 52px; isolation: isolate; }
-.story-card h3 { padding-inline: 24px; text-align: center; white-space: normal; line-height: 1.08; }
-.story-card .ring-corner { width: 82px; height: 82px; opacity: .8; }
+.story-card { padding: 48px 48px 56px; isolation: isolate; }
+.story-card h3 { padding-inline: 0; text-align: center; font-size: 28px; letter-spacing: .02em; white-space: nowrap; line-height: 1.12; }
+.story-card .ring-corner { width: 60px; height: 60px; opacity: .8; }
 .long-distance-story { scroll-margin-top: 28px; }
-
-/* 4. The fine beaded edge of the band becomes a quiet schedule rule. */
-.schedule-section .ring-rule { width: min(440px, 100%); height: auto; margin-top: 28px; }
 
 /* 5. Paired scrolls surround a centered registry invitation. */
 .registry-workspace {
@@ -97,9 +94,9 @@
   .ring-corner-bottom-left { bottom: 2px; left: 2px; }
   .ring-corner-bottom-right { bottom: 2px; right: 2px; }
   .scrapbook-heading .ring-divider { margin-top: 8px; }
-  .story-card { padding: 40px 28px 48px; }
-  .story-card h3 { padding-inline: 0; text-align: left; font-size: clamp(28px, 8vw, 36px); }
-  .story-card .ring-corner { width: 68px; height: 68px; }
+  .story-card { padding: 44px 34px 52px; }
+  .story-card h3 { text-align: left; font-size: clamp(16px, calc(8vw - 10px), 26px); letter-spacing: 0; }
+  .story-card .ring-corner { width: 52px; height: 52px; }
   .registry-workspace { width: calc(100% - 32px); margin: 32px auto; padding: 44px 40px; }
   .registry-title { font-size: 42px; margin-bottom: 24px; }
   .registry-intro { font-size: 15px; margin-bottom: 28px; }

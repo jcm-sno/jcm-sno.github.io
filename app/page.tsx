@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
-import { RingCorners, RingDivider } from "./components/ring-ornament";
+import { RingCorners, RingDivider, RingFlourish } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
 
@@ -104,7 +104,7 @@ export default function Home() {
             fetchPriority="high"
           />
           <div className="hero-copy">
-            <RingDivider />
+            <RingFlourish />
             <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
             <h1
               id="hero-title"

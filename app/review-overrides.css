@@ -614,7 +614,7 @@
   right: var(--nav-link-inset);
   bottom: 2px;
   left: var(--nav-link-inset);
-  height: 9px;
+  height: 11px;
   background: currentColor;
   mask: url("/ring-nav-rule.svg") center / 100% 100% no-repeat;
   opacity: 0;
