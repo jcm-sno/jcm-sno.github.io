@@ -1,10 +1,19 @@
 /** Acanthus leaves, milgrain dots, and diamond settings echo Samantha's ring. */
-export default function RingOrnament() {
+export function RingDivider() {
   return (
-    <svg className="ring-ornament" viewBox="0 0 320 100" width="320" height="100"
+    <svg className="ring-divider" viewBox="0 0 760 104" width="760" height="104"
       aria-hidden="true" focusable="false">
-      <image href="/ring-acanthus-scroll.webp" width="100" height="300"
-        transform="translate(310 0) rotate(90)" />
+      <g fill="none" stroke="currentColor" strokeWidth="1">
+        <path d="M0 52H110M350 52H362M398 52H410M650 52H760" />
+        <path d="M380 34L398 52L380 70L362 52ZM380 41L391 52L380 63L369 52Z" />
+        <path d="M377 52H383M380 49V55" />
+      </g>
+      <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+        transform="translate(110 92) rotate(-90)" />
+      <g transform="translate(760 0) scale(-1 1)">
+        <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+          transform="translate(110 92) rotate(-90)" />
+      </g>
     </svg>
   );
 }

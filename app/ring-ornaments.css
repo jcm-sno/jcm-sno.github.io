@@ -1,10 +1,10 @@
-/* Six distinct stationery treatments, drawn from the ring's acanthus and milgrain. */
+/* Stationery details drawn from the ring's acanthus and milgrain. */
 :root { --engraved-green: #4e654c; }
 
-.ring-corners, .ring-corner, .ring-scroll, .ring-ornament, .ring-rule, .ring-axis {
+.ring-corners, .ring-corner, .ring-scroll, .ring-divider, .ring-rule, .ring-axis {
   pointer-events: none;
 }
-.ring-scroll, .ring-ornament { display: block; mix-blend-mode: multiply; }
+.ring-scroll, .ring-divider { display: block; mix-blend-mode: multiply; }
 .ring-rule, .ring-axis { display: block; color: var(--engraved-green); }
 
 /* 1. Open acanthus corners on the invitation. */
@@ -21,27 +21,24 @@
 .ring-corner-top { top: 4px; right: 4px; transform: rotate(180deg); }
 .ring-corner-bottom { bottom: 4px; left: 4px; }
 
-/* 2. A single horizontal scroll gives the Archive heading a botanical signature. */
-.scrapbook-heading .ring-ornament {
-  width: 216px;
+/* Mirrored vines meet at a diamond to close the Archive masthead. */
+.ring-divider { color: var(--engraved-green); }
+.scrapbook-heading {
+  width: min(900px, calc(100% - 48px));
+  margin-bottom: clamp(60px, 7vw, 92px);
+}
+.scrapbook-heading .ring-divider {
+  width: min(760px, 100%);
   height: auto;
   margin: 12px auto 0;
   opacity: .85;
 }
-.scrapbook-heading { margin-bottom: clamp(60px, 7vw, 92px); }
 
-/* 3. A vertical scroll belongs to one story, with a reserved margin for the art. */
-.long-distance-story { padding-left: 92px; scroll-margin-top: 28px; }
-.long-distance-story .story-scroll {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  width: 60px;
-  height: 180px;
-  transform: translateY(-50%);
-  opacity: .9;
-}
-.long-distance-story h3 { white-space: normal; }
+/* Open corners frame each centered story title without crowding the text. */
+.story-card { padding: 44px 42px 52px; isolation: isolate; }
+.story-card h3 { padding-inline: 24px; text-align: center; white-space: normal; line-height: 1.08; }
+.story-card .ring-corner { width: 82px; height: 82px; opacity: .8; }
+.long-distance-story { scroll-margin-top: 28px; }
 
 /* 4. The fine beaded edge of the band becomes a quiet schedule rule. */
 .schedule-section .ring-rule { width: min(440px, 100%); height: auto; margin-top: 28px; }
@@ -94,10 +91,10 @@
   .ring-corner { width: 74px; height: 74px; }
   .ring-corner-top { top: 2px; right: 2px; }
   .ring-corner-bottom { bottom: 2px; left: 2px; }
-  .scrapbook-heading .ring-ornament { width: 190px; margin-top: 8px; }
-  .long-distance-story { padding-left: 76px; }
-  .long-distance-story .story-scroll { left: 6px; width: 56px; height: 168px; }
-  .long-distance-story h3 { font-size: clamp(28px, 8vw, 36px); line-height: 1.08; }
+  .scrapbook-heading .ring-divider { margin-top: 8px; }
+  .story-card { padding: 40px 28px 48px; }
+  .story-card h3 { font-size: clamp(28px, 8vw, 36px); }
+  .story-card .ring-corner { width: 68px; height: 68px; }
   .registry-workspace { width: calc(100% - 32px); margin: 32px auto; padding: 44px 40px; }
   .registry-title { font-size: 42px; margin-bottom: 24px; }
   .registry-intro { font-size: 15px; margin-bottom: 28px; }

@@ -5,6 +5,7 @@ import "@fontsource/parisienne/400.css";
 import "./globals.css";
 import "./review-overrides.css";
 import "./ring-ornaments.css";
+import "./logistics/logistics.css";
 import { defaultPaletteId } from "./palettes";
 
 const siteTitle = "Samantha & James";

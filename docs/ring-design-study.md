@@ -33,3 +33,8 @@ Refine this exact acanthus corner engraving for small-scale wedding stationery. 
 ### Final scroll refinement prompt
 
 Refine this exact tall acanthus scroll for fine wedding stationery. Preserve the graceful elongated S stem, five curling acanthus leaves, tiny diamond and tall proportions. CHANGE the rendering to clear monochrome GREEN PEN LINE ART in #4e654c. Remove every white/cream fill, gray shading, embossed effect, and dense hatching. All spaces inside the leaves and between the leaves must be truly transparent. Keep beautiful curving outer contours with two or three sinuous interior veins per leaf, and sparse incised marks only at spiral tips. Slightly stronger crisp green strokes for legibility when printed at 45 px wide and 200 px tall. Preserve distinctive scalloped acanthus blade shapes and elaborate curling tips. All marks green, absolutely no yellow/neon green halos or white pixels. Hand-engraved jeweler’s ornament, not a generic ivy vine or olive branch. Transparent background, no text, no rectangle, no borders, no shadows. Entire drawing inside canvas.
+
+
+## Selected refinements — November 6, 2026
+
+Centered the four story titles and repeated the open corner engraving on each story card. Replaced the single Archive scroll with mirrored acanthus vines, a central diamond, and a fine horizontal boundary; repeated a smaller version above Airports and Lodging. Renamed the main schedule title to Schedule and removed its duplicate eyebrow. Unified logistics heading and card typography, hotel rate sizes, and backgrounds within card groups; softened the schedule cards and transportation note to pale sage.

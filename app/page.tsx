@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
-import RingOrnament, { RingCorners, RingScroll } from "./components/ring-ornament";
+import { RingCorners, RingDivider } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
 
@@ -126,7 +126,7 @@ export default function Home() {
         <section id="our-story" className="scrapbook-section" aria-labelledby="story-heading">
           <div className="scrapbook-heading">
             <h2 id="story-heading">Archive</h2>
-            <RingOrnament />
+            <RingDivider />
           </div>
 
           <div
@@ -135,6 +135,7 @@ export default function Home() {
             aria-labelledby="field-day-heading"
           >
             <article className="story-card field-day-story">
+              <RingCorners />
               <div className="story-heading-fields">
                 <p className="clip-kicker">Same neighborhood · first Field Day</p>
                 <h3 id="field-day-heading">So How’d You Meet?</h3>
@@ -232,6 +233,7 @@ export default function Home() {
             aria-labelledby="boston-heading"
           >
             <article className="story-card boston-story">
+              <RingCorners />
               <div className="story-heading-fields">
                 <p className="clip-kicker">Boston · beginning to date</p>
                 <h3 id="boston-heading">Life in Cambridge Montage</h3>
@@ -300,7 +302,7 @@ export default function Home() {
             aria-labelledby="long-distance-heading"
           >
             <article id="across-the-distance" className="story-card long-distance-story">
-              <RingScroll className="story-scroll" />
+              <RingCorners />
               <div className="story-heading-fields">
                 <p className="clip-kicker">Scotland · California · long distance</p>
                 <h3 id="long-distance-heading">Across the Distance</h3>
@@ -341,6 +343,7 @@ export default function Home() {
             aria-labelledby="engagement-heading"
           >
             <article className="story-card engagement-story">
+              <RingCorners />
               <div className="story-heading-fields">
                 <p className="clip-kicker">Engagement</p>
                 <h3 id="engagement-heading">The Big Weekend</h3>

@@ -1,0 +1,111 @@
+/* One typography and paper system across the three logistics sections. */
+.logistics-page {
+  --logistics-card-paper: #f7f4ed;
+  --schedule-card-paper: #e5ebe1;
+  --logistics-card-rule: color-mix(in srgb, var(--engraved-green) 18%, transparent);
+}
+
+.logistics-page .logistics-section-heading h2 {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: clamp(52px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: .045em;
+}
+
+.logistics-section-heading .ring-divider {
+  width: min(300px, 100%);
+  height: auto;
+  margin: 0 0 24px;
+  opacity: .85;
+}
+
+.logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) {
+  color: var(--deep-cypress);
+  border: 1px solid var(--logistics-card-rule);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--deep-cypress) 4%, transparent);
+}
+
+.logistics-page :is(.schedule-card, .transport-note) {
+  background: var(--schedule-card-paper);
+}
+
+.logistics-page :is(.airport-card, .hotel-card) {
+  background: var(--logistics-card-paper);
+  padding: clamp(26px, 2.6vw, 38px);
+}
+
+.logistics-page .airport-card:first-child { transform: none; }
+
+.logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) h3 {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: .025em;
+}
+
+.logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) :is(p, address, ul, dl) {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.logistics-page .hotel-card address { font-style: normal; }
+
+.logistics-page :is(.schedule-card, .airport-card, .transport-note) :is(.detail-label, .section-number),
+.logistics-page .hotel-details h4 {
+  color: var(--deep-seagrass);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.logistics-page .date-card {
+  background: #d4dece;
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--deep-cypress) 5%, transparent);
+}
+
+.logistics-page .status-pill {
+  background: color-mix(in srgb, var(--canvas-white) 40%, transparent);
+  color: var(--deep-seagrass);
+}
+
+.logistics-page :is(.rate-block, .split-rates) strong {
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.logistics-page :is(.rate-block, .split-rates) { gap: 16px; }
+.logistics-page .split-rates > .split-rates-heading { padding-bottom: 0; }
+.logistics-page .rate-block .parking-rate { margin-top: 0; font-weight: 400; }
+.logistics-page .hotel-grid { align-items: stretch; }
+.logistics-page .airport-grid { margin-top: 40px; }
+
+@media (max-width: 1023px) {
+  .centered-heading .ring-divider { margin-inline: auto; }
+}
+
+@media (max-width: 767px) {
+  .logistics-page .logistics-section-heading h2 {
+    font-size: clamp(42px, 13vw, 56px);
+  }
+  .logistics-page :is(.schedule-card, .airport-card, .hotel-card, .transport-note) h3 {
+    font-size: 30px;
+  }
+  .logistics-section-heading .ring-divider { width: 260px; }
+}
+
+@media (min-width: 1024px) {
+  .logistics-page .logistics-section { padding-inline: clamp(32px, 4vw, 56px); }
+  .logistics-page .airport-card { padding: 28px 20px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .logistics-page .airport-grid { grid-template-columns: minmax(0, 1fr); }
+}
