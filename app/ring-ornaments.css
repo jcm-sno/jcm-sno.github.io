@@ -98,6 +98,7 @@
   .ring-corner-bottom-right { bottom: 8px; right: 8px; }
   .scrapbook-heading .ring-divider { margin-top: 8px; }
   .story-card { --story-inset: 36px; }
+  .story-card > p:not(.clip-kicker) { text-align: justify; text-align-last: left; -webkit-hyphens: auto; hyphens: auto; }
   .story-card h3 { text-align: left; font-size: clamp(15.5px, calc(8vw - 10px), 26px); letter-spacing: 0; }
   .story-card .ring-corner { width: 52px; height: 52px; }
   .registry-workspace { width: calc(100% - 32px); margin: 32px auto; padding: 44px 40px; }
