@@ -7,9 +7,9 @@
 .ring-scroll, .ring-divider, .ring-flourish { display: block; mix-blend-mode: multiply; }
 .ring-axis { display: block; color: var(--engraved-green); }
 
-/* A joined botanical engraving closes the invitation beneath the names on phones. */
+/* A joined botanical engraving sits below the mobile header wordmark. */
 .hero-copy { position: relative; padding: 30px 44px 36px; isolation: isolate; }
-.hero-copy .ring-flourish { display: none; width: min(196px, 100%); height: auto; margin: 0 auto; opacity: .85; }
+.site-nav .ring-flourish { display: none; width: min(176px, 100%); height: auto; opacity: .85; }
 .ring-corners { position: absolute; inset: 0; }
 .ring-corner {
   position: absolute;
@@ -87,8 +87,9 @@
   .ring-corner { width: 88px; height: 88px; }
 }
 @media (max-width: 767px) {
-  .hero-copy { padding: 36px 28px 28px; }
-  .hero-copy .ring-flourish { display: block; margin-top: 20px; }
+  .site-nav { row-gap: 0; }
+  .site-nav .ring-flourish { display: block; grid-column: 1; margin: 2px auto 6px; }
+  .hero-copy { padding: 36px 28px; }
   .hero-copy .eyebrow { margin-bottom: 18px; text-align: center; }
   .ring-corner { width: 74px; height: 74px; }
   .ring-corner-top-left { top: 8px; left: 8px; }

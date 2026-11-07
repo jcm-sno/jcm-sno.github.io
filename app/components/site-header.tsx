@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { RingFlourish } from "./ring-ornament";
 
 type SiteHeaderProps = {
   active: "about" | "logistics" | "registry" | "rsvp";
@@ -17,6 +18,7 @@ export default function SiteHeader({ active }: SiteHeaderProps) {
       <Link className="wordmark" href="/" aria-label="Samantha and James home">
         Samantha <span>&amp;</span> James
       </Link>
+      <RingFlourish />
       <nav aria-label="Wedding website navigation">
         {links.map((link) => (
           <Link

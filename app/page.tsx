@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
-import { RingCorners, RingDivider, RingFlourish } from "./components/ring-ornament";
+import { RingCorners, RingDivider } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
 
@@ -119,7 +119,6 @@ export default function Home() {
                 <span>Morrison</span>
               </span>
             </h1>
-            <RingFlourish />
           </div>
         </section>
 
