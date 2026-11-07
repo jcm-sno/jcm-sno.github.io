@@ -104,7 +104,6 @@ export default function Home() {
             fetchPriority="high"
           />
           <div className="hero-copy">
-            <RingFlourish />
             <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
             <h1
               id="hero-title"
@@ -120,6 +119,7 @@ export default function Home() {
                 <span>Morrison</span>
               </span>
             </h1>
+            <RingFlourish />
           </div>
         </section>
 
