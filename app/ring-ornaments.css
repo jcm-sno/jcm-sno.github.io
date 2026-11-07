@@ -37,8 +37,8 @@
   opacity: .85;
 }
 
-/* Open corners frame each centered story title without crowding the text. */
-.story-card { --story-inset: 48px; padding: var(--story-inset) var(--story-inset) 56px; isolation: isolate; }
+/* Allow for the text's line-box whitespace so all four margins look balanced. */
+.story-card { --story-inset: 48px; padding: calc(var(--story-inset) - 8px) var(--story-inset); isolation: isolate; }
 .story-card > p:not(.clip-kicker) { max-width: none; margin-inline: 0; }
 .story-card h3 { padding-inline: 0; text-align: center; font-size: 28px; letter-spacing: .02em; white-space: nowrap; line-height: 1.12; }
 .story-card .ring-corner { width: 60px; height: 60px; opacity: .8; }
@@ -97,7 +97,7 @@
   .ring-corner-bottom-left { bottom: 8px; left: 8px; }
   .ring-corner-bottom-right { bottom: 8px; right: 8px; }
   .scrapbook-heading .ring-divider { margin-top: 8px; }
-  .story-card { --story-inset: 36px; padding-bottom: 52px; }
+  .story-card { --story-inset: 36px; }
   .story-card h3 { text-align: left; font-size: clamp(15.5px, calc(8vw - 10px), 26px); letter-spacing: 0; }
   .story-card .ring-corner { width: 52px; height: 52px; }
   .registry-workspace { width: calc(100% - 32px); margin: 32px auto; padding: 44px 40px; }
