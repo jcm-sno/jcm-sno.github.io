@@ -192,7 +192,6 @@ h3,
   border-bottom: 1px solid transparent;
 }
 
-.site-nav nav a:hover,
 .site-nav nav a:focus-visible,
 .site-nav nav a.is-active {
   border-bottom-color: currentColor;
@@ -223,8 +222,16 @@ summary:focus-visible {
   background: var(--hazy-atlantic);
 }
 
-.hero-picture { display: contents; }
-.hero-picture source { display: none; }
+.hero-picture,
+.archive-picture { display: contents; }
+.hero-picture source,
+.archive-picture source { display: none; }
+
+.hero-photo,
+.cluster-photo img {
+  background-size: cover;
+  background-position: center;
+}
 
 .hero-photo {
   position: absolute;
@@ -1004,9 +1011,12 @@ summary:focus-visible {
   background: color-mix(in srgb, var(--canvas-white) 52%, transparent);
 }
 
-.logistics-jump a:hover,
 .logistics-jump a:focus-visible {
   background: var(--hazy-atlantic);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logistics-jump a:hover { background: var(--hazy-atlantic); }
 }
 
 .logistics-jump a:focus-visible,

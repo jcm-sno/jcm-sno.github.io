@@ -623,14 +623,18 @@
   pointer-events: none;
 }
 
-.site-nav nav a:hover,
 .site-nav nav a:focus-visible,
 .site-nav nav a[aria-current="page"] {
   color: var(--deep-cypress);
 }
 
-.site-nav nav a:not(.nav-rsvp):hover::after {
-  opacity: 0.35;
+@media (hover: hover) and (pointer: fine) {
+  .site-nav nav a:hover { color: var(--deep-cypress); }
+  .site-nav nav a:not(.nav-rsvp):not([aria-current="page"]):hover::after { opacity: 0.35; }
+  .site-nav nav a.nav-rsvp:hover {
+    background: var(--deep-cypress);
+    color: var(--canvas-white);
+  }
 }
 
 .site-nav nav a[aria-current="page"]::after {
@@ -644,11 +648,37 @@
   color: var(--deep-cypress);
 }
 
-.site-nav nav a.nav-rsvp:hover,
 .site-nav nav a.nav-rsvp[aria-current="page"] {
   background: var(--deep-cypress);
   color: var(--canvas-white);
 }
+
+.site-nav a,
+.logistics-jump a,
+.logistics-tab-rail label {
+  touch-action: manipulation;
+}
+
+.nav-feedback {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.site-nav nav a:active,
+.site-nav nav a:has(.nav-feedback[data-pending]) {
+  color: var(--deep-cypress);
+  background: var(--hazy-atlantic);
+}
+
+.site-nav nav a:has(.nav-feedback[data-pending])::after {
+  opacity: 0.6;
+}
+
+.site-nav a:has(.nav-feedback[data-pending]) { cursor: progress; }
 
 @media (max-width: 900px) {
   .site-nav {

@@ -1,0 +1,53 @@
+{
+  "/about-banner-2048.webp": {
+    "placeholder": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAwCdASoYABAAPwFqrU6rJiQiMAgBYCAJZQCdACHXVVV2vP4I9MAA/tMAvoBLVonC24J/YI4A16BgdeoGP/o117KzKLeL73eNQb0pmJD35aUoAAA="
+  },
+  "/field-day-group.webp": {
+    "placeholder": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAwCdASoYAA4APwFsrU6rJiQiMAgBYCAJZQDImCGIlNsHtYsnSSnAAPotq4VWRkanvWqUi8HZnoTqzpvtp0qmamWjQEGFMKXSnNOFPFQAAA==",
+    "srcSet": "/field-day-group-640.avif 640w, /field-day-group-960.avif 960w, /field-day-group-1280.avif 1280w, /field-day-group-1536.avif 1536w"
+  },
+  "/field-day-facing.webp": {
+    "placeholder": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoOABgAPwFqrU6rJiQiMAgBYCAJZAAAW0pTSLBgNGr7bYAA/qCFpjPo7yORovy9PMIovE8TBDYj00qb6q5gV8OVnqXXzwucMdiBLyf8qKy4AAAA",
+    "srcSet": "/field-day-facing-640.avif 640w, /field-day-facing-960.avif 960w, /field-day-facing-1090.avif 1090w"
+  },
+  "/field-day-wheelbarrow.webp": {
+    "placeholder": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAACwBACdASoRABgAPwFws1GrJiSiqAqpYCAJYwDI1BEl+5XmpOXwM1zvJkAxnWwAAPzOoihwqJshy3fPQYIbDvzNhxTeEWOQMtUeI1we+Sx/zjI2Jqg5TGQjP7Ij7lkUcUjdTuAczdtAJC9yX4K6tBusAAA=",
+    "srcSet": "/field-day-wheelbarrow-640.avif 640w, /field-day-wheelbarrow-960.avif 960w, /field-day-wheelbarrow-1096.avif 1096w"
+  },
+  "/boston-coffee.webp": {
+    "placeholder": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADwBACdASoYABMAPwFurVCrJiQisBgIAWAgCUAVIpzIJ2B+S43BwlDzwS/hIPccM9AA/t7p64BeFtGh1IlL6s42EgT9ukCbQnq9AkoVYGu5gKo32VM/FiIPCEWahwhQjTPC9YJ2zaSx3bfls+l7aXWxWGybwbUcrwAycgtc14wAAA==",
+    "srcSet": "/boston-coffee-628.avif 628w"
+  },
+  "/boston-kayak.webp": {
+    "placeholder": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAADQBQCdASoYABIAPwF0rVKrJqOiqAqpYCAJZgCdMoQCviLf+gAsgbpEJV+crljHvDKGvwehyQ6AAPnaCjw+xCMLlLsJteRpo8pBcr7x8SW4WVSiYvAu2clVpD0B391cygJq4pGHMqzi8UWrM32G0xrD4B2ieETaVlP1xPKBFSilPhUDAbbAnkJJL9WdfRlLPTg/kEKm93xLFh+PAAA=",
+    "srcSet": "/boston-kayak-640.avif 640w, /boston-kayak-960.avif 960w, /boston-kayak-1280.avif 1280w, /boston-kayak-1448.avif 1448w"
+  },
+  "/boston-night.webp": {
+    "placeholder": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAwBACdASoSABgAPwFsq08rJiOiMAgBYCAJZQCsMzlC81NbZ4x3oNlnpEAA/nDbg4aQ/FILs4CEwQ1wn5uOyG+8D3NNM4EjLXF0tSElIS82Pe+jVXoHf2Pb0vTAgAAA",
+    "srcSet": "/boston-night-640.avif 640w, /boston-night-960.avif 960w, /boston-night-1152.avif 1152w"
+  },
+  "/long-distance-scotland.webp": {
+    "placeholder": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAACwBACdASoYABIAPwFsr1ErJaQisBgIAWAgCUAWHYB5VE3lXd06TWgwiS5rLUYAANz/lBY0OdMRCsPeVBpG6x3BXf2tKyLomseQdGWz3rC1A0f2bsvkl1gWD6H15xwleI+Cz0c0lp3qOtQSYTIx3/JrJHMF59AA",
+    "srcSet": "/long-distance-scotland-640.avif 640w, /long-distance-scotland-960.avif 960w, /long-distance-scotland-1280.avif 1280w, /long-distance-scotland-1536.avif 1536w"
+  },
+  "/long-distance-seafood.webp": {
+    "placeholder": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAQBQCdASoSABgAPwFyslIrJqSiqAqpYCAJQArhYF2DvrhD7Uqmh2XvrKImlDj+zrugAP66gVxfQhzzC0NqQdYAr0Lmm8gcEgdc4gAqIPly1NjVRQNgiuPGOhPgt4BDc0HHedhTXw/FcsfrH/k3zYGtqzXUG5M7StxD2X6v/i/4OwhIvAAAAA==",
+    "srcSet": "/long-distance-seafood-640.avif 640w, /long-distance-seafood-960.avif 960w, /long-distance-seafood-1152.avif 1152w"
+  },
+  "/long-distance-harbor.webp": {
+    "placeholder": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBQCdASoYABIAPwFor1GrJSQisBgIAWAgCWMAvkgQuGiPcEb4/SQUcZWar4gOeAgAAP7DkrdfOD6ddbzH2fIQu4zQVXrezmsi9uigakZb085F6HiW9SDJlBg05RJXguDodWFUSDndIs0A2COu/wcvr5gyxFUI0nPqg3QywPZIgAAA",
+    "srcSet": "/long-distance-harbor-640.avif 640w, /long-distance-harbor-960.avif 960w, /long-distance-harbor-1280.avif 1280w, /long-distance-harbor-1536.avif 1536w"
+  },
+  "/engagement-walk.webp": {
+    "placeholder": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwAwCdASoYABAAPwForE6rJaQiMAgBYCAJZQAAW62fEurRyKeNAAD+3nN38rnAiOOXpJtQi/mogvhKafR+JNOoXkocNUBL2nZ/NKK+aB+ICTHKOcIugnnZWQxjaTqz0n54/a2T7hFz0AAA",
+    "srcSet": "/engagement-walk-640.avif 640w, /engagement-walk-960.avif 960w, /engagement-walk-1280.avif 1280w, /engagement-walk-1536.avif 1536w"
+  },
+  "/engagement-proposal.webp": {
+    "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACQAwCdASoQABgAPwFwrk+rJqQiMAgBYCAJQBOgBDkwAypg3XoAAMpot/aZl3vRtImiaaOoxA2MWoPehw2h89lzdiC2qDndD71eAA==",
+    "srcSet": "/engagement-proposal-640.avif 640w, /engagement-proposal-960.avif 960w, /engagement-proposal-1024.avif 1024w"
+  },
+  "/engagement-reaction.webp": {
+    "placeholder": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoQABgAPwFwrk+rJqQiMAgBYCAJQBdgA8rJwBnt6zv+rizaAADOOU7dOBpowuw2+9A3QnsKKkER/fmB8VSyYQWtZfKxB7/LtesAwVHqPG04x0XPbUDba1l/8l67OdbKbVekwc1yal4axIAA",
+    "srcSet": "/engagement-reaction-640.avif 640w, /engagement-reaction-960.avif 960w, /engagement-reaction-1024.avif 1024w"
+  }
+}

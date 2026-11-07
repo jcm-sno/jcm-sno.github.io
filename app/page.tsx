@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import SiteHeader from "./components/site-header";
+import ArchivePhoto from "./components/archive-photo";
+import photoAssets from "./photo-assets.json";
 import { RingCorners, RingDivider } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
@@ -107,6 +109,7 @@ export default function Home() {
             <source type="image/avif" srcSet={heroAvifSrcSet} sizes={heroSizes} />
             <img
               className="hero-photo"
+              style={{ backgroundImage: `url("${photoAssets["/about-banner-2048.webp"].placeholder}")` }}
               src="/about-banner-2048.webp"
               alt="Samantha and James embracing as they look out at the ocean"
               width="2048"
@@ -183,7 +186,7 @@ export default function Home() {
             </article>
 
             <figure className="cluster-photo field-day-main">
-              <img
+              <ArchivePhoto
                 src="/field-day-group.webp"
                 alt="Friends line up for a Field Day game; Samantha in green shorts and James in red stand together at the right"
                 width="1635"
@@ -196,7 +199,7 @@ export default function Home() {
             </figure>
 
             <figure className="cluster-photo field-day-facing">
-              <img
+              <ArchivePhoto
                 src="/field-day-facing.webp"
                 alt="James in a red shirt faces Samantha across a Field Day net"
                 width="1090"
@@ -209,7 +212,7 @@ export default function Home() {
             </figure>
 
             <figure className="cluster-photo field-day-action">
-              <img
+              <ArchivePhoto
                 src="/field-day-wheelbarrow.webp"
                 alt="James holds Samantha's legs during a Field Day wheelbarrow race"
                 width="1096"
@@ -272,18 +275,19 @@ export default function Home() {
             </article>
 
             <figure className="cluster-photo captioned-photo boston-coffee">
-              <img
+              <ArchivePhoto
                 src="/boston-coffee.webp"
                 alt="Samantha rests her head on James at a table in a Cambridge coffee shop"
                 width="628"
                 height="502"
+                sizes="(min-width: 1024px) 34vw, 92vw"
                 loading="lazy"
                 decoding="async"
               />
             </figure>
 
             <figure className="cluster-photo boston-kayak">
-              <img
+              <ArchivePhoto
                 src="/boston-kayak.webp"
                 alt="Samantha and James smile together on the water with the Boston skyline behind them"
                 width="1448"
@@ -296,11 +300,12 @@ export default function Home() {
             </figure>
 
             <figure className="cluster-photo captioned-photo boston-night">
-              <img
+              <ArchivePhoto
                 src="/boston-night.webp"
                 alt="Samantha and James smile together above a city skyline at night"
                 width="1152"
                 height="1536"
+                sizes="(min-width: 1024px) 34vw, 92vw"
                 loading="lazy"
                 decoding="async"
               />
@@ -333,7 +338,7 @@ export default function Home() {
                 className={`cluster-photo ${photo.className}`}
                 key={photo.src}
               >
-                <img
+                <ArchivePhoto
                   src={photo.src}
                   alt={photo.alt}
                   width={photo.width}
@@ -406,7 +411,7 @@ export default function Home() {
                 className={`cluster-photo ${photo.className}`}
                 key={photo.src}
               >
-                <img
+                <ArchivePhoto
                   src={photo.src}
                   alt={photo.alt}
                   width={photo.width}

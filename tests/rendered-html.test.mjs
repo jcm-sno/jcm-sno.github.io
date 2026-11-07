@@ -49,7 +49,7 @@ test("renders wedding metadata and the selected default palette", async () => {
   assert.match(html, /James and I first met in September 2024/i);
   assert.match(html, /The X-ray broke the ice/i);
   assert.match(html, /James was in grad school/i);
-  assert.match(html, /<a[^>]+href=["']\/registry\/["'][^>]*>Registry<\/a>/i);
+  assert.match(html, /<a[^>]+href=["']\/registry\/["'][^>]*>Registry<span[^>]*[^]*?<\/span><\/a>/i);
   assert.doesNotMatch(html, /<a[^>]+href=["']\/registry\/["'][^>]*>Wishlist<\/a>/i);
   assert.match(html, /Life in Cambridge Montage/i);
   assert.match(html, /donnelly-field-map\.svg/i);
@@ -212,7 +212,7 @@ test("renders logistics, registry, and RSVP routes", async () => {
   assert.match(registryHtml, /aria-label=["'][^"']*new tab["']/i);
   assert.match(
     registryHtml,
-    /<a[^>]+href=["']\/registry\/["'][^>]+aria-current=["']page["'][^>]*>Registry<\/a>/i,
+    /<a[^>]+href=["']\/registry\/["'][^>]+aria-current=["']page["'][^>]*>Registry<span[^>]*[^]*?<\/span><\/a>/i,
   );
   assert.match(registryHtml, />View registry<\/a>/i);
   assert.doesNotMatch(registryHtml, /<iframe[^>]+crateandbarrel/i);

@@ -89,7 +89,7 @@ const donnellyMap = await readFile(
 );
 assert.doesNotMatch(home, /coffee shop stalker/i);
 assert.match(home, /href=["']\/rsvp\//i);
-assert.match(home, /<a[^>]+href=["']\/registry\/["'][^>]*>Registry<\/a>/i);
+assert.match(home, /<a[^>]+href=["']\/registry\/["'][^>]*>Registry<span[^>]*[^]*?<\/span><\/a>/i);
 assert.doesNotMatch(home, /<a[^>]+href=["']\/registry\/["'][^>]*>Wishlist<\/a>/i);
 assert.match(home, />Archive</i);
 assert.match(home, /So How.d You Meet\?/i);
@@ -105,6 +105,10 @@ assert.match(home, /about-banner-2048\.webp/i);
 assert.match(home, /about-banner-1536\.webp/i);
 assert.match(home, /<source[^>]+type=["']image\/avif["']/i);
 assert.match(home, /about-banner-1280\.avif/i);
+assert.equal((home.match(/<source[^>]+type=["']image\/avif["']/gi) ?? []).length, 13,
+  "Every photograph needs a responsive AVIF alternative");
+assert.equal((home.match(/background-image:url\(&quot;data:image\/webp;base64,/g) ?? []).length, 13,
+  "Every photograph should have an inline preview, without another network request");
 for (const [route, html] of Object.entries({ logistics, registry, rsvp })) {
   assert.doesNotMatch(html, /about-banner-\d+\.(?:avif|webp)/i,
     `${route} must not preload the home-only banner`);
@@ -241,7 +245,7 @@ assert.match(
 assert.match(registry, /aria-label=["'][^"']*new tab["']/i);
 assert.match(
   registry,
-  /<a[^>]+href=["']\/registry\/["'][^>]+aria-current=["']page["'][^>]*>Registry<\/a>/i,
+  /<a[^>]+href=["']\/registry\/["'][^>]+aria-current=["']page["'][^>]*>Registry<span[^>]*[^]*?<\/span><\/a>/i,
 );
 assert.match(registry, />View registry<\/a>/i);
 assert.doesNotMatch(registry, /<iframe[^>]+crateandbarrel/i);

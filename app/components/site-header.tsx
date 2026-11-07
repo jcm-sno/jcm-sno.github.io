@@ -1,4 +1,5 @@
-import Link from "next/link";
+import NavigationLink from "./navigation-link";
+import DeferredTabPrefetch from "./deferred-tab-prefetch";
 import { RingFlourish } from "./ring-ornament";
 
 type SiteHeaderProps = {
@@ -11,25 +12,26 @@ const links = [
   { id: "registry", href: "/registry/", label: "Registry" },
   { id: "rsvp", href: "/rsvp/", label: "RSVP" },
 ] as const;
+const hrefs = links.map((link) => link.href);
 
 export default function SiteHeader({ active }: SiteHeaderProps) {
   return (
     <header className="site-nav">
-      <Link className="wordmark" href="/" prefetch={false} aria-label="Samantha and James home">
+      <DeferredTabPrefetch currentHref={links.find((link) => link.id === active)!.href} hrefs={hrefs} />
+      <NavigationLink className="wordmark" href="/" aria-label="Samantha and James home">
         Samantha <span>&amp;</span> James
-      </Link>
+      </NavigationLink>
       <RingFlourish />
       <nav aria-label="Wedding website navigation">
         {links.map((link) => (
-          <Link
+          <NavigationLink
             className={`${link.id === active ? "is-active" : ""} ${link.id === "rsvp" ? "nav-rsvp" : ""}`.trim()}
             href={link.href}
-            prefetch={false}
             aria-current={link.id === active ? "page" : undefined}
             key={link.id}
           >
             {link.label}
-          </Link>
+          </NavigationLink>
         ))}
       </nav>
     </header>
