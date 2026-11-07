@@ -2,6 +2,7 @@
 .logistics-page {
   --logistics-card-paper: #f7f4ed;
   --schedule-card-paper: #d2dccd;
+  --logistics-lodging-bg: var(--schedule-card-paper);
   --logistics-card-rule: color-mix(in srgb, var(--engraved-green) 18%, transparent);
 }
 
@@ -47,6 +48,26 @@
   line-height: 1.7;
 }
 
+.logistics-page .airport-card-topline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logistics-page .airport-card-topline .detail-label { margin: 4px 0 0; }
+
+.logistics-page .airport-card .airport-code {
+  margin: 0;
+  font-family: "Cormorant SC", Georgia, serif;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .06em;
+  text-align: right;
+}
+
 .logistics-page .hotel-card address { font-style: normal; }
 
 .logistics-page :is(.schedule-card, .airport-card, .transport-note) :is(.detail-label, .section-number),
@@ -85,6 +106,7 @@
 
 @media (max-width: 1023px) {
   .logistics-page .centered-heading { text-align: left; }
+  .logistics-page .lodging-section { background: var(--logistics-lodging-bg); }
 }
 
 @media (max-width: 767px) {

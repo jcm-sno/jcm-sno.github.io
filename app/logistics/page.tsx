@@ -133,7 +133,7 @@ export default function LogisticsPage() {
                   <dd>Ceremony</dd>
                 </div>
                 <div>
-                  <dt>Afterward</dt>
+                  <dt>4:45–5 p.m.</dt>
                   <dd>Cocktail hour</dd>
                 </div>
                 <div>
@@ -164,10 +164,10 @@ export default function LogisticsPage() {
           <div className="airport-grid">
             {airports.map((airport) => (
               <article className="airport-card" key={airport.code}>
-                <p className="detail-label">{airport.label}</p>
-                <p className="airport-code" aria-hidden="true">
-                  {airport.code}
-                </p>
+                <div className="airport-card-topline">
+                  <p className="detail-label">{airport.label}</p>
+                  <p className="airport-code">{airport.code}</p>
+                </div>
                 <h3>
                   <a href={airport.href} target="_blank" rel="noreferrer">
                     {airport.name}
