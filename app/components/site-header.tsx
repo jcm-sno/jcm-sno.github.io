@@ -15,7 +15,7 @@ const links = [
 export default function SiteHeader({ active }: SiteHeaderProps) {
   return (
     <header className="site-nav">
-      <Link className="wordmark" href="/" aria-label="Samantha and James home">
+      <Link className="wordmark" href="/" prefetch={false} aria-label="Samantha and James home">
         Samantha <span>&amp;</span> James
       </Link>
       <RingFlourish />
@@ -24,6 +24,7 @@ export default function SiteHeader({ active }: SiteHeaderProps) {
           <Link
             className={`${link.id === active ? "is-active" : ""} ${link.id === "rsvp" ? "nav-rsvp" : ""}`.trim()}
             href={link.href}
+            prefetch={false}
             aria-current={link.id === active ? "page" : undefined}
             key={link.id}
           >

@@ -3,6 +3,10 @@ import SiteHeader from "./components/site-header";
 import { RingCorners, RingDivider } from "./components/ring-ornament";
 
 const responsiveWidths = [640, 960] as const;
+const heroAvifSrcSet = [640, 960, 1280, 1536, 2048]
+  .map((width) => `/about-banner-${width}.avif ${width}w`)
+  .join(", ");
+const heroSizes = "(min-width: 1440px) 1320px, 100vw";
 
 function responsivePhotoSrcSet(
   src: string,
@@ -87,22 +91,33 @@ const engagementPhotos = [
 export default function Home() {
   return (
     <main className="site-shell">
+      <link
+        rel="preload"
+        as="image"
+        type="image/avif"
+        imageSrcSet={heroAvifSrcSet}
+        imageSizes={heroSizes}
+        fetchPriority="high"
+      />
       <article className="album-page">
         <SiteHeader active="about" />
 
         <section className="hero-banner" aria-labelledby="hero-title">
-          <img
-            className="hero-photo"
-            src="/about-banner-2048.webp"
-            alt="Samantha and James embracing as they look out at the ocean"
-            width="2048"
-            height="1365"
-            srcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner-2048.webp 2048w"
-            sizes="(min-width: 1440px) 1320px, 100vw"
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-          />
+          <picture className="hero-picture">
+            <source type="image/avif" srcSet={heroAvifSrcSet} sizes={heroSizes} />
+            <img
+              className="hero-photo"
+              src="/about-banner-2048.webp"
+              alt="Samantha and James embracing as they look out at the ocean"
+              width="2048"
+              height="1365"
+              srcSet="/about-banner-960.webp 960w, /about-banner-1536.webp 1536w, /about-banner-2048.webp 2048w"
+              sizes={heroSizes}
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+            />
+          </picture>
           <div className="hero-copy">
             <p className="eyebrow">May 15, 2027 · Port Orange, Florida</p>
             <h1

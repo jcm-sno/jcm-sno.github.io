@@ -223,6 +223,9 @@ summary:focus-visible {
   background: var(--hazy-atlantic);
 }
 
+.hero-picture { display: contents; }
+.hero-picture source { display: none; }
+
 .hero-photo {
   position: absolute;
   inset: 0;

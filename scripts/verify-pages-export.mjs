@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
 // Keep the GitHub Pages artifact aligned with the guest-facing routes.
@@ -56,7 +56,7 @@ for (const file of htmlFiles) {
     const target = localTarget(file, match[1]);
     if (target) await access(target);
   }
-  for (const match of contents.matchAll(/\bsrcset=["']([^"']+)["']/gi)) {
+  for (const match of contents.matchAll(/\b(?:imagesrcset|srcset)=["']([^"']+)["']/gi)) {
     for (const candidate of match[1].split(",")) {
       const reference = candidate.trim().split(/\s+/, 1)[0];
       const target = localTarget(file, reference);
@@ -103,6 +103,20 @@ assert.match(home, /long-distance-harbor-1280\.webp/i);
 assert.match(home, /engagement-walk-1280\.webp/i);
 assert.match(home, /about-banner-2048\.webp/i);
 assert.match(home, /about-banner-1536\.webp/i);
+assert.match(home, /<source[^>]+type=["']image\/avif["']/i);
+assert.match(home, /about-banner-1280\.avif/i);
+for (const [route, html] of Object.entries({ logistics, registry, rsvp })) {
+  assert.doesNotMatch(html, /about-banner-\d+\.(?:avif|webp)/i,
+    `${route} must not preload the home-only banner`);
+}
+for (const [asset, budget] of [
+  ["ring-acanthus-corner-192.webp", 20000],
+  ["ring-acanthus-scroll-240.webp", 35000],
+  ["about-banner-1280.avif", 60000],
+]) {
+  assert((await stat(path.join(exportRoot, asset))).size <= budget,
+    `${asset} exceeds its mobile download budget`);
+}
 assert.match(home, /rel=["']preload["'][^>]+as=["']image["']/i);
 assert.match(home, /decoding=["']sync["']/i);
 assert.equal(

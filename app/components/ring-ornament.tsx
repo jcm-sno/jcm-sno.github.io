@@ -7,10 +7,10 @@ export function RingDivider() {
         <path d="M380 34L398 52L380 70L362 52ZM380 41L391 52L380 63L369 52Z" />
         <path d="M377 52H383M380 49V55" />
       </g>
-      <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+      <image href="/ring-acanthus-scroll-240.webp" width="80" height="240"
         transform="translate(110 85) rotate(-90)" />
       <g transform="translate(760 0) scale(-1 1)">
-        <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+        <image href="/ring-acanthus-scroll-240.webp" width="80" height="240"
           transform="translate(110 85) rotate(-90)" />
       </g>
     </svg>
@@ -28,12 +28,12 @@ export function RingFlourish() {
         </clipPath>
       </defs>
       <g clipPath="url(#invitation-flourish-half)">
-        <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+        <image href="/ring-acanthus-scroll-240.webp" width="80" height="240"
           transform="translate(0 90) rotate(-90)" />
       </g>
       <g transform="translate(460 0) scale(-1 1)">
         <g clipPath="url(#invitation-flourish-half)">
-          <image href="/ring-acanthus-scroll.webp" width="80" height="240"
+          <image href="/ring-acanthus-scroll-240.webp" width="80" height="240"
             transform="translate(0 90) rotate(-90)" />
         </g>
       </g>
@@ -45,7 +45,7 @@ export function RingScroll({ className = "" }: { className?: string }) {
   return (
     <svg className={`ring-scroll ${className}`.trim()} viewBox="0 0 320 960"
       width="320" height="960" aria-hidden="true" focusable="false">
-      <image href="/ring-acanthus-scroll.webp" width="320" height="960" />
+      <image href="/ring-acanthus-scroll-240.webp" width="320" height="960" />
     </svg>
   );
 }
