@@ -13,7 +13,7 @@ const airports = [
   {
     code: "DAB",
     name: "Daytona Beach International Airport",
-    time: "About 15–25min",
+    time: "15–25mins away",
     note: "The closest and simplest option for our hotel blocks and venue.",
     label: "Closest airport",
     href: "https://www.flydaytonafirst.com/",
@@ -21,7 +21,7 @@ const airports = [
   {
     code: "MCO",
     name: "Orlando International Airport",
-    time: "About 1hr 20min–1hr 45min",
+    time: "80–105mins away",
     note: "Usually the broadest selection of airlines and nonstop routes, making it the most practical major-airport option despite the longer drive.",
     label: "Nearest major airport",
     href: "https://www.orlandoairports.net/",
@@ -29,7 +29,7 @@ const airports = [
   {
     code: "SFB",
     name: "Orlando Sanford International Airport",
-    time: "About 50–65min",
+    time: "50–65mins away",
     note: "Best only when a nonstop itinerary happens to match your city and dates; compare the full fare and schedule before choosing it.",
     label: "Limited-route alternative",
     href: "https://flysfb.com/",
